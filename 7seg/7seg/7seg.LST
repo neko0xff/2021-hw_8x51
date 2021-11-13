@@ -1,0 +1,56 @@
+C51 COMPILER V8.05a   7SEG                                                                 11/08/2021 17:36:53 PAGE 1   
+
+
+C51 COMPILER V8.05a, COMPILATION OF MODULE 7SEG
+OBJECT MODULE PLACED IN 7seg.OBJ
+COMPILER INVOKED BY: C:\Keil\C51\BIN\C51.EXE 7seg.c BROWSE DEBUG OBJECTEXTEND
+
+line level    source
+
+   1          /*
+   2           * File: 7seg.c
+   3           * 功能: 用7段顯示器輸出0~F
+   4          */
+   5          
+   6          #include "reg51.h"
+   7          void delay(int s);
+   8          
+   9          /*7段顯示器顯示碼*/
+  10          char code seg7[]={
+  11             0x3F,0x06,0x5B,0x4F,0x66,0x6D,0x7D, //0~7
+  12             0x7F,0x6F,0x77,0x39,0x5E,0x79,0x71  //8~F
+  13          };
+  14          
+  15          /*主程式*/
+  16          void main(){
+  17   1         char i;
+  18   1         P2= 0x0F; //啟用所有的7段顯示器(X4)
+  19   1         /*重復運行*/
+  20   1         while(1){
+  21   2                 /*從P1輸出全部的7段顯示器顯示碼*/
+  22   2                 for(i=0;i<16;i++){
+  23   3                         P1=seg7[i]; 
+  24   3                         delay(20000); //delay 2sec
+  25   3                 }
+  26   2         }
+  27   1      }
+  28          
+  29          /*delay time*/
+  30          void delay(int s){
+  31   1              int m;
+  32   1              for(m=0;m<s;m++);
+  33   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =     71    ----
+   CONSTANT SIZE    =     14    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----       1
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

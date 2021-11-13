@@ -1,0 +1,74 @@
+C51 COMPILER V8.05a   LED_PING                                                             11/08/2021 17:40:17 PAGE 1   
+
+
+C51 COMPILER V8.05a, COMPILATION OF MODULE LED_PING
+OBJECT MODULE PLACED IN LED_ping.OBJ
+COMPILER INVOKED BY: C:\Keil\C51\BIN\C51.EXE LED_ping.c BROWSE DEBUG OBJECTEXTEND
+
+line level    source
+
+   1          /*
+   2          *  File: LED_ping.c
+   3          *  功能: 乒乓灯
+   4          */
+   5          
+   6          #include "io51.h"
+   7          void delay(int x);
+   8          int key= 0;
+   9          int m;
+  10          
+  11          /*乒乓灯亮法*/
+  12          int j_ping= 0x81;
+  13          int j_pong= 0x18;
+  14          char code led_ping[]={
+  15                  0x81,0x42,0x24,0x18 // 外=>內
+  16          };
+  17          char code led_pong[]={
+  18                  0x18,0x24,0x42,0x81 // 內=>外
+  19          };
+  20          
+  21          /* 亮法順序:
+  22          *  LED 0,7(led_ping[0],led_pong[3]) ==> 0x81 
+  23          *  LED 1,6(led_ping[1],led_pong[2]) ==> 0x42
+  24          *  LED 2,5(led_ping[2],led_pong[1]) ==> 0x24
+  25          *  LED 3,4(led_ping[3],led_pong[0]) ==> 0x18
+  26          */
+  27          
+  28          /*主程式*/
+  29          void main(){
+  30   1         char i,m;
+  31   1         while(key==0){
+  32   2                 for(i=0;i<3;i++){
+  33   3                         P1= j_ping;
+  34   3                         delay(1000);
+  35   3                         j_ping=led_ping[i];
+  36   3                 }
+  37   2                 for(m=0;m<3;m++){
+  38   3                         P1= j_pong;
+  39   3                         delay(1000);
+  40   3                         j_pong=led_pong[m];
+  41   3                 }
+  42   2                 j_ping= 0x81;
+  43   2         }   
+  44   1      }
+  45          
+  46          /*delay time*/
+  47          void delay(int x){
+  48   1              for(m=0;m<x;m++);
+  49   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    147    ----
+   CONSTANT SIZE    =      8    ----
+   XDATA SIZE       =   ----    ----
+C51 COMPILER V8.05a   LED_PING                                                             11/08/2021 17:40:17 PAGE 2   
+
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =      8       2
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

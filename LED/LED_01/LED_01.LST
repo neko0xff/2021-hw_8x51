@@ -1,0 +1,53 @@
+C51 COMPILER V8.05a   LED_01                                                               11/08/2021 17:38:03 PAGE 1   
+
+
+C51 COMPILER V8.05a, COMPILATION OF MODULE LED_01
+OBJECT MODULE PLACED IN LED_01.OBJ
+COMPILER INVOKED BY: C:\Keil\C51\BIN\C51.EXE LED_01.c BROWSE DEBUG OBJECTEXTEND
+
+line level    source
+
+   1          /*
+   2           * File: LED_01.c
+   3           * 功能: 右至左移的跑馬灯
+   4          */
+   5          
+   6          #include "io51.h"
+   7          void delay(int x);
+   8          int key= 0; 
+   9          int j= 0xfe; //LED 0= 0xfe
+  10          int i,m;
+  11          
+  12          /*主程式*/
+  13          void main(){
+  14   1              /*如果key=0,則重置*/
+  15   1              while(key==0){
+  16   2                      /*點亮LED 0~7*/
+  17   2                      for(i=1;i<8;i++){
+  18   3                              P1= j; //給P1送出控制LED的信號
+  19   3                              delay(1000);
+  20   3                              j<<= 1; // j => 左旋1位元
+  21   3                              j= j+1;
+  22   3                      }
+  23   2                      j= 0xfe; //LED 0= 0xfe
+  24   2              }
+  25   1      }
+  26          
+  27          /*delay time*/
+  28          void delay(int x){
+  29   1              for(m=0;m<x;m++);
+  30   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =     99    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =      8    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

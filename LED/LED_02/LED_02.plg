@@ -1,0 +1,22 @@
+<html>
+<body>
+<pre>
+<h1>猩ision3 Build Log</h1>
+<h2>Project:</h2>
+C:\Documents and Settings\Administrator\桌面\hw_單晶片實習\LED\LED_02\LED_02.uv2
+Project File Date:  11/08/2021
+
+<h2>Output:</h2>
+Build target 'Target 1'
+assembling STARTUP.A51...
+compiling LED_02.c...
+LED_02.C(52): warning C206: 'delay': missing function-prototype
+LED_02.C(52): error C267: 'delay': requires ANSI-style prototype
+LED_02.C(108): error C231: 'delay': redefinition
+LED_02.C(110): error C231: 'delay': redefinition
+Target not created
+Build target 'Target 1'
+assembling STARTUP.A51...
+compiling LED_02.c...
+LED_02.C(102): error C216: subscript on non-array or too many dimensions
+Target not created

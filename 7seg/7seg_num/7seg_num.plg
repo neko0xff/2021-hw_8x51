@@ -1,0 +1,16 @@
+<html>
+<body>
+<pre>
+<h1>猩ision3 Build Log</h1>
+<h2>Project:</h2>
+C:\Documents and Settings\Administrator\桌面\hw_單晶片實習\7seg\7seg_num\7seg_num.uv2
+Project File Date:  11/08/2021
+
+<h2>Output:</h2>
+Build target 'Target 1'
+assembling STARTUP.A51...
+compiling 7seg_num.c...
+linking...
+Program Size: data=13.0 xdata=0 code=143
+creating hex file from "7seg_num"...
+"7seg_num" - 0 Error(s), 0 Warning(s).
