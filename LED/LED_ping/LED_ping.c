@@ -27,16 +27,16 @@ char code led_pong[]={
 
 /*主程式*/
 void main(){
-   char i,m;
+   int i,m;
    while(key==0){
 	   for(i=0;i<3;i++){
 		   P1= j_ping;
-		   delay(1000);
+		   delay(2000);
 		   j_ping=led_ping[i];
 	   }
 	   for(m=0;m<3;m++){
 		   P1= j_pong;
-		   delay(1000);
+		   delay(2000);
 		   j_pong=led_pong[m];
 	   }
 	   j_ping= 0x81;
