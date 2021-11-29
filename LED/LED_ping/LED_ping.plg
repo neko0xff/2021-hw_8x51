@@ -3,14 +3,10 @@
 <pre>
 <h1>猩ision3 Build Log</h1>
 <h2>Project:</h2>
-C:\Documents and Settings\Administrator\桌面\hw_單晶片實習\LED\LED_ping\LED_ping.uv2
+Z:\hw_8x51\LED\LED_ping\LED_ping.uv2
 Project File Date:  11/08/2021
 
 <h2>Output:</h2>
-Build target 'Target 1'
-assembling STARTUP.A51...
-compiling LED_ping.c...
-linking...
-Program Size: data=19.0 xdata=0 code=311
-creating hex file from "LED_ping"...
-"LED_ping" - 0 Error(s), 0 Warning(s).
+</pre>
+</body>
+</html>

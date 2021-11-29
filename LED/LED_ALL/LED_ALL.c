@@ -10,8 +10,9 @@ void delay(int x);
 void LED_01(int run);
 void LED_pilix3(int run);
 void LED_ping(int run);
+void LED_02(int run);
 int i,m;
-//int rum_time=3;
+int run_time=3;
 //int key= 0;
 //int j=0xfe;
 
@@ -62,9 +63,9 @@ char led_r8=0xFF;
 
 /*主程式*/
 void main(){
-	LED_01(rum_time);
+	LED_01(run_time);
 	delay(2000);
-	LED_ping(rum_time);
+	LED_ping(run_time);
 	delay(2000);
 	LED_pilix3(run_time);
 	delay(2000);
@@ -79,12 +80,12 @@ void main(){
 void LED_01(int run){
   int x;
   int key=0;
-  for(int x=0;x<=run;x++){
+  for(x=0;x<=run;x++){
 	 int i,j;
 	 /*如果key=0,則重置*/
 	 while(key==0){
 		 /*點亮LED 0~7*/
-		 for(i=1;i<8;i++){
+		 for(i=0;i<8;i++){
 			 P1= j; //給P1送出控制LED的信號
 			 delay(5000);
 			 j<<= 1; // j => 左旋1位元
@@ -97,7 +98,7 @@ void LED_01(int run){
 
 //LED_ping: 乒乓灯
 void LED_ping(int run){
- int x;
+ int x,key;
  for(x=0;x<=run;x++){
      char i,m;
      while(key==0){
@@ -118,21 +119,21 @@ void LED_ping(int run){
 
 //LED_pilix3:運行三回霹靂灯
 void LED_pilix3(int run){
-  int x,k,i,m;
+  int x,j;
   int key=0;
   for(x=0;x<=run;x++){
 	 char k,i,m;
 	 /*亮3回*/
 	 for(k=1;k<=key;k++){
 	    	/*亮法:LED 0~7*/
-		  for(i=1;i<8;i++){
+		  for(i=0;i<8;i++){
 			 P1= j;
 			 delay(1000);
 			 j<<= 1; // j => 左旋1位元
 			 j= j+1;
 		  }
 		  /*亮法:LED 7~0*/
-		  for(m=1;m<8;m++){
+		  for(m=0;m<8;m++){
 			 P1= j;
 			 delay(1000);
 			 j>>=1; // j => 右旋1位元
@@ -145,7 +146,7 @@ void LED_pilix3(int run){
 
 //LED_02: 左至右移的接龍灯
 void LED_02(int run){
-	int x;
+	int x,key;
 	for(x=0;x<=run;x++){
 		char r1,r2,r3,r4,r5,r6,r7,r8; //開始值
 	    char r1x,r2x,r3x,r4x,r5x,r6x,r7x,r8x; //指定
@@ -204,7 +205,7 @@ void LED_02(int run){
 			 r8x= led_rf[7];
 			 P1= r8x;
 			 delay(1000);
-			 r8x= led_r8[r8];
+			 r8x= led_r8;
 		  }
 	}
 	}
@@ -212,5 +213,6 @@ void LED_02(int run){
 
 //delay time
 void delay(int x){
+	int m;
 	for(m=0;m<x;m++);
 }

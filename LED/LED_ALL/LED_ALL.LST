@@ -1,0 +1,247 @@
+C51 COMPILER V9.60.0.0   LED_ALL                                                           11/29/2021 13:20:51 PAGE 1   
+
+
+C51 COMPILER V9.60.0.0, COMPILATION OF MODULE LED_ALL
+OBJECT MODULE PLACED IN LED_ALL.OBJ
+COMPILER INVOKED BY: C:\Keil_v5\C51\BIN\C51.EXE LED_ALL.c OPTIMIZE(8,SPEED) BROWSE DEBUG OBJECTEXTEND TABS(2)
+
+line level    source
+
+   1          /*
+   2          *  File: LED_ALL.c
+   3          *  功能: 題目整合
+   4          */
+   5          
+   6          #include "io51.h"
+   7          
+   8          /*變數*/
+   9          void delay(int x);
+  10          void LED_01(int run);
+  11          void LED_pilix3(int run);
+  12          void LED_ping(int run);
+  13          void LED_02(int run);
+  14          int i,m;
+  15          int run_time=3;
+  16          //int key= 0;
+  17          //int j=0xfe;
+  18          
+  19          //乒乓灯亮法
+  20          int j_ping= 0x81;
+  21          int j_pong= 0x18;
+  22          char led_ping[]={
+  23            0x81,0x42,0x24,0x18 // 外=>內
+  24          };
+  25          char led_pong[]={
+  26            0x18,0x24,0x42,0x81 // 內=>外
+  27          };
+  28          
+  29          //接龍灯亮法
+  30          
+  31          char led_rf[]={
+  32            0x80,0x81,0x13,0x87,
+  33            0x8F,0x9F,0XBF,0XFF
+  34          };
+  35          
+  36          char led_r1[]={
+  37            0x80,0x40,0x20,0x10,
+  38            0x08,0x04,0x02,0x01
+  39          };
+  40          char led_r2[]={
+  41            0x81,0x41,0x21,0x11,
+  42            0x09,0x05,0x03
+  43          };
+  44          char led_r3[]={
+  45            0x13,0x43,0x23,0x13,
+  46            0x0B,0x07
+  47          };
+  48          char led_r4[]={
+  49            0x87,0x47,0x27,0x17,0x0F
+  50          };
+  51          char led_r5[]={
+  52            0x8F,0x4F,0x2F,0x1F
+  53          };
+  54          char led_r6[]={
+  55            0x9F,0x5F,0x3F
+C51 COMPILER V9.60.0.0   LED_ALL                                                           11/29/2021 13:20:51 PAGE 2   
+
+  56          };
+  57          char led_r7[]={
+  58            0xBF,0x7F
+  59          };
+  60          char led_r8=0xFF;
+  61          
+  62          
+  63          
+  64          /*主程式*/
+  65          void main(){
+  66   1        LED_01(run_time);
+  67   1        delay(2000);
+  68   1        LED_ping(run_time);
+  69   1        delay(2000);
+  70   1        LED_pilix3(run_time);
+  71   1        delay(2000);
+  72   1        LED_02(run_time);
+  73   1        delay(2000);
+  74   1        
+  75   1      }
+  76          
+  77          /*副程式*/
+  78          
+  79          // LED_01: 右至左移的跑馬灯
+  80          void LED_01(int run){
+  81   1        int x;
+  82   1        int key=0;
+  83   1        for(x=0;x<=run;x++){
+  84   2         int i,j;
+  85   2         /*如果key=0,則重置*/
+  86   2         while(key==0){
+  87   3           /*點亮LED 0~7*/
+  88   3           for(i=0;i<8;i++){
+  89   4             P1= j; //給P1送出控制LED的信號
+  90   4             delay(5000);
+  91   4             j<<= 1; // j => 左旋1位元
+  92   4             j= j+1;
+  93   4            }
+  94   3          j= 0xfe; //LED 0= 0xfe
+  95   3        }
+  96   2        }
+  97   1      }
+  98          
+  99          //LED_ping: 乒乓灯
+ 100          void LED_ping(int run){
+ 101   1       int x,key;
+ 102   1       for(x=0;x<=run;x++){
+ 103   2           char i,m;
+ 104   2           while(key==0){
+ 105   3             for(i=0;i<3;i++){
+ 106   4               P1= j_ping;
+ 107   4               delay(2000);
+ 108   4               j_ping=led_ping[i];
+ 109   4             }
+ 110   3             for(m=0;m<3;m++){
+ 111   4               P1= j_pong;
+ 112   4               delay(2000);
+ 113   4               j_pong=led_pong[m];
+ 114   4             }
+ 115   3             j_ping= 0x81;
+ 116   3            }
+ 117   2         }   
+C51 COMPILER V9.60.0.0   LED_ALL                                                           11/29/2021 13:20:51 PAGE 3   
+
+ 118   1      }
+ 119          
+ 120          //LED_pilix3:運行三回霹靂灯
+ 121          void LED_pilix3(int run){
+ 122   1        int x,j;
+ 123   1        int key=0;
+ 124   1        for(x=0;x<=run;x++){
+ 125   2         char k,i,m;
+ 126   2         /*亮3回*/
+ 127   2         for(k=1;k<=key;k++){
+ 128   3              /*亮法:LED 0~7*/
+ 129   3            for(i=0;i<8;i++){
+ 130   4             P1= j;
+ 131   4             delay(1000);
+ 132   4             j<<= 1; // j => 左旋1位元
+ 133   4             j= j+1;
+ 134   4            }
+ 135   3            /*亮法:LED 7~0*/
+ 136   3            for(m=0;m<8;m++){
+ 137   4             P1= j;
+ 138   4             delay(1000);
+ 139   4             j>>=1; // j => 右旋1位元
+ 140   4             j= j|80;
+ 141   4           }
+ 142   3           j=0xfe;
+ 143   3         }
+ 144   2        }
+ 145   1      }
+ 146          
+ 147          //LED_02: 左至右移的接龍灯
+ 148          void LED_02(int run){
+ 149   1        int x,key;
+ 150   1        for(x=0;x<=run;x++){
+ 151   2          char r1,r2,r3,r4,r5,r6,r7,r8; //開始值
+ 152   2            char r1x,r2x,r3x,r4x,r5x,r6x,r7x,r8x; //指定
+ 153   2            while(key == 0){
+ 154   3             /*第1回*/
+ 155   3             for(r1=0;r1<=7;r1++){
+ 156   4             r1x = led_rf[0];
+ 157   4             P1= r1x;
+ 158   4             delay(1000);
+ 159   4             r1x= led_r1[r1];
+ 160   4             }
+ 161   3             /*第2回*/
+ 162   3             for(r2=0;r2<=7;r2++){
+ 163   4             r2x = led_rf[1];
+ 164   4             P1= r2x;
+ 165   4             delay(1000);
+ 166   4             r2x= led_r2[r2];
+ 167   4             }
+ 168   3             /*第3回*/
+ 169   3             for(r3=0;r3<=7;r3++){
+ 170   4             r3x= led_rf[2];
+ 171   4             P1= r3x;
+ 172   4             delay(1000);
+ 173   4             r3x= led_r3[r3];
+ 174   4             }
+ 175   3             /*第4回*/
+ 176   3             for(r4=0;r4<=7;r4++){
+ 177   4             r4x= led_rf[3];
+ 178   4             P1= r4x;
+ 179   4             delay(1000);
+C51 COMPILER V9.60.0.0   LED_ALL                                                           11/29/2021 13:20:51 PAGE 4   
+
+ 180   4             r4x= led_r4[r4];
+ 181   4             }
+ 182   3             /*第5回*/
+ 183   3             for(r5=0;r5<=7;r5++){
+ 184   4             r5x= led_rf[4];
+ 185   4             P1= r5x;
+ 186   4             delay(1000);
+ 187   4             r5x= led_r5[r5];
+ 188   4             }
+ 189   3             /*第6回*/
+ 190   3             for(r6=0;r6<=7;r6++){
+ 191   4             r6x= led_rf[5];
+ 192   4             P1= r6x;
+ 193   4             delay(1000);
+ 194   4             r6x= led_r6[r6];
+ 195   4             }
+ 196   3            /*第7回*/
+ 197   3            for(r7=0;r7<=7;r7++){
+ 198   4             r7x= led_rf[6];
+ 199   4             P1= r7x;
+ 200   4             delay(1000);
+ 201   4             r7x= led_r7[r7];
+ 202   4            }
+ 203   3            /*第8回*/
+ 204   3            for(r8=0;r8<=7;r8++){
+ 205   4             r8x= led_rf[7];
+ 206   4             P1= r8x;
+ 207   4             delay(1000);
+ 208   4             r8x= led_r8;
+ 209   4            }
+ 210   3        }
+ 211   2        }
+ 212   1      }
+ 213          
+ 214          //delay time
+ 215          void delay(int x){
+ 216   1        int m;
+ 217   1        for(m=0;m<x;m++);
+ 218   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    906    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =     62      51
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

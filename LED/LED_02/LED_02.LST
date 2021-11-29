@@ -1,4 +1,4 @@
-C51 COMPILER V8.05a   LED_02                                                               11/08/2021 17:39:25 PAGE 1   
+C51 COMPILER V8.05a   LED_02                                                               11/15/2021 11:30:14 PAGE 1   
 
 
 C51 COMPILER V8.05a, COMPILATION OF MODULE LED_02
@@ -62,7 +62,7 @@ line level    source
   53   3                              r1x= led_r1[r1];
   54   3                      }
   55   2                      /*第2回*/
-C51 COMPILER V8.05a   LED_02                                                               11/08/2021 17:39:25 PAGE 2   
+C51 COMPILER V8.05a   LED_02                                                               11/15/2021 11:30:14 PAGE 2   
 
   56   2                      for(r2=0;r2<=7;r2++){
   57   3                              r2x = led_rf[1];
@@ -110,8 +110,7 @@ line level    source
   99   3                              r8x= led_rf[7];
  100   3                              P1= r8x;
  101   3                              delay(1000);
- 102   3                              r8x= led_r8[r8];
-*** ERROR C216 IN LINE 102 OF LED_02.C: subscript on non-array or too many dimensions
+ 102   3                              r8x= led_r8;
  103   3                      }
  104   2              }
  105   1      }
@@ -121,4 +120,18 @@ line level    source
  109   1              for(m;m<=x;m++);
  110   1      }
 
-C51 COMPILATION COMPLETE.  0 WARNING(S),  1 ERROR(S)
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    249    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+C51 COMPILER V8.05a   LED_02                                                               11/15/2021 11:30:14 PAGE 3   
+
+   DATA SIZE        =     48       8
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

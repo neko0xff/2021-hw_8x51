@@ -99,7 +99,7 @@ void main(){
 			r8x= led_rf[7];
 			P1= r8x;
 			delay(1000);
-			r8x= led_r8[r8];
+			r8x= led_r8;
 		}
 	}
 }

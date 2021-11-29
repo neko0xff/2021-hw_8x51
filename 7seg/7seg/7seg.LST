@@ -1,9 +1,9 @@
-C51 COMPILER V8.05a   7SEG                                                                 11/08/2021 17:36:53 PAGE 1   
+C51 COMPILER V9.60.0.0   7SEG                                                              11/29/2021 12:41:24 PAGE 1   
 
 
-C51 COMPILER V8.05a, COMPILATION OF MODULE 7SEG
+C51 COMPILER V9.60.0.0, COMPILATION OF MODULE 7SEG
 OBJECT MODULE PLACED IN 7seg.OBJ
-COMPILER INVOKED BY: C:\Keil\C51\BIN\C51.EXE 7seg.c BROWSE DEBUG OBJECTEXTEND
+COMPILER INVOKED BY: C:\Keil_v5\C51\BIN\C51.EXE 7seg.c OPTIMIZE(8,SPEED) BROWSE DEBUG OBJECTEXTEND TABS(2)
 
 line level    source
 
@@ -27,23 +27,23 @@ line level    source
   18   1         P2= 0x0F; //啟用所有的7段顯示器(X4)
   19   1         /*重復運行*/
   20   1         while(1){
-  21   2                 /*從P1輸出全部的7段顯示器顯示碼*/
-  22   2                 for(i=0;i<16;i++){
-  23   3                         P1=seg7[i]; 
-  24   3                         delay(20000); //delay 2sec
-  25   3                 }
+  21   2           /*從P1輸出全部的7段顯示器顯示碼*/
+  22   2           for(i=0;i<16;i++){
+  23   3             P1=seg7[i]; 
+  24   3             delay(20000); //delay 2sec
+  25   3           }
   26   2         }
   27   1      }
   28          
   29          /*delay time*/
   30          void delay(int s){
-  31   1              int m;
-  32   1              for(m=0;m<s;m++);
+  31   1        int m;
+  32   1        for(m=0;m<s;m++);
   33   1      }
 
 
 MODULE INFORMATION:   STATIC OVERLAYABLE
-   CODE SIZE        =     71    ----
+   CODE SIZE        =     78    ----
    CONSTANT SIZE    =     14    ----
    XDATA SIZE       =   ----    ----
    PDATA SIZE       =   ----    ----

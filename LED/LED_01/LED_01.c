@@ -11,12 +11,12 @@ int i,m;
 
 /*主程式*/
 void main(){
-	/*如果key=0,則重置*/
+	/*如果key=0,則運行*/
 	while(key==0){
 		/*點亮LED 0~7*/
-		for(i=1;i<8;i++){
+		for(i=0;i<8;i++){
 			P1= j; //給P1送出控制LED的信號
-			delay(5000);
+			delay(7000);
 			j<<= 1; // j => 左旋1位元
 			j= j+1;
 		}

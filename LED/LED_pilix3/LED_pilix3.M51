@@ -1,8 +1,8 @@
-BL51 BANKED LINKER/LOCATER V6.02                                                        11/08/2021  17:39:52  PAGE 1
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                    11/29/2021  13:21:10  PAGE 1
 
 
-BL51 BANKED LINKER/LOCATER V6.02, INVOKED BY:
-C:\KEIL\C51\BIN\BL51.EXE STARTUP.obj, LED_pilix3.obj TO LED_pilix3
+BL51 BANKED LINKER/LOCATER V6.22.2.0, INVOKED BY:
+C:\KEIL_V5\C51\BIN\BL51.EXE STARTUP.obj, LED_pilix3.obj TO LED_pilix3
 
 
 MEMORY MODEL: SMALL
@@ -11,7 +11,7 @@ MEMORY MODEL: SMALL
 INPUT MODULES INCLUDED:
   STARTUP.obj (?C_STARTUP)
   LED_pilix3.obj (LED_PILIX3)
-  C:\KEIL\C51\LIB\C51S.LIB (?C_INIT)
+  C:\KEIL_V5\C51\LIB\C51S.LIB (?C_INIT)
 
 
 LINK MAP OF MODULE:  LED_pilix3 (?C_STARTUP)
@@ -30,9 +30,9 @@ LINK MAP OF MODULE:  LED_pilix3 (?C_STARTUP)
             CODE    0000H     0003H     ABSOLUTE     
                     0003H     07FDH                  *** GAP ***
             CODE    0800H     008CH     UNIT         ?C_C51STARTUP
-            CODE    088CH     0068H     UNIT         ?PR?MAIN?LED_PILIX3
-            CODE    08F4H     0021H     UNIT         ?PR?_DELAY?LED_PILIX3
-            CODE    0915H     0009H     UNIT         ?C_INITSEG
+            CODE    088CH     007FH     UNIT         ?PR?MAIN?LED_PILIX3
+            CODE    090BH     0021H     UNIT         ?PR?_DELAY?LED_PILIX3
+            CODE    092CH     0009H     UNIT         ?C_INITSEG
 
 
 
@@ -59,7 +59,7 @@ SYMBOL TABLE OF MODULE:  LED_pilix3 (?C_STARTUP)
   -------         MODULE        ?C_STARTUP
   C:0800H         SEGMENT       ?C_C51STARTUP
   I:0011H         SEGMENT       ?STACK
-BL51 BANKED LINKER/LOCATER V6.02                                                      11/08/2021  17:39:52  PAGE 2
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  11/29/2021  13:21:10  PAGE 2
 
 
   C:0000H         PUBLIC        ?C_STARTUP
@@ -96,7 +96,7 @@ SYMBOL TABLE OF MODULE:  LED_pilix3 (?C_STARTUP)
   -------         MODULE        LED_PILIX3
   C:0000H         SYMBOL        _ICE_DUMMY_
   D:0090H         PUBLIC        P1
-  C:08FBH         PUBLIC        _delay
+  C:0912H         PUBLIC        _delay
   C:088CH         PUBLIC        main
   D:0008H         PUBLIC        key
   D:000AH         PUBLIC        j
@@ -110,37 +110,37 @@ SYMBOL TABLE OF MODULE:  LED_pilix3 (?C_STARTUP)
   C:088CH         LINE#         13
   C:088CH         LINE#         16
   C:08A5H         LINE#         18
-  C:08A8H         LINE#         19
-  C:08A8H         LINE#         20
-  C:08ABH         LINE#         21
-  C:08B6H         LINE#         22
-  C:08BEH         LINE#         23
-  C:08C9H         LINE#         25
-  C:08CCH         LINE#         26
-  C:08CCH         LINE#         27
-  C:08CFH         LINE#         28
-BL51 BANKED LINKER/LOCATER V6.02                                                      11/08/2021  17:39:52  PAGE 3
+  C:08BAH         LINE#         19
+  C:08BAH         LINE#         20
+  C:08BDH         LINE#         21
+  C:08C8H         LINE#         22
+  C:08D0H         LINE#         23
+  C:08D4H         LINE#         25
+  C:08E9H         LINE#         26
+  C:08E9H         LINE#         27
+  C:08ECH         LINE#         28
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  11/29/2021  13:21:10  PAGE 3
 
 
-  C:08DBH         LINE#         29
-  C:08DEH         LINE#         30
-  C:08E9H         LINE#         31
-  C:08EFH         LINE#         32
-  C:08F3H         LINE#         33
+  C:08F8H         LINE#         29
+  C:08FBH         LINE#         30
+  C:08FFH         LINE#         31
+  C:0905H         LINE#         32
+  C:090AH         LINE#         33
   -------         ENDPROC       MAIN
   -------         PROC          L?0017
   -------         ENDPROC       L?0017
   -------         PROC          _DELAY
   D:0006H         SYMBOL        x
-  C:08FBH         LINE#         36
-  C:08FBH         LINE#         37
-  C:0914H         LINE#         38
+  C:0912H         LINE#         36
+  C:0912H         LINE#         37
+  C:092BH         LINE#         38
   -------         ENDPROC       _DELAY
   -------         ENDMOD        LED_PILIX3
 
 ******************************************************************************
-* RESTRICTED VERSION WITH 0800H BYTE CODE SIZE LIMIT; USED: 00A0H BYTE ( 7%) *
+* RESTRICTED VERSION WITH 0800H BYTE CODE SIZE LIMIT; USED: 00B7H BYTE ( 8%) *
 ******************************************************************************
 
-Program Size: data=18.0 xdata=0 code=289
+Program Size: data=18.0 xdata=0 code=312
 LINK/LOCATE RUN COMPLETE.  0 WARNING(S),  0 ERROR(S)

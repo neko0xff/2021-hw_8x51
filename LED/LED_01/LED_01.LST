@@ -1,4 +1,4 @@
-C51 COMPILER V8.05a   LED_01                                                               11/08/2021 17:38:03 PAGE 1   
+C51 COMPILER V8.05a   LED_01                                                               11/23/2021 03:45:49 PAGE 1   
 
 
 C51 COMPILER V8.05a, COMPILATION OF MODULE LED_01
@@ -23,9 +23,9 @@ line level    source
   14   1              /*如果key=0,則重置*/
   15   1              while(key==0){
   16   2                      /*點亮LED 0~7*/
-  17   2                      for(i=1;i<8;i++){
+  17   2                      for(i=0;i<8;i++){
   18   3                              P1= j; //給P1送出控制LED的信號
-  19   3                              delay(1000);
+  19   3                              delay(7000);
   20   3                              j<<= 1; // j => 左旋1位元
   21   3                              j= j+1;
   22   3                      }
@@ -40,7 +40,7 @@ line level    source
 
 
 MODULE INFORMATION:   STATIC OVERLAYABLE
-   CODE SIZE        =     99    ----
+   CODE SIZE        =     98    ----
    CONSTANT SIZE    =   ----    ----
    XDATA SIZE       =   ----    ----
    PDATA SIZE       =   ----    ----
