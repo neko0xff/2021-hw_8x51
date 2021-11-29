@@ -1,0 +1,4 @@
+".\Objects\STARTUP.obj",
+".\Objects\7seg_ALL.obj" 
+TO ".\Objects\7seg_ALL" 
+PRINT(".\Listings\7seg_ALL.m51")

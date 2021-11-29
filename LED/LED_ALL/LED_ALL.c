@@ -63,15 +63,16 @@ char led_r8=0xFF;
 
 /*主程式*/
 void main(){
-	LED_01(run_time);
-	delay(2000);
-	LED_ping(run_time);
-	delay(2000);
-	LED_pilix3(run_time);
-	delay(2000);
-	LED_02(run_time);
-	delay(2000);
-	
+   while(1){
+	 LED_01(run_time);
+	 delay(2000);
+	 LED_ping(run_time);
+	 delay(2000);
+	 LED_pilix3(run_time);
+	 delay(2000);
+	 LED_02(run_time);
+	 delay(2000);
+   }
 }
 
 /*副程式*/
@@ -98,10 +99,10 @@ void LED_01(int run){
 
 //LED_ping: 乒乓灯
 void LED_ping(int run){
- int x,key;
+ int x;
  for(x=0;x<=run;x++){
      char i,m;
-     while(key==0){
+     while(1){
 	     for(i=0;i<3;i++){
 		     P1= j_ping;
 		     delay(2000);
@@ -146,11 +147,11 @@ void LED_pilix3(int run){
 
 //LED_02: 左至右移的接龍灯
 void LED_02(int run){
-	int x,key;
+	int x;
 	for(x=0;x<=run;x++){
 		char r1,r2,r3,r4,r5,r6,r7,r8; //開始值
 	    char r1x,r2x,r3x,r4x,r5x,r6x,r7x,r8x; //指定
-	    while(key == 0){
+	    while(1){
 		   /*第1回*/
 		   for(r1=0;r1<=7;r1++){
 			 r1x = led_rf[0];
