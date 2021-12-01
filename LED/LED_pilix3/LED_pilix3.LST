@@ -1,4 +1,4 @@
-C51 COMPILER V9.60.0.0   LED_PILIX3                                                        11/29/2021 13:21:10 PAGE 1   
+C51 COMPILER V9.60.0.0   LED_PILIX3                                                        12/01/2021 14:28:05 PAGE 1   
 
 
 C51 COMPILER V9.60.0.0, COMPILATION OF MODULE LED_PILIX3
@@ -14,45 +14,46 @@ line level    source
    5          
    6          #include "io51.h"
    7          void delay(int x);
-   8          int key=3;
-   9          int j= 0xfe;
+   8          int j= 0xfe;
+   9          int i,x;
   10          int m;
   11          
   12          /*主程式*/
   13          void main(){
-  14   1        char k,i,m;
-  15   1        /*亮3回*/
-  16   1        for(k=1;k<=key;k++){
-  17   2          /*亮法:LED 0~7*/
-  18   2          for(i=1;i<8;i++){
-  19   3            P1= j;
-  20   3            delay(1000);
-  21   3            j<<= 1; // j => 左旋1位元
-  22   3            j= j+1;
-  23   3          }
-  24   2          /*亮法:LED 7~0*/
-  25   2          for(m=1;m<8;m++){
+  14   1        /*亮3回*/
+  15   1        while(1){
+  16   2          j=0xfe;
+  17   2            /*亮法:LED 0~7*/
+  18   2            for(i=0;i<8;i++){
+  19   3             P1= j;
+  20   3             delay(10000);
+  21   3             j<<= 1; // j => 左旋1位元
+  22   3             j= j+1;
+  23   3            }
+  24   2           /*亮法:LED 7~0*/
+  25   2           for(x=8;x>0;x--){
   26   3            P1= j;
-  27   3            delay(1000);
+  27   3            delay(10000);
   28   3            j>>=1; // j => 右旋1位元
-  29   3            j= j|80;
-  30   3          }
-  31   2          j=0xfe;
+  29   3            j= j|0x80;
+  30   3           }
+  31   2          
   32   2        }
-  33   1      }
-  34          
-  35          /*delay time*/
-  36          void delay(int x){
-  37   1        for(m;m<=x;m++);
-  38   1      }
+  33   1        
+  34   1      }
+  35          
+  36          /*delay time*/
+  37          void delay(int x){
+  38   1        for(m=0;m<x;m++);
+  39   1      }
 
 
 MODULE INFORMATION:   STATIC OVERLAYABLE
-   CODE SIZE        =    160    ----
+   CODE SIZE        =    137    ----
    CONSTANT SIZE    =   ----    ----
    XDATA SIZE       =   ----    ----
    PDATA SIZE       =   ----    ----
-   DATA SIZE        =      6       3
+   DATA SIZE        =      8    ----
    IDATA SIZE       =   ----    ----
    BIT SIZE         =   ----    ----
 END OF MODULE INFORMATION.

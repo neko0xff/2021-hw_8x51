@@ -13,21 +13,14 @@ void LED_ping(int run);
 void LED_02(int run);
 int i,m;
 int run_time=3;
-//int key= 0;
-//int j=0xfe;
 
 //乒乓灯亮法
-int j_ping= 0x81;
-int j_pong= 0x18;
+int j_ping= 0x7E;
 char led_ping[]={
-	0x81,0x42,0x24,0x18 // 外=>內
-};
-char led_pong[]={
-	0x18,0x24,0x42,0x81 // 內=>外
+	0x7E,0xBD,0xDB,0xE7,0xDB,0xBD,0X7E 
 };
 
 //接龍灯亮法
-
 char led_rf[]={
 	0x80,0x81,0x13,0x87,
 	0x8F,0x9F,0XBF,0XFF
@@ -80,11 +73,10 @@ void main(){
 // LED_01: 右至左移的跑馬灯
 void LED_01(int run){
   int x;
-  int key=0;
   for(x=0;x<=run;x++){
 	 int i,j;
 	 /*如果key=0,則重置*/
-	 while(key==0){
+	 while(1){
 		 /*點亮LED 0~7*/
 		 for(i=0;i<8;i++){
 			 P1= j; //給P1送出控制LED的信號
@@ -108,12 +100,6 @@ void LED_ping(int run){
 		     delay(2000);
 		     j_ping=led_ping[i];
 	     }
-	     for(m=0;m<3;m++){
-		     P1= j_pong;
-		     delay(2000);
-		     j_pong=led_pong[m];
-	     }
-	     j_ping= 0x81;
       }
    }   
 }

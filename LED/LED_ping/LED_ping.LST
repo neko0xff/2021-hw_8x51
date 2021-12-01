@@ -1,4 +1,4 @@
-C51 COMPILER V9.60.0.0   LED_PING                                                          11/29/2021 13:21:31 PAGE 1   
+C51 COMPILER V9.60.0.0   LED_PING                                                          11/30/2021 11:54:38 PAGE 1   
 
 
 C51 COMPILER V9.60.0.0, COMPILATION OF MODULE LED_PING
@@ -18,14 +18,14 @@ line level    source
    9          int m;
   10          
   11          /*乒乓灯亮法*/
-  12          int j_ping= 0x81;
-  13          int j_pong= 0x18;
+  12          int j_ping= 0x7E;
+  13          int j_pong= 0xE7;
   14          char code led_ping[]={
-  15            0x81,0x42,0x24,0x18 // 外=>內
+  15            0x7E,0xBD,0xDB,0xE7,0xDB,0xBD,0X7E // 外=>內
   16          };
-  17          char code led_pong[]={
-  18            0x18,0x24,0x42,0x81 // 內=>外
-  19          };
+  17          /*char code led_pong[]={
+  18            0xE7,0xDB,0xBD,0x7E // 內=>外
+  19          };*/
   20          
   21          /* 亮法順序:
   22          *  LED 0,7(led_ping[0],led_pong[3]) ==> 0x81 
@@ -36,36 +36,40 @@ line level    source
   27          
   28          /*主程式*/
   29          void main(){
-  30   1         int i,m;
+  30   1         int i;
   31   1         while(key==0){
-  32   2           for(i=0;i<3;i++){
+  32   2           for(i=0;i<7;i++){
   33   3             P1= j_ping;
-  34   3             delay(2000);
+  34   3             delay(10000);
   35   3             j_ping=led_ping[i];
   36   3           }
-  37   2           for(m=0;m<3;m++){
-  38   3             P1= j_pong;
-  39   3             delay(2000);
-  40   3             j_pong=led_pong[m];
-  41   3           }
-  42   2           j_ping= 0x81;
-  43   2         }   
-  44   1      }
-  45          
-  46          /*delay time*/
-  47          void delay(int x){
-  48   1        for(m=0;m<x;m++);
-  49   1      }
+  37   2           //delay(10000);
+  38   2           /*
+  39   2           for(m=0;m<3;m++){
+  40   2             P1= j_pong;
+  41   2             delay(10000);
+  42   2             j_pong=led_pong[m];
+  43   2           }
+  44   2           
+  45   2           j_ping= 0x7E;
+  46   2           */
+  47   2         }   
+  48   1      }
+  49          
+  50          /*delay time*/
+  51          void delay(int x){
+  52   1        for(m=0;m<x;m++);
+  53   1      }
 
+
+C51 COMPILER V9.60.0.0   LED_PING                                                          11/30/2021 11:54:38 PAGE 2   
 
 MODULE INFORMATION:   STATIC OVERLAYABLE
-   CODE SIZE        =    157    ----
-   CONSTANT SIZE    =      8    ----
+   CODE SIZE        =     97    ----
+   CONSTANT SIZE    =      7    ----
    XDATA SIZE       =   ----    ----
-C51 COMPILER V9.60.0.0   LED_PING                                                          11/29/2021 13:21:31 PAGE 2   
-
    PDATA SIZE       =   ----    ----
-   DATA SIZE        =      8       4
+   DATA SIZE        =      8       2
    IDATA SIZE       =   ----    ----
    BIT SIZE         =   ----    ----
 END OF MODULE INFORMATION.

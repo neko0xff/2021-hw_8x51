@@ -1,4 +1,4 @@
-BL51 BANKED LINKER/LOCATER V6.22.2.0                                                    11/29/2021  13:21:31  PAGE 1
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                    11/30/2021  11:54:38  PAGE 1
 
 
 BL51 BANKED LINKER/LOCATER V6.22.2.0, INVOKED BY:
@@ -23,17 +23,17 @@ LINK MAP OF MODULE:  LED_ping (?C_STARTUP)
             * * * * * * *   D A T A   M E M O R Y   * * * * * * *
             REG     0000H     0008H     ABSOLUTE     "REG BANK 0"
             DATA    0008H     0008H     UNIT         ?DT?LED_PING
-            DATA    0010H     0004H     UNIT         _DATA_GROUP_
-            IDATA   0014H     0001H     UNIT         ?STACK
+            DATA    0010H     0002H     UNIT         _DATA_GROUP_
+            IDATA   0012H     0001H     UNIT         ?STACK
 
             * * * * * * *   C O D E   M E M O R Y   * * * * * * *
             CODE    0000H     0003H     ABSOLUTE     
                     0003H     07FDH                  *** GAP ***
             CODE    0800H     008CH     UNIT         ?C_C51STARTUP
-            CODE    088CH     007EH     UNIT         ?PR?MAIN?LED_PING
-            CODE    090AH     001FH     UNIT         ?PR?_DELAY?LED_PING
-            CODE    0929H     000DH     UNIT         ?C_INITSEG
-            CODE    0936H     0008H     UNIT         ?CO?LED_PING
+            CODE    088CH     0042H     UNIT         ?PR?MAIN?LED_PING
+            CODE    08CEH     001FH     UNIT         ?PR?_DELAY?LED_PING
+            CODE    08EDH     000DH     UNIT         ?C_INITSEG
+            CODE    08FAH     0007H     UNIT         ?CO?LED_PING
 
 
 
@@ -47,7 +47,7 @@ SEGMENT                          DATA_GROUP
   +--> ?PR?MAIN?LED_PING
   +--> ?C_INITSEG
 
-?PR?MAIN?LED_PING              0010H    0004H
+?PR?MAIN?LED_PING              0010H    0002H
   +--> ?PR?_DELAY?LED_PING
   +--> ?CO?LED_PING
 
@@ -59,11 +59,11 @@ SYMBOL TABLE OF MODULE:  LED_ping (?C_STARTUP)
   ----------------------------------
 
   -------         MODULE        ?C_STARTUP
-BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  11/29/2021  13:21:31  PAGE 2
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  11/30/2021  11:54:38  PAGE 2
 
 
   C:0800H         SEGMENT       ?C_C51STARTUP
-  I:0014H         SEGMENT       ?STACK
+  I:0012H         SEGMENT       ?STACK
   C:0000H         PUBLIC        ?C_STARTUP
   D:00E0H         SYMBOL        ACC
   D:00F0H         SYMBOL        B
@@ -99,48 +99,40 @@ SYMBOL TABLE OF MODULE:  LED_ping (?C_STARTUP)
   C:0000H         SYMBOL        _ICE_DUMMY_
   D:0008H         PUBLIC        j_pong
   D:0090H         PUBLIC        P1
-  C:090AH         PUBLIC        _delay
+  C:08CEH         PUBLIC        _delay
   C:088CH         PUBLIC        main
-  C:0936H         PUBLIC        led_ping
+  C:08FAH         PUBLIC        led_ping
   D:000AH         PUBLIC        key
-  C:093AH         PUBLIC        led_pong
   D:000CH         PUBLIC        m
   D:000EH         PUBLIC        j_ping
   -------         PROC          MAIN
   -------         DO            
   D:0010H         SYMBOL        i
-  D:0012H         SYMBOL        m
   -------         ENDDO         
   C:088CH         LINE#         29
   C:088CH         LINE#         31
   C:0892H         LINE#         32
-  C:0896H         LINE#         33
-  C:0899H         LINE#         34
-  C:08A0H         LINE#         35
-  C:08B6H         LINE#         36
-  C:08C9H         LINE#         37
-BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  11/29/2021  13:21:31  PAGE 3
-
-
-  C:08CEH         LINE#         38
-  C:08D1H         LINE#         39
-  C:08D8H         LINE#         40
-  C:08EEH         LINE#         41
-  C:0901H         LINE#         42
-  C:0907H         LINE#         43
-  C:0909H         LINE#         44
+  C:08A3H         LINE#         33
+  C:08A6H         LINE#         34
+  C:08ADH         LINE#         35
+  C:08C3H         LINE#         36
+  C:08CDH         LINE#         47
+  C:08CDH         LINE#         48
   -------         ENDPROC       MAIN
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  11/30/2021  11:54:38  PAGE 3
+
+
   -------         PROC          _DELAY
   D:0006H         SYMBOL        x
-  C:090AH         LINE#         47
-  C:090AH         LINE#         48
-  C:0928H         LINE#         49
+  C:08CEH         LINE#         51
+  C:08CEH         LINE#         52
+  C:08ECH         LINE#         53
   -------         ENDPROC       _DELAY
   -------         ENDMOD        LED_PING
 
 ******************************************************************************
-* RESTRICTED VERSION WITH 0800H BYTE CODE SIZE LIMIT; USED: 00C0H BYTE ( 9%) *
+* RESTRICTED VERSION WITH 0800H BYTE CODE SIZE LIMIT; USED: 0083H BYTE ( 6%) *
 ******************************************************************************
 
-Program Size: data=21.0 xdata=0 code=321
+Program Size: data=19.0 xdata=0 code=260
 LINK/LOCATE RUN COMPLETE.  0 WARNING(S),  0 ERROR(S)

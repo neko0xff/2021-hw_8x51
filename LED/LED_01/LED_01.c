@@ -5,14 +5,12 @@
 
 #include "io51.h"
 void delay(int x);
-int key= 0; 
-int j= 0xfe; //LED 0= 0xfe
+int j= 0xFE; //LED 0= 0xfe
 int i,m;
 
 /*主程式*/
 void main(){
-	/*如果key=0,則運行*/
-	while(key==0){
+	while(1){
 		/*點亮LED 0~7*/
 		for(i=0;i<8;i++){
 			P1= j; //給P1送出控制LED的信號
@@ -20,7 +18,7 @@ void main(){
 			j<<= 1; // j => 左旋1位元
 			j= j+1;
 		}
-		j= 0xfe; //LED 0= 0xfe
+		j= 0xFE; //LED 0= 0xfe
 	}
 }
 
