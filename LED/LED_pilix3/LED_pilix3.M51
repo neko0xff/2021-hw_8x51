@@ -1,4 +1,4 @@
-BL51 BANKED LINKER/LOCATER V6.22.2.0                                                    12/01/2021  14:28:06  PAGE 1
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                    12/07/2021  11:29:09  PAGE 1
 
 
 BL51 BANKED LINKER/LOCATER V6.22.2.0, INVOKED BY:
@@ -22,16 +22,17 @@ LINK MAP OF MODULE:  LED_pilix3 (?C_STARTUP)
 
             * * * * * * *   D A T A   M E M O R Y   * * * * * * *
             REG     0000H     0008H     ABSOLUTE     "REG BANK 0"
-            DATA    0008H     0008H     UNIT         ?DT?LED_PILIX3
-            IDATA   0010H     0001H     UNIT         ?STACK
+            DATA    0008H     000CH     UNIT         ?DT?LED_PILIX3
+            IDATA   0014H     0001H     UNIT         ?STACK
 
             * * * * * * *   C O D E   M E M O R Y   * * * * * * *
             CODE    0000H     0003H     ABSOLUTE     
                     0003H     07FDH                  *** GAP ***
             CODE    0800H     008CH     UNIT         ?C_C51STARTUP
-            CODE    088CH     0063H     UNIT         ?PR?MAIN?LED_PILIX3
-            CODE    08EFH     0026H     UNIT         ?PR?_DELAY?LED_PILIX3
-            CODE    0915H     0005H     UNIT         ?C_INITSEG
+            CODE    088CH     008AH     UNIT         ?PR?MAIN?LED_PILIX3
+            CODE    0916H     0029H     UNIT         ?PR?_DELAY?LED_PILIX3
+            CODE    093FH     000FH     UNIT         ?CO?LED_PILIX3
+            CODE    094EH     0005H     UNIT         ?C_INITSEG
 
 
 
@@ -46,6 +47,7 @@ SEGMENT
   +--> ?C_INITSEG
 
 ?PR?MAIN?LED_PILIX3
+  +--> ?CO?LED_PILIX3
   +--> ?PR?_DELAY?LED_PILIX3
 
 
@@ -57,11 +59,11 @@ SYMBOL TABLE OF MODULE:  LED_pilix3 (?C_STARTUP)
 
   -------         MODULE        ?C_STARTUP
   C:0800H         SEGMENT       ?C_C51STARTUP
-  I:0010H         SEGMENT       ?STACK
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  12/07/2021  11:29:09  PAGE 2
+
+
+  I:0014H         SEGMENT       ?STACK
   C:0000H         PUBLIC        ?C_STARTUP
-BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  12/01/2021  14:28:06  PAGE 2
-
-
   D:00E0H         SYMBOL        ACC
   D:00F0H         SYMBOL        B
   D:0083H         SYMBOL        DPH
@@ -95,45 +97,54 @@ SYMBOL TABLE OF MODULE:  LED_pilix3 (?C_STARTUP)
   -------         MODULE        LED_PILIX3
   C:0000H         SYMBOL        _ICE_DUMMY_
   D:0090H         PUBLIC        P1
-  C:08F6H         PUBLIC        _delay
+  C:0920H         PUBLIC        _delay
   C:088CH         PUBLIC        main
-  D:0008H         PUBLIC        i
-  D:000AH         PUBLIC        j
-  D:000CH         PUBLIC        m
-  D:000EH         PUBLIC        x
+  C:0947H         PUBLIC        led_pingt
+  C:093FH         PUBLIC        led_ping
+  D:0008H         PUBLIC        a
+  D:000AH         PUBLIC        i
+  D:000CH         PUBLIC        j
+  D:000EH         PUBLIC        m
+  D:0010H         PUBLIC        x
+  D:0012H         PUBLIC        y
   -------         PROC          MAIN
-  C:088CH         LINE#         13
-  C:088CH         LINE#         15
-  C:088CH         LINE#         16
-  C:0892H         LINE#         18
-  C:0897H         LINE#         19
-  C:0897H         LINE#         20
-  C:089AH         LINE#         21
-  C:08A5H         LINE#         22
-  C:08ADH         LINE#         23
-  C:08C0H         LINE#         25
-  C:08D3H         LINE#         26
-  C:08D3H         LINE#         27
-  C:08D6H         LINE#         28
-  C:08E2H         LINE#         29
-  C:08E5H         LINE#         30
+  C:088CH         LINE#         19
+  C:088CH         LINE#         21
+  C:088CH         LINE#         22
+  C:0891H         LINE#         23
+  C:0896H         LINE#         24
+  C:08A0H         LINE#         25
+  C:08A3H         LINE#         26
+  C:08A6H         LINE#         27
+  C:08A9H         LINE#         28
+  C:08BCH         LINE#         29
+  C:08CFH         LINE#         30
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  12/07/2021  11:29:09  PAGE 3
+
+
+  C:08E1H         LINE#         31
+  C:08E6H         LINE#         32
+  C:08F0H         LINE#         33
+  C:08F3H         LINE#         34
+  C:08F6H         LINE#         35
+  C:08F9H         LINE#         36
+  C:090CH         LINE#         37
   -------         ENDPROC       MAIN
-  -------         PROC          L?0018
-BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  12/01/2021  14:28:06  PAGE 3
-
-
-  -------         ENDPROC       L?0018
+  C:091CH         SYMBOL        L?0026
+  -------         PROC          L?0025
+  -------         ENDPROC       L?0025
+  C:091CH         SYMBOL        L?0026
   -------         PROC          _DELAY
   D:0006H         SYMBOL        x
-  C:08F6H         LINE#         37
-  C:08F6H         LINE#         38
-  C:0914H         LINE#         39
+  C:0920H         LINE#         61
+  C:0920H         LINE#         62
+  C:093EH         LINE#         63
   -------         ENDPROC       _DELAY
   -------         ENDMOD        LED_PILIX3
 
 ******************************************************************************
-* RESTRICTED VERSION WITH 0800H BYTE CODE SIZE LIMIT; USED: 009CH BYTE ( 7%) *
+* RESTRICTED VERSION WITH 0800H BYTE CODE SIZE LIMIT; USED: 00D5H BYTE (10%) *
 ******************************************************************************
 
-Program Size: data=17.0 xdata=0 code=285
+Program Size: data=21.0 xdata=0 code=342
 LINK/LOCATE RUN COMPLETE.  0 WARNING(S),  0 ERROR(S)

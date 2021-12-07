@@ -6,88 +6,77 @@
 #include "io51.h"
 int m;
 void delay(int x);
+int a,b,c,d,e,f,g,h;
 
 /*接龍灯亮法*/
-
-char led_r1[]={
-	0xFE,0xFC,0xFB,0xF7,
-	0xEF,0xCF,0xBF,0x7F
+char led_ping1[]={
+	0x7F,0xBF,0xDF,0xEF,0xF7,0xFB,0xFD,0xFE
+};
+char led_ping2[]={
+	0x7E,0xBE,0xDE,0xEE,0xF6,0xFA,0XFC 
+};
+char led_ping3[]={
+	0x7C,0xBC,0xDC,0xEC,0xF4,0xF8 
+};
+char led_ping4[]={
+	0x78,0xB8,0xD8,0xE8,0xF0 
+};
+char led_ping5[]={
+	0x70,0xB0,0xD0,0xE0 
+};
+char led_ping6[]={
+	0x60,0xA0,0xC0 
+};
+char led_ping7[]={
+	0x40,0x80 
 };
 
-char led_r2[]={
-	0x7E,0x7C,0x7B,0x77,
-    0x6F,0x5F,0x3F
-};
-char led_r3[]={
-	0x3E,0x3C,0x3B,0x37,
-	0x2F,0x1F
-};
-char led_r4[]={
-	0x1E,0x1C,0x1B,0x17,0x0F
-};
-char led_r5[]={
-	0x0E,0x0C,0x0B,0x07
-};
-char led_r6[]={
-	0x06,0x05,0x03
-};
-char led_r7[]={
-	0x02,0x01
-};
 char led_r8=0x00;
 
 void main(){
-	char r1,r2,r3,r4,r5,r6,r7,r8; //開始值
-	char r1x,r2x,r3x,r4x,r5x,r6x,r7x,r8x; //指定
+	
 	while(1){
 		/*第1回*/
-		for(r1=0;r1<=7;r1++){
-			P1= r1x;
+		for(a = 0;a < 8;a++){
+			P1 = led_ping1[a];
 			delay(10000);
-			r1x= led_r1[r1];
 		}
 		/*第2回*/
-		for(r2=0;r2<=7;r2++){
-			P1= r2x;
+		for(b = 0;b < 7;b++){
+			P1 = led_ping2[b];
 			delay(10000);
-			r2x= led_r2[r2];
 		}
 		/*第3回*/
-		for(r3=0;r3<=7;r3++){
-			P1= r3x;
+		for(c = 0;c < 6;c++){
+			P1 = led_ping3[c];
 			delay(10000);
-			r3x= led_r3[r3];
 		}
 		/*第4回*/
-		for(r4=0;r4<=7;r4++){
-			P1= r4x;
+		for(d = 0;d < 5;d++){
+			P1 = led_ping4[d];
 			delay(10000);
-			r4x= led_r4[r4];
 		}
 		/*第5回*/
-		for(r5=0;r5<=7;r5++){
-			P1= r5x;
+		for(e = 0;e < 4;e++){
+			P1 = led_ping5[e];
 			delay(10000);
-			r5x= led_r5[r5];
 		}
 		/*第6回*/
-		for(r6=0;r6<=7;r6++){
-			P1= r6x;
+		for(f = 0;f < 3;f++){
+			P1 = led_ping6[f];
 			delay(10000);
-			r6x= led_r6[r6];
 		}
 		/*第7回*/
-		for(r7=0;r7<=7;r7++){
-			P1= r7x;
+		for(g = 0;g < 2;g++){
+			P1 = led_ping7[g];
 			delay(10000);
-			r7x= led_r7[r7];
 		}
 		/*第8回*/
-		for(r8=0;r8<=7;r8++){
-			P1= r8x;
-			delay(10000);
-			r8x= led_r8;
-		}
+		P1 = led_r8;
+		delay(10000);
+		/*関*/
+		P1 = 0xFF;
+		delay(1000);
 	}
 }
 
