@@ -5,63 +5,73 @@
 
 #include "io51.h"
 void delay(int s);
+void seg7En(int a,int b);
+void user1();
+void user2();
+
 /*7段顯示器顯示碼*/
-char seg7[]={
+char seg7_number[]={
    0x3F,0x06,0x5B,0x4F,0x66,0x6D,0x7D, //0~7
    0x7F,0x6F,0x77,0x39,0x5E,0x79,0x71  //8~F
 };
-
-/*學號*/
-char num8_02[]={
-	5,0,6,3,1,1,0,2 
-};
-char num8_16[]={
-	5,0,6,3,1,1,1,6
+char seg7_COM[]={
+   0x08,0x04,0x02,0x01
 };
 
-/*
-   ex: 50631102
-   5(0x6D) => seg7[5]
-   0(0x3F) => seg7[0]
-   6(0x7D) => seg7[6]
-   3(0x4F) => seg7[3]
-   1(0x06) => seg7[1]
-   2(0x5B) => seg7[2]
-   
-   ex: 50631116
-   5(0x6D) => seg7[5]
-   0(0x3F) => seg7[0]
-   6(0x7D) => seg7[6]
-   3(0x4F) => seg7[3]
-   1(0x06) => seg7[1]
-*/
 
 void main(){
-   char i_02,j_02;
-   char i_16,j_16;
-   P2=0x0F; //啟用所有的7段顯示器(X4)
-   /*重復運行*/
+   /*重復運行*/   
    while(1){
-	   /*從P1輸出7seg顯示碼*/
-	   for(i_02=0;i_02<8;i_02++){
-        for(j_02=0;j_02<8;j_02++){
-			int x=num8_02[j_02];
-			P1=seg7[x];
-			delay(2000);
-			}
-		}
-		
-		for(i_16=0;i_16<8;i_16++){
-			for(j_16=0;j_16<8;j_16++){
-				int y=num8_16[j_16];
-                P1=seg7[y];
-                delay(2000);				
-			}
-		}
-		
-	   }
-   }
+      user1();
+      user2();
+   }   
+}
 
+/*組員1*/
+void user1(){
+   seg7En(0,5);
+   delay(20000);
+   seg7En(1,0);
+   delay(20000);
+   seg7En(2,6);
+   delay(20000);
+   seg7En(3,3);
+   delay(20000);
+   seg7En(0,1);
+   delay(20000);
+   seg7En(1,1);
+   delay(20000);
+   seg7En(2,0);
+   delay(20000);
+   seg7En(3,2);
+   delay(20000);
+}
+
+/*組員二*/
+void user2(){
+   seg7En(0,5);
+   delay(20000);
+   seg7En(1,0);
+   delay(20000);
+   seg7En(2,6);
+   delay(20000);
+   seg7En(3,3);
+   delay(20000);
+   seg7En(0,1);
+   delay(20000);
+   seg7En(1,1);
+   delay(20000);
+   seg7En(2,1);
+   delay(20000);
+   seg7En(3,6);
+   delay(20000);
+}
+
+/*7段顯示器輸出*/
+void seg7En(int a, int b){
+   P2 = seg7_COM[a];
+	P1 = seg7_number[b];
+}
 
 /*功能:delay*/
 void delay(int s){

@@ -50,8 +50,8 @@ void main(){
 }
 
 void seg7_switch(int LED,int COM){
-    P1=seg7_LED[LED];
     P2=seg7_COM[COM];
+	P1=seg7_LED[LED];
     delay(1000);
 }
 void delay(int s){
