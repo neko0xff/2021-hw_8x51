@@ -2,14 +2,13 @@
 *  File: LED_ping.c
 *  功能: 乒乓灯
 */
-
 #include "io51.h"
 void delay(int x);
-int m;
 
+
+int j_ping= 0x7E; //設定第一個位置是0x7E
 /*乒乓灯亮法*/
-int j_ping= 0x7E;
-char code led_ping[]={
+char led_ping[]={
 	0x7E,0xBD,0xDB,0xE7,0xDB,0xBD,0X7E 
 };
 
@@ -24,9 +23,10 @@ char code led_ping[]={
 void main(){
    int i;
    while(1){
+       /*8顆LED*/
 	   for(i=0;i<7;i++){
 		   P1= j_ping;
-		   delay(10000);
+		   delay(10000); //delay 10sec
 		   j_ping=led_ping[i];
 	   }
    }   
@@ -34,5 +34,6 @@ void main(){
 
 /*delay time*/
 void delay(int x){
-	for(m=0;m<x;m++);
+    int m;
+    for(m=0;m<x;m++);
 }

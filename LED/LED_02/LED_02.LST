@@ -1,4 +1,4 @@
-C51 COMPILER V9.60.0.0   LED_02                                                            12/07/2021 12:12:45 PAGE 1   
+C51 COMPILER V9.60.0.0   LED_02                                                            12/15/2021 16:58:40 PAGE 1   
 
 
 C51 COMPILER V9.60.0.0, COMPILATION OF MODULE LED_02
@@ -13,89 +13,82 @@ line level    source
    4          */
    5          
    6          #include "io51.h"
-   7          int m;
-   8          void delay(int x);
-   9          int a,b,c,d,e,f,g,h;
-  10          
-  11          /*接龍灯亮法*/
-  12          
-  13          char code led_ping1[]={
-  14            0x7F,0xBF,0xDF,0xEF,0xF7,0xFB,0xFD,0xFE
-  15          };
-  16          char code led_ping2[]={
-  17            0x7E,0xBE,0xDE,0xEE,0xF6,0xFA,0XFC 
-  18          };
-  19          char code led_ping3[]={
-  20            0x7C,0xBC,0xDC,0xEC,0xF4,0xF8 
-  21          };
-  22          char code led_ping4[]={
-  23            0x78,0xB8,0xD8,0xE8,0xF0 
-  24          };
-  25          char code led_ping5[]={
-  26            0x70,0xB0,0xD0,0xE0 
-  27          };
-  28          char code led_ping6[]={
-  29            0x60,0xA0,0xC0 
-  30          };
-  31          char code led_ping7[]={
-  32            0x40,0x80 
-  33          };
-  34          
-  35          char led_r8=0x00;
-  36          
-  37          void main(){
-  38   1        
-  39   1        while(1){
-  40   2          /*第1回*/
-  41   2          for(a = 0;a < 8;a++){
-  42   3            P1 = led_ping1[a];
-  43   3            delay(10000);
-  44   3          }
-  45   2          for(b = 0;b < 7;b++){
-  46   3            P1 = led_ping2[b];
-  47   3            delay(10000);
-  48   3          }
-  49   2          for(c = 0;c < 6;c++){
-  50   3            P1 = led_ping3[c];
-  51   3            delay(10000);
+   7          void delay(int x);
+   8          
+   9          /*接龍灯亮法*/
+  10          int a, b, c, d, e, f, g; //迴圈變數
+  11          char led1[] = {0x7F, 0xBF, 0xDF, 0xEF, 0xF7, 0xFB, 0xFD, 0xFE}; //第1回
+  12          char led2[] = {0x7E, 0xBE, 0xDE, 0xEE, 0xF6, 0xFA, 0xFC}; //第2回
+  13          char led3[] = {0x7C, 0xBC, 0xDC, 0xEC, 0xF4, 0xF8}; //第3回
+  14          char led4[] = {0x78, 0xB8, 0xD8, 0xE8, 0xF0}; //第4回
+  15          char led5[] = {0x70, 0xB0, 0xD0, 0xE0}; //第5回
+  16          char led6[] = {0x60, 0xA0, 0xC0}; //第6回
+  17          char led7[] = {0x40, 0x80}; //第7回
+  18          char led8 = 0x00; //第8回
+  19          
+  20          /*主程式*/
+  21          void main(){
+  22   1        while(1){
+  23   2          /*第1回*/
+  24   2          for(a=0;a<8;a++){
+  25   3          P1 = led1[a]; //指定P1=陣列內的內容
+  26   3          delay(10000); //delay 10sec
+  27   3           }
+  28   2          /*第2回*/
+  29   2          for(b=0;b<7;b++){
+  30   3          P1 = led2[b]; //指定P1=陣列內的內容
+  31   3          delay(10000); //delay 10sec
+  32   3          }
+  33   2          /*第3回*/
+  34   2          for(c=0;c<6;c++){
+  35   3          P1 = led3[c]; //指定P1=陣列內的內容
+  36   3          delay(10000); //delay 10sec
+  37   3          }
+  38   2          /*第4回*/
+  39   2          for(d=0;d<5;d++){
+  40   3          P1 = led4[d]; //指定P1=陣列內的內容
+  41   3          delay(10000); //delay 10sec
+  42   3          }
+  43   2          /*第5回*/
+  44   2          for(e=0;e<4;e++){
+  45   3          P1 = led5[e]; //指定P1=陣列內的內容
+  46   3          delay(10000); //delay 10sec
+  47   3          }
+  48   2          /*第6回*/
+  49   2          for(f=0;f<3;f++){
+  50   3          P1 = led6[f]; //指定P1=陣列內的內容
+  51   3          delay(10000); //delay 10sec
   52   3          }
-  53   2          for(d = 0;d < 5;d++){
-  54   3            P1 = led_ping4[d];
-  55   3            delay(10000);
-C51 COMPILER V9.60.0.0   LED_02                                                            12/07/2021 12:12:45 PAGE 2   
+  53   2          /*第7回*/
+  54   2          for(g=0;g<2;g++){
+  55   3          P1 = led7[g]; //指定P1=陣列內的內容
+C51 COMPILER V9.60.0.0   LED_02                                                            12/15/2021 16:58:40 PAGE 2   
 
-  56   3          }
-  57   2          for(e = 0;e < 4;e++){
-  58   3            P1 = led_ping5[e];
-  59   3            delay(10000);
-  60   3          }
-  61   2          for(f = 0;f < 3;f++){
-  62   3            P1 = led_ping6[f];
-  63   3            delay(10000);
-  64   3          }
-  65   2          for(g = 0;g < 2;g++){
-  66   3            P1 = led_ping7[g];
-  67   3            delay(10000);
-  68   3          }
-  69   2          P1 = led_r8;
-  70   2          delay(10000);
-  71   2          P1 = 0xFF;
-  72   2          delay(1000);
-  73   2        }
-  74   1      }
-  75          
-  76          /*delay time*/
-  77          void delay(int x){
-  78   1        for(m;m<=x;m++);
-  79   1      }
+  56   3          delay(10000); //delay 10sec
+  57   3          }
+  58   2          /*第8回*/
+  59   2            P1 = led8; //P1=全亮
+  60   2          delay(10000); //delay 10sec
+  61   2          /*全関*/
+  62   2          P1 = 0xFF; //P1=全関
+  63   2          delay(10000); //delay 10sec
+  64   2        
+  65   2          }
+  66   1      }
+  67          
+  68          /*delay time*/
+  69          void delay(int x){
+  70   1        int m;
+  71   1        for(m;m<=x;m++);
+  72   1      }
 
 
 MODULE INFORMATION:   STATIC OVERLAYABLE
-   CODE SIZE        =    314    ----
-   CONSTANT SIZE    =     35    ----
+   CODE SIZE        =    266    ----
+   CONSTANT SIZE    =   ----    ----
    XDATA SIZE       =   ----    ----
    PDATA SIZE       =   ----    ----
-   DATA SIZE        =     19    ----
+   DATA SIZE        =     50       2
    IDATA SIZE       =   ----    ----
    BIT SIZE         =   ----    ----
 END OF MODULE INFORMATION.

@@ -1,0 +1,4 @@
+".\Objects\STARTUP.obj",
+".\Objects\LCD_num.obj" 
+TO ".\Objects\LCD_num" 
+PRINT(".\Listings\LCD_num.m51")

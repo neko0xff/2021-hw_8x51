@@ -1,4 +1,4 @@
-C51 COMPILER V9.60.0.0   7SEG_1234                                                         12/11/2021 14:37:54 PAGE 1   
+C51 COMPILER V9.60.0.0   7SEG_1234                                                         12/14/2021 11:32:29 PAGE 1   
 
 
 C51 COMPILER V9.60.0.0, COMPILATION OF MODULE 7SEG_1234
@@ -20,7 +20,7 @@ line level    source
   11            0x3F,0x06,0x5B,0x4F,0x66 //0,1,2,3,4
   12          };
   13          char seg7_COM[]={
-  14              0x00,0x01,0x02,0x04,0x08 //CLEAR,COM1~3
+  14              0x00,0x01,0x02,0x04,0x08 //CLEAR,COM1~4
   15          };
   16          char num[]={
   17            0,1,2,3,4
@@ -62,7 +62,7 @@ MODULE INFORMATION:   STATIC OVERLAYABLE
    DATA SIZE        =     15       1
    IDATA SIZE       =   ----    ----
    BIT SIZE         =   ----    ----
-C51 COMPILER V9.60.0.0   7SEG_1234                                                         12/11/2021 14:37:54 PAGE 2   
+C51 COMPILER V9.60.0.0   7SEG_1234                                                         12/14/2021 11:32:29 PAGE 2   
 
 END OF MODULE INFORMATION.
 

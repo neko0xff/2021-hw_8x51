@@ -25,6 +25,7 @@ char num[]={
    4(0x66) => seg7_num[4]
 */
 
+/*主程式*/
 void main(){
 	char i;
 	for(i=1;i<=4;i++){
@@ -34,11 +35,13 @@ void main(){
 	}
 }
 
+/*7段顯示器輸出*/
 void seg7En(int COM, int NUM){
     P2 = seg7_COM[COM];
 	P1 = seg7_num[NUM];
 }
 
+/*delay time*/
 void delay(int x){
    int m;
    for(m=0;m<x;m++);
