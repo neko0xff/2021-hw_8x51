@@ -1,0 +1,4 @@
+".\Objects\STARTUP.obj",
+".\Objects\dot8x8_right.obj" 
+TO ".\Objects\dot8x8_right" 
+PRINT(".\Listings\dot8x8_right.m51")

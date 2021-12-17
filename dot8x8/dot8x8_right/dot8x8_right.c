@@ -5,7 +5,7 @@
 
 #include "io51.h"
 /*8*8點距陣(0~9)顯示碼*/
-char code dot8x8[80]={
+code char dot8x8[80]={
     0xFF,0x81,0x5E,0x6E,0x76,0x7A,0x81,0xFF, //0
     0xFF,0x7F,0x7F,0x7D,0x00,0x7F,0x7F,0xFF, //1
     0xFF,0x1D,0x6E,0x6E,0x6E,0x6E,0x71,0xFF, //2
@@ -19,7 +19,7 @@ char code dot8x8[80]={
 };
 char buf[8]; //緩衝器
 void delay(int x);
-void shift_left();
+void shift_right();
 
 /*主程式*/
 void main(){
@@ -37,14 +37,14 @@ void main(){
            } 
            /*重復掃描各字型50回(增加亮度)*/
            for(k=0;k<50;k++){
-               shift_left(); //字型左移
+               shift_right(); //字型右移
            }
        }
    }
 }
 
-/*call 左移的副程式*/
-void shift_left(){
+/*call 右移的副程式*/
+void shift_right(){
     int i;
     int enable_signal=0x01;//致能=0x01
 
@@ -54,7 +54,7 @@ void shift_left(){
         P1=buf[i];
         P2=enable_signal;
         delay(50); //delay 50ms=0.05sec
-        enable_signal<<=1; //左移1個位元
+        enable_signal>>=1; //左移1個位元
     }
 }
 

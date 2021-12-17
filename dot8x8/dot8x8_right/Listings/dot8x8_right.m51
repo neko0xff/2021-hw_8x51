@@ -1,9 +1,9 @@
-BL51 BANKED LINKER/LOCATER V6.22.2.0                                                    12/17/2021  18:24:30  PAGE 1
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                    12/17/2021  18:31:08  PAGE 1
 
 
 BL51 BANKED LINKER/LOCATER V6.22.2.0, INVOKED BY:
-C:\KEIL_V5\C51\BIN\BL51.EXE .\Objects\STARTUP.obj, .\Objects\dot8x8.obj TO .\Objects\dot8x8 PRINT (.\Listings\dot8x8.m51
->> )
+C:\KEIL_V5\C51\BIN\BL51.EXE .\Objects\STARTUP.obj, .\Objects\dot8x8_right.obj TO .\Objects\dot8x8_right PRINT (.\Listing
+>> s\dot8x8_right.m51)
 
 
 MEMORY MODEL: SMALL
@@ -11,10 +11,10 @@ MEMORY MODEL: SMALL
 
 INPUT MODULES INCLUDED:
   .\Objects\STARTUP.obj (?C_STARTUP)
-  .\Objects\dot8x8.obj (DOT8X8)
+  .\Objects\dot8x8_right.obj (DOT8X8_RIGHT)
 
 
-LINK MAP OF MODULE:  .\Objects\dot8x8 (?C_STARTUP)
+LINK MAP OF MODULE:  .\Objects\dot8x8_right (?C_STARTUP)
 
 
             TYPE    BASE      LENGTH    RELOCATION   SEGMENT NAME
@@ -22,49 +22,49 @@ LINK MAP OF MODULE:  .\Objects\dot8x8 (?C_STARTUP)
 
             * * * * * * *   D A T A   M E M O R Y   * * * * * * *
             REG     0000H     0008H     ABSOLUTE     "REG BANK 0"
-            DATA    0008H     0008H     UNIT         ?DT?DOT8X8
+            DATA    0008H     0008H     UNIT         ?DT?DOT8X8_RIGHT
             DATA    0010H     0008H     UNIT         _DATA_GROUP_
             IDATA   0018H     0001H     UNIT         ?STACK
 
             * * * * * * *   C O D E   M E M O R Y   * * * * * * *
             CODE    0000H     0003H     ABSOLUTE     
                     0003H     07FDH                  *** GAP ***
-            CODE    0800H     007EH     UNIT         ?PR?MAIN?DOT8X8
-            CODE    087EH     0050H     UNIT         ?CO?DOT8X8
-            CODE    08CEH     003CH     UNIT         ?PR?SHIFT_LEFT?DOT8X8
-            CODE    090AH     0018H     UNIT         ?PR?_DELAY?DOT8X8
-            CODE    0922H     000CH     UNIT         ?C_C51STARTUP
+            CODE    0800H     007EH     UNIT         ?PR?MAIN?DOT8X8_RIGHT
+            CODE    087EH     0050H     UNIT         ?CO?DOT8X8_RIGHT
+            CODE    08CEH     003DH     UNIT         ?PR?SHIFT_RIGHT?DOT8X8_RIGHT
+            CODE    090BH     0018H     UNIT         ?PR?_DELAY?DOT8X8_RIGHT
+            CODE    0923H     000CH     UNIT         ?C_C51STARTUP
 
 
 
-OVERLAY MAP OF MODULE:   .\Objects\dot8x8 (?C_STARTUP)
+OVERLAY MAP OF MODULE:   .\Objects\dot8x8_right (?C_STARTUP)
 
 
-SEGMENT                          DATA_GROUP 
-  +--> CALLED SEGMENT          START    LENGTH
-----------------------------------------------
-?C_C51STARTUP                  -----    -----
-  +--> ?PR?MAIN?DOT8X8
+SEGMENT                                DATA_GROUP 
+  +--> CALLED SEGMENT                START    LENGTH
+----------------------------------------------------
+?C_C51STARTUP                        -----    -----
+  +--> ?PR?MAIN?DOT8X8_RIGHT
 
-?PR?MAIN?DOT8X8                0010H    0004H
-  +--> ?CO?DOT8X8
-  +--> ?PR?SHIFT_LEFT?DOT8X8
+?PR?MAIN?DOT8X8_RIGHT                0010H    0004H
+  +--> ?CO?DOT8X8_RIGHT
+  +--> ?PR?SHIFT_RIGHT?DOT8X8_RIGHT
 
-?PR?SHIFT_LEFT?DOT8X8          0014H    0004H
-  +--> ?PR?_DELAY?DOT8X8
+?PR?SHIFT_RIGHT?DOT8X8_RIGHT         0014H    0004H
+  +--> ?PR?_DELAY?DOT8X8_RIGHT
 
 
 
-SYMBOL TABLE OF MODULE:  .\Objects\dot8x8 (?C_STARTUP)
+SYMBOL TABLE OF MODULE:  .\Objects\dot8x8_right (?C_STARTUP)
 
   VALUE           TYPE          NAME
   ----------------------------------
-BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  12/17/2021  18:24:30  PAGE 2
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  12/17/2021  18:31:08  PAGE 2
 
 
 
   -------         MODULE        ?C_STARTUP
-  C:0922H         SEGMENT       ?C_C51STARTUP
+  C:0923H         SEGMENT       ?C_C51STARTUP
   I:0018H         SEGMENT       ?STACK
   C:0000H         PUBLIC        ?C_STARTUP
   D:00E0H         SYMBOL        ACC
@@ -74,7 +74,7 @@ SYMBOL TABLE OF MODULE:  .\Objects\dot8x8 (?C_STARTUP)
   N:0000H         SYMBOL        IBPSTACK
   N:0100H         SYMBOL        IBPSTACKTOP
   N:0080H         SYMBOL        IDATALEN
-  C:0925H         SYMBOL        IDATALOOP
+  C:0926H         SYMBOL        IDATALOOP
   N:0000H         SYMBOL        PBPSTACK
   N:0100H         SYMBOL        PBPSTACKTOP
   N:0000H         SYMBOL        PDATALEN
@@ -83,27 +83,27 @@ SYMBOL TABLE OF MODULE:  .\Objects\dot8x8 (?C_STARTUP)
   N:0000H         SYMBOL        PPAGEENABLE
   D:00A0H         SYMBOL        PPAGE_SFR
   D:0081H         SYMBOL        SP
-  C:0922H         SYMBOL        STARTUP1
+  C:0923H         SYMBOL        STARTUP1
   N:0000H         SYMBOL        XBPSTACK
   N:0000H         SYMBOL        XBPSTACKTOP
   N:0000H         SYMBOL        XDATALEN
   N:0000H         SYMBOL        XDATASTART
   C:0000H         LINE#         126
-  C:0922H         LINE#         133
-  C:0924H         LINE#         134
-  C:0925H         LINE#         135
-  C:0926H         LINE#         136
-  C:0928H         LINE#         185
-  C:092BH         LINE#         196
+  C:0923H         LINE#         133
+  C:0925H         LINE#         134
+  C:0926H         LINE#         135
+  C:0927H         LINE#         136
+  C:0929H         LINE#         185
+  C:092CH         LINE#         196
   -------         ENDMOD        ?C_STARTUP
 
-  -------         MODULE        DOT8X8
+  -------         MODULE        DOT8X8_RIGHT
   C:0000H         SYMBOL        _ICE_DUMMY_
   D:0090H         PUBLIC        P1
   D:00A0H         PUBLIC        P2
-  C:090AH         PUBLIC        _delay
+  C:090BH         PUBLIC        _delay
+  C:08CEH         PUBLIC        shift_right
   C:0800H         PUBLIC        main
-  C:08CEH         PUBLIC        shift_left
   C:087EH         PUBLIC        dot8x8
   D:0008H         PUBLIC        buf
   -------         PROC          MAIN
@@ -119,7 +119,7 @@ SYMBOL TABLE OF MODULE:  .\Objects\dot8x8 (?C_STARTUP)
   C:081FH         LINE#         34
   C:0822H         LINE#         35
   C:082EH         LINE#         36
-BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  12/17/2021  18:24:30  PAGE 3
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  12/17/2021  18:31:08  PAGE 3
 
 
   C:0843H         LINE#         37
@@ -128,7 +128,7 @@ SYMBOL TABLE OF MODULE:  .\Objects\dot8x8 (?C_STARTUP)
   C:0856H         LINE#         41
   C:0869H         LINE#         42
   -------         ENDPROC       MAIN
-  -------         PROC          SHIFT_LEFT
+  -------         PROC          SHIFT_RIGHT
   -------         DO            
   D:0014H         SYMBOL        i
   D:0016H         SYMBOL        enable_signal
@@ -140,23 +140,23 @@ SYMBOL TABLE OF MODULE:  .\Objects\dot8x8 (?C_STARTUP)
   C:08E1H         LINE#         54
   C:08E4H         LINE#         55
   C:08EBH         LINE#         56
-  C:08F6H         LINE#         57
-  C:0909H         LINE#         58
-  -------         ENDPROC       SHIFT_LEFT
+  C:08F7H         LINE#         57
+  C:090AH         LINE#         58
+  -------         ENDPROC       SHIFT_RIGHT
   -------         PROC          _DELAY
   D:0006H         SYMBOL        x
   -------         DO            
   D:0004H         SYMBOL        m
   -------         ENDDO         
-  C:090AH         LINE#         61
-  C:090AH         LINE#         63
-  C:0921H         LINE#         64
+  C:090BH         LINE#         61
+  C:090BH         LINE#         63
+  C:0922H         LINE#         64
   -------         ENDPROC       _DELAY
-  -------         ENDMOD        DOT8X8
+  -------         ENDMOD        DOT8X8_RIGHT
 
 ******************************************************************************
-* RESTRICTED VERSION WITH 0800H BYTE CODE SIZE LIMIT; USED: 0131H BYTE (14%) *
+* RESTRICTED VERSION WITH 0800H BYTE CODE SIZE LIMIT; USED: 0132H BYTE (14%) *
 ******************************************************************************
 
-Program Size: data=25.0 xdata=0 code=305
+Program Size: data=25.0 xdata=0 code=306
 LINK/LOCATE RUN COMPLETE.  0 WARNING(S),  0 ERROR(S)
