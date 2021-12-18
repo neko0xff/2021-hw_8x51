@@ -1,0 +1,162 @@
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                    12/18/2021  19:45:00  PAGE 1
+
+
+BL51 BANKED LINKER/LOCATER V6.22.2.0, INVOKED BY:
+C:\KEIL_V5\C51\BIN\BL51.EXE .\Objects\STARTUP.obj, .\Objects\dot8x8_pilix.obj TO .\Objects\dot8x8_pilix PRINT (.\Listing
+>> s\dot8x8_pilix.m51)
+
+
+MEMORY MODEL: SMALL
+
+
+INPUT MODULES INCLUDED:
+  .\Objects\STARTUP.obj (?C_STARTUP)
+  .\Objects\dot8x8_pilix.obj (DOT8X8_PILIX)
+
+
+LINK MAP OF MODULE:  .\Objects\dot8x8_pilix (?C_STARTUP)
+
+
+            TYPE    BASE      LENGTH    RELOCATION   SEGMENT NAME
+            -----------------------------------------------------
+
+            * * * * * * *   D A T A   M E M O R Y   * * * * * * *
+            REG     0000H     0008H     ABSOLUTE     "REG BANK 0"
+            DATA    0008H     0008H     UNIT         ?DT?DOT8X8_PILIX
+            DATA    0010H     0008H     UNIT         _DATA_GROUP_
+            IDATA   0018H     0001H     UNIT         ?STACK
+
+            * * * * * * *   C O D E   M E M O R Y   * * * * * * *
+            CODE    0000H     0003H     ABSOLUTE     
+                    0003H     07FDH                  *** GAP ***
+            CODE    0800H     007EH     UNIT         ?PR?MAIN?DOT8X8_PILIX
+            CODE    087EH     0078H     UNIT         ?CO?DOT8X8_PILIX
+            CODE    08F6H     003CH     UNIT         ?PR?SHIFT_LEFT?DOT8X8_PILIX
+            CODE    0932H     0018H     UNIT         ?PR?_DELAY?DOT8X8_PILIX
+            CODE    094AH     000CH     UNIT         ?C_C51STARTUP
+
+
+
+OVERLAY MAP OF MODULE:   .\Objects\dot8x8_pilix (?C_STARTUP)
+
+
+SEGMENT                               DATA_GROUP 
+  +--> CALLED SEGMENT               START    LENGTH
+---------------------------------------------------
+?C_C51STARTUP                       -----    -----
+  +--> ?PR?MAIN?DOT8X8_PILIX
+
+?PR?MAIN?DOT8X8_PILIX               0010H    0004H
+  +--> ?CO?DOT8X8_PILIX
+  +--> ?PR?SHIFT_LEFT?DOT8X8_PILIX
+
+?PR?SHIFT_LEFT?DOT8X8_PILIX         0014H    0004H
+  +--> ?PR?_DELAY?DOT8X8_PILIX
+
+
+
+SYMBOL TABLE OF MODULE:  .\Objects\dot8x8_pilix (?C_STARTUP)
+
+  VALUE           TYPE          NAME
+  ----------------------------------
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  12/18/2021  19:45:00  PAGE 2
+
+
+
+  -------         MODULE        ?C_STARTUP
+  C:094AH         SEGMENT       ?C_C51STARTUP
+  I:0018H         SEGMENT       ?STACK
+  C:0000H         PUBLIC        ?C_STARTUP
+  D:00E0H         SYMBOL        ACC
+  D:00F0H         SYMBOL        B
+  D:0083H         SYMBOL        DPH
+  D:0082H         SYMBOL        DPL
+  N:0000H         SYMBOL        IBPSTACK
+  N:0100H         SYMBOL        IBPSTACKTOP
+  N:0080H         SYMBOL        IDATALEN
+  C:094DH         SYMBOL        IDATALOOP
+  N:0000H         SYMBOL        PBPSTACK
+  N:0100H         SYMBOL        PBPSTACKTOP
+  N:0000H         SYMBOL        PDATALEN
+  N:0000H         SYMBOL        PDATASTART
+  N:0000H         SYMBOL        PPAGE
+  N:0000H         SYMBOL        PPAGEENABLE
+  D:00A0H         SYMBOL        PPAGE_SFR
+  D:0081H         SYMBOL        SP
+  C:094AH         SYMBOL        STARTUP1
+  N:0000H         SYMBOL        XBPSTACK
+  N:0000H         SYMBOL        XBPSTACKTOP
+  N:0000H         SYMBOL        XDATALEN
+  N:0000H         SYMBOL        XDATASTART
+  C:0000H         LINE#         126
+  C:094AH         LINE#         133
+  C:094CH         LINE#         134
+  C:094DH         LINE#         135
+  C:094EH         LINE#         136
+  C:0950H         LINE#         185
+  C:0953H         LINE#         196
+  -------         ENDMOD        ?C_STARTUP
+
+  -------         MODULE        DOT8X8_PILIX
+  C:0000H         SYMBOL        _ICE_DUMMY_
+  D:0090H         PUBLIC        P1
+  D:00A0H         PUBLIC        P2
+  C:0932H         PUBLIC        _delay
+  C:0800H         PUBLIC        main
+  C:08F6H         PUBLIC        shift_left
+  C:087EH         PUBLIC        dot8x8_pilix
+  D:0008H         PUBLIC        buf
+  -------         PROC          MAIN
+  -------         DO            
+  D:0010H         SYMBOL        i
+  D:0006H         SYMBOL        j
+  D:0012H         SYMBOL        k
+  -------         ENDDO         
+  C:0800H         LINE#         30
+  C:0800H         LINE#         34
+  C:081AH         LINE#         36
+  C:081AH         LINE#         37
+  C:081FH         LINE#         39
+  C:0822H         LINE#         40
+  C:082EH         LINE#         41
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  12/18/2021  19:45:00  PAGE 3
+
+
+  C:0843H         LINE#         42
+  C:084EH         LINE#         44
+  C:0853H         LINE#         45
+  C:0856H         LINE#         46
+  C:0869H         LINE#         47
+  -------         ENDPROC       MAIN
+  -------         PROC          SHIFT_LEFT
+  -------         DO            
+  D:0014H         SYMBOL        i
+  D:0016H         SYMBOL        enable_signal
+  -------         ENDDO         
+  C:08F6H         LINE#         52
+  C:08F6H         LINE#         54
+  C:08FCH         LINE#         57
+  C:0901H         LINE#         59
+  C:0909H         LINE#         60
+  C:090CH         LINE#         61
+  C:0913H         LINE#         62
+  C:091EH         LINE#         63
+  C:0931H         LINE#         64
+  -------         ENDPROC       SHIFT_LEFT
+  -------         PROC          _DELAY
+  D:0006H         SYMBOL        x
+  -------         DO            
+  D:0004H         SYMBOL        m
+  -------         ENDDO         
+  C:0932H         LINE#         67
+  C:0932H         LINE#         69
+  C:0949H         LINE#         70
+  -------         ENDPROC       _DELAY
+  -------         ENDMOD        DOT8X8_PILIX
+
+******************************************************************************
+* RESTRICTED VERSION WITH 0800H BYTE CODE SIZE LIMIT; USED: 0159H BYTE (16%) *
+******************************************************************************
+
+Program Size: data=25.0 xdata=0 code=345
+LINK/LOCATE RUN COMPLETE.  0 WARNING(S),  0 ERROR(S)

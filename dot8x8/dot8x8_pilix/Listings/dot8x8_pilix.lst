@@ -1,0 +1,96 @@
+C51 COMPILER V9.60.0.0   DOT8X8_PILIX                                                      12/18/2021 19:44:59 PAGE 1   
+
+
+C51 COMPILER V9.60.0.0, COMPILATION OF MODULE DOT8X8_PILIX
+OBJECT MODULE PLACED IN .\Objects\dot8x8_pilix.obj
+COMPILER INVOKED BY: C:\Keil_v5\C51\BIN\C51.EXE dot8x8_pilix.c OPTIMIZE(8,SPEED) BROWSE DEBUG OBJECTEXTEND PRINT(.\Listi
+                    -ngs\dot8x8_pilix.lst) TABS(2) OBJECT(.\Objects\dot8x8_pilix.obj)
+
+line level    source
+
+   1          /*
+   2          * File: dot8x8_pilix.c
+   3          * 功能: 令點矩陣某一行做霹靂燈的動作
+   4          */
+   5          
+   6          #include "io51.h"
+   7          /*霹靂燈顯示碼*/
+   8          char code dot8x8_pilix[120]={
+   9              0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xF7, //1
+  10              0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xF7,0xFF, //2
+  11              0xFF,0xFF,0xFF,0xFF,0xFF,0xF7,0xFF,0xFF, //3
+  12              0xFF,0xFF,0xFF,0xFF,0xF7,0xFF,0xFF,0xFF, //4
+  13              0xFF,0xFF,0xFF,0xF7,0xFF,0xFF,0xFF,0xFF, //5
+  14              0xFF,0xFF,0xF7,0xFF,0xFF,0xFF,0xFF,0xFF, //6
+  15              0xFF,0xF7,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF, //7
+  16              0xF7,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF, //8
+  17              0xFF,0xF7,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF, //9
+  18              0xFF,0xFF,0xF7,0xFF,0xFF,0xFF,0xFF,0xFF, //10
+  19              0xFF,0xFF,0xFF,0xF7,0xFF,0xFF,0xFF,0xFF, //11
+  20              0xFF,0xFF,0xFF,0xFF,0xF7,0xFF,0xFF,0xFF, //12
+  21              0xFF,0xFF,0xFF,0xFF,0xFF,0xF7,0xFF,0xFF, //13
+  22              0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xF7,0xFF, //14
+  23              0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xF7  //15
+  24          };
+  25          char buf[8]; //緩衝器
+  26          void delay(int x);
+  27          void shift_left();
+  28          
+  29          /*主程式*/
+  30          void main(){
+  31   1         int i,j,k;
+  32   1      
+  33   1         /*清除存放左移資料的buf[8]*/
+  34   1         for(i=0;i<8;i++) buf[i]=0xFF; 
+  35   1      
+  36   1         while(1){
+  37   2             for(i=0;i<8*10;i++){
+  38   3                 /*把左移資料分別存在buf[]中*/
+  39   3                 for(j=0;j<7;j++){
+  40   4                     buf[j]= buf[j+1];
+  41   4                     buf[j]= dot8x8_pilix[i];
+  42   4                 } 
+  43   3                 /*重復掃描各字型50回(增加亮度)*/
+  44   3                 for(k=0;k<50;k++){
+  45   4                     shift_left(); //字型左移
+  46   4                 }
+  47   3             }
+  48   2         }
+  49   1      }
+  50          
+  51          /*call 左移的副程式*/
+  52          void shift_left(){
+  53   1          int i;
+  54   1          int enable_signal=0x01;//致能=0x01
+C51 COMPILER V9.60.0.0   DOT8X8_PILIX                                                      12/18/2021 19:44:59 PAGE 2   
+
+  55   1      
+  56   1          /*各字型由8筆資料組成=掃8回*/
+  57   1          for(i=0;i<8;i++){
+  58   2          /*把左移資料分別存在buf[]中*/
+  59   2              P1=buf[i];
+  60   2              P2=enable_signal;
+  61   2              delay(50); //delay 50ms=0.05sec
+  62   2              enable_signal<<=1; //左移1個位元
+  63   2          }
+  64   1      }
+  65          
+  66          /*delay time*/
+  67          void delay(int x){
+  68   1          int m;
+  69   1          for(m=0;m<x;m++);
+  70   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    210    ----
+   CONSTANT SIZE    =    120    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =      8       8
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)
