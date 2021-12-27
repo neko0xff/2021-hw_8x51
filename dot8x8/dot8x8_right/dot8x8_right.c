@@ -1,6 +1,6 @@
 /*
 * File: dot8x8.c
-* 功能: 令 8X8 單色點矩陣週而復始的依序顯示 0～9
+* 功能: 令 8X8 單色點矩陣週而復始左起右移的依序顯示 0～9
 */
 
 #include "io51.h"
@@ -25,16 +25,16 @@ void shift_right();
 void main(){
    int i,j,k;
 
-   /*清除存放左移資料的buf[8]*/
+   /*清除存放右移資料的buf[8]*/
    for(i=0;i<8;i++) buf[i]=0xFF; 
 
    while(1){
        for(i=0;i<8*10;i++){
-           /*把左移資料分別存在buf[]中*/
-           for(j=0;j<7;j++){
+           /*把右移資料分別存在buf[]中*/
+           for(j=0;j<7;j++)
                buf[j]= buf[j+1];
                buf[j]= dot8x8[i];
-           } 
+           
            /*重復掃描各字型50回(增加亮度)*/
            for(k=0;k<50;k++){
                shift_right(); //字型右移
@@ -50,11 +50,11 @@ void shift_right(){
 
     /*各字型由8筆資料組成=掃8回*/
     for(i=0;i<8;i++){
-		/*把左移資料分別存在buf[]中*/
+		/*把右移資料分別存在buf[]中*/
         P1=buf[i];
         P2=enable_signal;
         delay(50); //delay 50ms=0.05sec
-        enable_signal>>=1; //左移1個位元
+        enable_signal>>=1; //右移1個位元
     }
 }
 

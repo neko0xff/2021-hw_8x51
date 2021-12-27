@@ -1,4 +1,4 @@
-BL51 BANKED LINKER/LOCATER V6.22.2.0                                                    12/18/2021  19:45:00  PAGE 1
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                    12/24/2021  16:56:07  PAGE 1
 
 
 BL51 BANKED LINKER/LOCATER V6.22.2.0, INVOKED BY:
@@ -22,36 +22,44 @@ LINK MAP OF MODULE:  .\Objects\dot8x8_pilix (?C_STARTUP)
 
             * * * * * * *   D A T A   M E M O R Y   * * * * * * *
             REG     0000H     0008H     ABSOLUTE     "REG BANK 0"
-            DATA    0008H     0008H     UNIT         ?DT?DOT8X8_PILIX
-            DATA    0010H     0008H     UNIT         _DATA_GROUP_
-            IDATA   0018H     0001H     UNIT         ?STACK
+            DATA    0008H     000AH     UNIT         _DATA_GROUP_
+            DATA    0012H     0008H     UNIT         ?DT?DOT8X8_PILIX
+            IDATA   001AH     0001H     UNIT         ?STACK
 
             * * * * * * *   C O D E   M E M O R Y   * * * * * * *
             CODE    0000H     0003H     ABSOLUTE     
                     0003H     07FDH                  *** GAP ***
-            CODE    0800H     007EH     UNIT         ?PR?MAIN?DOT8X8_PILIX
-            CODE    087EH     0078H     UNIT         ?CO?DOT8X8_PILIX
-            CODE    08F6H     003CH     UNIT         ?PR?SHIFT_LEFT?DOT8X8_PILIX
-            CODE    0932H     0018H     UNIT         ?PR?_DELAY?DOT8X8_PILIX
-            CODE    094AH     000CH     UNIT         ?C_C51STARTUP
+            CODE    0800H     00FBH     UNIT         ?PR?MAIN?DOT8X8_PILIX
+            CODE    08FBH     0078H     UNIT         ?CO?DOT8X8_PILIX
+            CODE    0973H     003DH     UNIT         ?PR?SHIFT_RIGHT?DOT8X8_PILIX
+            CODE    09B0H     003CH     UNIT         ?PR?SHIFT_LEFT?DOT8X8_PILIX
+            CODE    09ECH     0018H     UNIT         ?PR?_DELAY?DOT8X8_PILIX
+            CODE    0A04H     000CH     UNIT         ?C_C51STARTUP
 
 
 
 OVERLAY MAP OF MODULE:   .\Objects\dot8x8_pilix (?C_STARTUP)
 
 
-SEGMENT                               DATA_GROUP 
-  +--> CALLED SEGMENT               START    LENGTH
----------------------------------------------------
-?C_C51STARTUP                       -----    -----
+SEGMENT                                DATA_GROUP 
+  +--> CALLED SEGMENT                START    LENGTH
+----------------------------------------------------
+?C_C51STARTUP                        -----    -----
   +--> ?PR?MAIN?DOT8X8_PILIX
 
-?PR?MAIN?DOT8X8_PILIX               0010H    0004H
+?PR?MAIN?DOT8X8_PILIX                0008H    0006H
   +--> ?CO?DOT8X8_PILIX
   +--> ?PR?SHIFT_LEFT?DOT8X8_PILIX
+  +--> ?PR?SHIFT_RIGHT?DOT8X8_PILIX
 
-?PR?SHIFT_LEFT?DOT8X8_PILIX         0014H    0004H
+?PR?SHIFT_LEFT?DOT8X8_PILIX          000EH    0004H
   +--> ?PR?_DELAY?DOT8X8_PILIX
+
+?PR?SHIFT_RIGHT?DOT8X8_PILIX         000EH    0004H
+  +--> ?PR?_DELAY?DOT8X8_PILIX
+
+
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  12/24/2021  16:56:07  PAGE 2
 
 
 
@@ -59,13 +67,10 @@ SYMBOL TABLE OF MODULE:  .\Objects\dot8x8_pilix (?C_STARTUP)
 
   VALUE           TYPE          NAME
   ----------------------------------
-BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  12/18/2021  19:45:00  PAGE 2
-
-
 
   -------         MODULE        ?C_STARTUP
-  C:094AH         SEGMENT       ?C_C51STARTUP
-  I:0018H         SEGMENT       ?STACK
+  C:0A04H         SEGMENT       ?C_C51STARTUP
+  I:001AH         SEGMENT       ?STACK
   C:0000H         PUBLIC        ?C_STARTUP
   D:00E0H         SYMBOL        ACC
   D:00F0H         SYMBOL        B
@@ -74,7 +79,7 @@ SYMBOL TABLE OF MODULE:  .\Objects\dot8x8_pilix (?C_STARTUP)
   N:0000H         SYMBOL        IBPSTACK
   N:0100H         SYMBOL        IBPSTACKTOP
   N:0080H         SYMBOL        IDATALEN
-  C:094DH         SYMBOL        IDATALOOP
+  C:0A07H         SYMBOL        IDATALOOP
   N:0000H         SYMBOL        PBPSTACK
   N:0100H         SYMBOL        PBPSTACKTOP
   N:0000H         SYMBOL        PDATALEN
@@ -83,80 +88,107 @@ SYMBOL TABLE OF MODULE:  .\Objects\dot8x8_pilix (?C_STARTUP)
   N:0000H         SYMBOL        PPAGEENABLE
   D:00A0H         SYMBOL        PPAGE_SFR
   D:0081H         SYMBOL        SP
-  C:094AH         SYMBOL        STARTUP1
+  C:0A04H         SYMBOL        STARTUP1
   N:0000H         SYMBOL        XBPSTACK
   N:0000H         SYMBOL        XBPSTACKTOP
   N:0000H         SYMBOL        XDATALEN
   N:0000H         SYMBOL        XDATASTART
   C:0000H         LINE#         126
-  C:094AH         LINE#         133
-  C:094CH         LINE#         134
-  C:094DH         LINE#         135
-  C:094EH         LINE#         136
-  C:0950H         LINE#         185
-  C:0953H         LINE#         196
+  C:0A04H         LINE#         133
+  C:0A06H         LINE#         134
+  C:0A07H         LINE#         135
+  C:0A08H         LINE#         136
+  C:0A0AH         LINE#         185
+  C:0A0DH         LINE#         196
   -------         ENDMOD        ?C_STARTUP
 
   -------         MODULE        DOT8X8_PILIX
   C:0000H         SYMBOL        _ICE_DUMMY_
   D:0090H         PUBLIC        P1
   D:00A0H         PUBLIC        P2
-  C:0932H         PUBLIC        _delay
+  C:09ECH         PUBLIC        _delay
+  C:0973H         PUBLIC        shift_right
   C:0800H         PUBLIC        main
-  C:08F6H         PUBLIC        shift_left
-  C:087EH         PUBLIC        dot8x8_pilix
-  D:0008H         PUBLIC        buf
+  C:09B0H         PUBLIC        shift_left
+  C:08FBH         PUBLIC        dot8x8_pilix
+  D:0012H         PUBLIC        buf
+  C:093BH         PUBLIC        dot8x8_pilix2
   -------         PROC          MAIN
   -------         DO            
-  D:0010H         SYMBOL        i
-  D:0006H         SYMBOL        j
-  D:0012H         SYMBOL        k
+  D:0008H         SYMBOL        i
+  D:000AH         SYMBOL        j
+  D:000CH         SYMBOL        k
   -------         ENDDO         
-  C:0800H         LINE#         30
-  C:0800H         LINE#         34
-  C:081AH         LINE#         36
-  C:081AH         LINE#         37
-  C:081FH         LINE#         39
-  C:0822H         LINE#         40
-  C:082EH         LINE#         41
-BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  12/18/2021  19:45:00  PAGE 3
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  12/24/2021  16:56:07  PAGE 3
 
 
-  C:0843H         LINE#         42
-  C:084EH         LINE#         44
-  C:0853H         LINE#         45
-  C:0856H         LINE#         46
-  C:0869H         LINE#         47
+  C:0800H         LINE#         33
+  C:0800H         LINE#         37
+  C:081AH         LINE#         39
+  C:081AH         LINE#         40
+  C:081FH         LINE#         42
+  C:0824H         LINE#         43
+  C:0840H         LINE#         44
+  C:0856H         LINE#         47
+  C:085BH         LINE#         48
+  C:085EH         LINE#         49
+  C:0871H         LINE#         50
+  C:0884H         LINE#         51
+  C:0896H         LINE#         53
+  C:08A8H         LINE#         54
+  C:08C0H         LINE#         55
+  C:08D6H         LINE#         58
+  C:08DBH         LINE#         59
+  C:08DEH         LINE#         60
+  C:08F1H         LINE#         61
   -------         ENDPROC       MAIN
   -------         PROC          SHIFT_LEFT
   -------         DO            
-  D:0014H         SYMBOL        i
-  D:0016H         SYMBOL        enable_signal
+  D:000EH         SYMBOL        i
+  D:0010H         SYMBOL        enable_signal
   -------         ENDDO         
-  C:08F6H         LINE#         52
-  C:08F6H         LINE#         54
-  C:08FCH         LINE#         57
-  C:0901H         LINE#         59
-  C:0909H         LINE#         60
-  C:090CH         LINE#         61
-  C:0913H         LINE#         62
-  C:091EH         LINE#         63
-  C:0931H         LINE#         64
+  C:09B0H         LINE#         66
+  C:09B0H         LINE#         68
+  C:09B6H         LINE#         71
+  C:09BBH         LINE#         73
+  C:09C3H         LINE#         74
+  C:09C6H         LINE#         75
+  C:09CDH         LINE#         76
+  C:09D8H         LINE#         77
+  C:09EBH         LINE#         78
   -------         ENDPROC       SHIFT_LEFT
+  -------         PROC          SHIFT_RIGHT
+  -------         DO            
+  D:000EH         SYMBOL        i
+  D:0010H         SYMBOL        enable_signal
+  -------         ENDDO         
+  C:0973H         LINE#         81
+  C:0973H         LINE#         83
+  C:0979H         LINE#         86
+  C:097EH         LINE#         88
+  C:0986H         LINE#         89
+  C:0989H         LINE#         90
+  C:0990H         LINE#         91
+  C:099CH         LINE#         92
+  C:09AFH         LINE#         93
+  -------         ENDPROC       SHIFT_RIGHT
   -------         PROC          _DELAY
   D:0006H         SYMBOL        x
   -------         DO            
   D:0004H         SYMBOL        m
   -------         ENDDO         
-  C:0932H         LINE#         67
-  C:0932H         LINE#         69
-  C:0949H         LINE#         70
+  C:09ECH         LINE#         96
+  C:09ECH         LINE#         98
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  12/24/2021  16:56:07  PAGE 4
+
+
+  C:0A03H         LINE#         99
   -------         ENDPROC       _DELAY
   -------         ENDMOD        DOT8X8_PILIX
 
 ******************************************************************************
-* RESTRICTED VERSION WITH 0800H BYTE CODE SIZE LIMIT; USED: 0159H BYTE (16%) *
+* RESTRICTED VERSION WITH 0800H BYTE CODE SIZE LIMIT; USED: 0213H BYTE (25%) *
 ******************************************************************************
 
-Program Size: data=25.0 xdata=0 code=345
+Program Size: data=27.0 xdata=0 code=531
 LINK/LOCATE RUN COMPLETE.  0 WARNING(S),  0 ERROR(S)

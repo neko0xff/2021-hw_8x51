@@ -1,0 +1,128 @@
+C51 COMPILER V9.60.0.0   7SEG_TIMER                                                        12/20/2021 17:25:13 PAGE 1   
+
+
+C51 COMPILER V9.60.0.0, COMPILATION OF MODULE 7SEG_TIMER
+OBJECT MODULE PLACED IN .\Objects\7seg_timer.obj
+COMPILER INVOKED BY: C:\Keil_v5\C51\BIN\C51.EXE 7seg_timer.c OPTIMIZE(8,SPEED) BROWSE DEBUG OBJECTEXTEND PRINT(.\Listing
+                    -s\7seg_timer.lst) TABS(2) OBJECT(.\Objects\7seg_timer.obj)
+
+line level    source
+
+   1          /*
+   2          *   File:7seg_timer.c
+   3          *   功能: 用7段顯示器做一個計時器(mm:ss)
+   4          */
+   5          
+   6          #include "io51.h"
+   7          
+   8          /*7段顯示器顯示碼*/
+   9          char seg7_number[]={
+  10             0x3F,0x06,0x5B,0x4F,0x66,0x6D,0x7D, //0~7
+  11             0x7F,0x6F,0x77,0x39,0x5E,0x79,0x71  //8~F
+  12          };
+  13          
+  14          int i,j,m;
+  15          int SEC_ONE_ss=0;
+  16          int SEC_TEN_ss=0;
+  17          int SEC_ONE_mm=0;
+  18          int SEC_TEN_mm=0;
+  19          int INT_NUM=0;
+  20          void delay(int x);
+  21          void one_mm();
+  22          void one_ss();
+  23          void ten_mm();
+  24          void ten_ss();
+  25          void display();
+  26          
+  27          void main(){
+  28   1         while(1){
+  29   2             TMOD= 0x01;
+  30   2             TH0=(65536-5000)/256;
+  31   2             TL0=(65536-5000)%256;
+  32   2             IE=0x82;
+  33   2             TR0=1;
+  34   2             again:
+  35   2                if(SEC_ONE_ss != 10){
+  36   3                    display();
+  37   3                }else{
+  38   3                    SEC_ONE_ss=0;
+  39   3                    SEC_TEN_ss++;
+  40   3                    if(SEC_TEN_ss !=6){
+  41   4                      display();
+  42   4                   }else{
+  43   4                      SEC_TEN_ss=0;
+  44   4                      /*SEC_TEN_mm++;
+  45   4                      if(SEC_TEN_mm !=10){
+  46   4                          display();
+  47   4                      }else{
+  48   4                          SEC_TEN_mm=0;
+  49   4                          SEC_ONE_mm++;
+  50   4                          if(SEC_ONE_mm !=10){
+  51   4                              display();
+  52   4                          }
+  53   4                      }*/
+  54   4                   }
+C51 COMPILER V9.60.0.0   7SEG_TIMER                                                        12/20/2021 17:25:13 PAGE 2   
+
+  55   3                  goto again;
+  56   3                }   
+  57   2         }
+  58   1      }
+  59          
+  60          void display(){
+  61   1          one_ss();
+  62   1          delay(500);
+  63   1          ten_ss();
+  64   1          delay(500);
+  65   1          /*one_mm();
+  66   1          delay(500);
+  67   1          ten_mm();
+  68   1          delay(500);*/
+  69   1      }
+  70          
+  71          void Timer0(void) interrupt 0x0B{
+  72   1          TH0=(65536-5000)/256;
+  73   1          TL0=(65536-5000)%256;
+  74   1          INT_NUM++;
+  75   1          if(INT_NUM == 200){
+  76   2              SEC_ONE_ss++;
+  77   2              INT_NUM=0;
+  78   2          }
+  79   1      }
+  80          
+  81          
+  82          void one_mm(){
+  83   1          P1= seg7_number[SEC_ONE_mm];
+  84   1          P2= 0x08;
+  85   1      }
+  86          void ten_mm(){
+  87   1          P1= seg7_number[SEC_TEN_mm];
+  88   1          P2= 0x04;
+  89   1      }
+  90          void one_ss(){
+  91   1          P1= seg7_number[SEC_ONE_ss];
+  92   1          P2= 0x02;
+  93   1      }
+  94          void ten_ss(){
+  95   1          P1= seg7_number[SEC_TEN_ss];
+  96   1          P2= 0x01;
+  97   1      }
+  98          
+  99          void delay(int x){
+ 100   1          int m;
+ 101   1          for(m=0;m<x;m++);
+ 102   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    189    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =     30    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

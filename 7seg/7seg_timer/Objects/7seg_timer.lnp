@@ -1,0 +1,4 @@
+".\Objects\STARTUP.obj",
+".\Objects\7seg_timer.obj" 
+TO ".\Objects\7seg_timer" 
+PRINT(".\Listings\7seg_timer.m51")

@@ -5,22 +5,22 @@
 
 #include "io51.h"
 
-/*定義變數&迴圈*/
+/*變數*/
 void delay(int x);
 void LED_01(int run);
 void LED_pilix3(int run);
 void LED_ping(int run);
 void LED_02(int run);
 int i,m;
-int run_time=3; //共運行三回
+int run_time=3;
 
-//乒乓燈亮法
+//乒乓灯亮法
 int j_ping= 0x7E;
 char led_ping[]={
 	0x7E,0xBD,0xDB,0xE7,0xDB,0xBD,0X7E 
 };
  
-//霹靂燈亮法
+//霹靂灯亮法
 char led_pilix1[]={
 	0xFE,0xFD,0xFB,0xF7,0xEF,0xDF,0xBF,0x7F 
 };
@@ -28,7 +28,7 @@ char led_pilix2[]={
 	0xBF,0xDF,0xEF,0xF7,0xFB,0xFD,0xFE 
 };
 
-//接龍燈亮法
+//接龍灯亮法
 char led1[] = {0x7F, 0xBF, 0xDF, 0xEF, 0xF7, 0xFB, 0xFD, 0xFE}; //第1回
 char led2[] = {0x7E, 0xBE, 0xDE, 0xEE, 0xF6, 0xFA, 0xFC}; //第2回
 char led3[] = {0x7C, 0xBC, 0xDC, 0xEC, 0xF4, 0xF8}; //第3回
@@ -67,7 +67,7 @@ void LED_01(int run){
   }
 
 
-//LED_ping: 乒乓燈
+//LED_ping: 乒乓灯
 void LED_ping(int run){
  int x;
  for(x=0;x<run;x++){
@@ -80,7 +80,7 @@ void LED_ping(int run){
    }   
 }
 
-//LED_pilix3:運行三回霹靂燈
+//LED_pilix3:運行三回霹靂灯
 void LED_pilix3(int run){
   int x,y,i,a;
   for(x=0;x<run;x++){
@@ -106,7 +106,7 @@ void LED_pilix3(int run){
   }
 }
 
-//LED_02: 左至右移的接龍燈
+//LED_02: 左至右移的接龍灯
 void LED_02(int run){
  int x;
  for(x=0;x<run;x++){

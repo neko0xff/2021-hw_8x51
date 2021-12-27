@@ -1,4 +1,4 @@
-BL51 BANKED LINKER/LOCATER V6.22.2.0                                                    11/29/2021  20:12:36  PAGE 1
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                    12/24/2021  16:10:17  PAGE 1
 
 
 BL51 BANKED LINKER/LOCATER V6.22.2.0, INVOKED BY:
@@ -59,7 +59,7 @@ SYMBOL TABLE OF MODULE:  7seg_run (?C_STARTUP)
   VALUE           TYPE          NAME
   ----------------------------------
 
-BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  11/29/2021  20:12:36  PAGE 2
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  12/24/2021  16:10:17  PAGE 2
 
 
   -------         MODULE        ?C_STARTUP
@@ -113,22 +113,22 @@ SYMBOL TABLE OF MODULE:  7seg_run (?C_STARTUP)
   C:0805H         LINE#         33
   C:080AH         LINE#         34
   C:080FH         LINE#         35
-  C:0814H         LINE#         36
-  C:081BH         LINE#         37
-  C:0826H         LINE#         38
-  C:0831H         LINE#         39
-  C:083CH         LINE#         40
-  C:0847H         LINE#         41
-BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  11/29/2021  20:12:36  PAGE 3
+  C:0814H         LINE#         37
+  C:081BH         LINE#         38
+  C:0826H         LINE#         40
+  C:0831H         LINE#         41
+  C:083CH         LINE#         43
+  C:0847H         LINE#         44
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  12/24/2021  16:10:17  PAGE 3
 
 
-  C:0852H         LINE#         42
-  C:085DH         LINE#         43
-  C:0868H         LINE#         44
-  C:0873H         LINE#         45
-  C:087EH         LINE#         46
-  C:0889H         LINE#         47
-  C:0894H         LINE#         48
+  C:0852H         LINE#         46
+  C:085DH         LINE#         47
+  C:0868H         LINE#         49
+  C:0873H         LINE#         50
+  C:087EH         LINE#         52
+  C:0889H         LINE#         53
+  C:0894H         LINE#         54
   -------         ENDPROC       MAIN
   C:0942H         SYMBOL        L?0011
   C:0944H         SYMBOL        L?0012
@@ -139,16 +139,16 @@ SYMBOL TABLE OF MODULE:  7seg_run (?C_STARTUP)
   -------         PROC          _SEG7_SWITCH
   D:0006H         SYMBOL        LED
   D:0004H         SYMBOL        COM
-  C:0948H         LINE#         52
-  C:0948H         LINE#         53
-  C:094FH         LINE#         54
-  C:0956H         LINE#         55
+  C:0948H         LINE#         58
+  C:0948H         LINE#         59
+  C:094FH         LINE#         60
+  C:0956H         LINE#         61
   -------         ENDPROC       _SEG7_SWITCH
   -------         PROC          _DELAY
   D:0006H         SYMBOL        s
-  C:0923H         LINE#         57
-  C:0923H         LINE#         58
-  C:0941H         LINE#         59
+  C:0923H         LINE#         63
+  C:0923H         LINE#         64
+  C:0941H         LINE#         65
   -------         ENDPROC       _DELAY
   -------         ENDMOD        7SEG_RUN
 

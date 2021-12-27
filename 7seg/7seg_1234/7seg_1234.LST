@@ -1,4 +1,4 @@
-C51 COMPILER V9.60.0.0   7SEG_1234                                                         12/14/2021 11:32:29 PAGE 1   
+C51 COMPILER V9.60.0.0   7SEG_1234                                                         12/21/2021 02:49:06 PAGE 1   
 
 
 C51 COMPILER V9.60.0.0, COMPILATION OF MODULE 7SEG_1234
@@ -34,24 +34,27 @@ line level    source
   25             4(0x66) => seg7_num[4]
   26          */
   27          
-  28          void main(){
-  29   1        char i;
-  30   1        for(i=1;i<=4;i++){
-  31   2          seg7En(i,i);
-  32   2          delay(100);
-  33   2          P2= 0x00;
-  34   2        }
-  35   1      }
-  36          
-  37          void seg7En(int COM, int NUM){
-  38   1          P2 = seg7_COM[COM];
-  39   1        P1 = seg7_num[NUM];
-  40   1      }
-  41          
-  42          void delay(int x){
-  43   1         int m;
-  44   1         for(m=0;m<x;m++);
-  45   1      }
+  28          /*主程式*/
+  29          void main(){
+  30   1        char i;
+  31   1        for(i=1;i<=4;i++){
+  32   2          seg7En(i,i);
+  33   2          delay(100);
+  34   2          P2= 0x00;
+  35   2        }
+  36   1      }
+  37          
+  38          /*7段顯示器輸出*/
+  39          void seg7En(int COM, int NUM){
+  40   1          P2 = seg7_COM[COM];
+  41   1        P1 = seg7_num[NUM];
+  42   1      }
+  43          
+  44          /*delay time*/
+  45          void delay(int x){
+  46   1         int m;
+  47   1         for(m=0;m<x;m++);
+  48   1      }
 
 
 MODULE INFORMATION:   STATIC OVERLAYABLE
@@ -59,11 +62,11 @@ MODULE INFORMATION:   STATIC OVERLAYABLE
    CONSTANT SIZE    =   ----    ----
    XDATA SIZE       =   ----    ----
    PDATA SIZE       =   ----    ----
+C51 COMPILER V9.60.0.0   7SEG_1234                                                         12/21/2021 02:49:06 PAGE 2   
+
    DATA SIZE        =     15       1
    IDATA SIZE       =   ----    ----
    BIT SIZE         =   ----    ----
-C51 COMPILER V9.60.0.0   7SEG_1234                                                         12/14/2021 11:32:29 PAGE 2   
-
 END OF MODULE INFORMATION.
 
 

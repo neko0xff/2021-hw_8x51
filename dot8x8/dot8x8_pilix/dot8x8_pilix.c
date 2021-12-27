@@ -5,7 +5,7 @@
 
 #include "io51.h"
 /*霹靂燈顯示碼*/
-char code dot8x8_pilix[120]={
+char code dot8x8_pilix[64]={
     0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xF7, //1
     0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xF7,0xFF, //2
     0xFF,0xFF,0xFF,0xFF,0xFF,0xF7,0xFF,0xFF, //3
@@ -13,7 +13,9 @@ char code dot8x8_pilix[120]={
     0xFF,0xFF,0xFF,0xF7,0xFF,0xFF,0xFF,0xFF, //5
     0xFF,0xFF,0xF7,0xFF,0xFF,0xFF,0xFF,0xFF, //6
     0xFF,0xF7,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF, //7
-    0xF7,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF, //8
+	  0xF7,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF, //8
+};
+char code dot8x8_pilix2[56]={
     0xFF,0xF7,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF, //9
     0xFF,0xFF,0xF7,0xFF,0xFF,0xFF,0xFF,0xFF, //10
     0xFF,0xFF,0xFF,0xF7,0xFF,0xFF,0xFF,0xFF, //11
@@ -25,6 +27,7 @@ char code dot8x8_pilix[120]={
 char buf[8]; //緩衝器
 void delay(int x);
 void shift_left();
+void shift_right();
 
 /*主程式*/
 void main(){
@@ -34,15 +37,26 @@ void main(){
    for(i=0;i<8;i++) buf[i]=0xFF; 
 
    while(1){
-       for(i=0;i<8*10;i++){
+       for(i=0;i<8*8;i++){
            /*把左移資料分別存在buf[]中*/
-           for(j=0;j<7;j++){
+           for(j=0;j<7;j++)
                buf[j]= buf[j+1];
                buf[j]= dot8x8_pilix[i];
-           } 
+           
            /*重復掃描各字型50回(增加亮度)*/
            for(k=0;k<50;k++){
                shift_left(); //字型左移
+           }
+       }
+			 for(i=0;i<8*8;i++){
+           /*把左移資料分別存在buf[]中*/
+           for(j=0;j<7;j--)
+               buf[j]= buf[j-1];
+               buf[j]= dot8x8_pilix2[i];
+           
+           /*重復掃描各字型50回(增加亮度)*/
+           for(k=0;k<50;k++){
+               shift_right(); //字型左移
            }
        }
    }
@@ -60,6 +74,21 @@ void shift_left(){
         P2=enable_signal;
         delay(50); //delay 50ms=0.05sec
         enable_signal<<=1; //左移1個位元
+    }
+}
+
+/*call 右移的副程式*/
+void shift_right(){
+    int i;
+    int enable_signal=0x01;//致能=0x01
+
+    /*各字型由8筆資料組成=掃8回*/
+    for(i=0;i<8;i++){
+		/*把右移資料分別存在buf[]中*/
+        P1=buf[i];
+        P2=enable_signal;
+        delay(50); //delay 50ms=0.05sec
+        enable_signal>>=1; //右移1個位元
     }
 }
 

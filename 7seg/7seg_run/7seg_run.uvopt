@@ -212,15 +212,15 @@
       <bShared>0</bShared>
       <WindowPosition>
         <length>44</length>
-        <flags>0</flags>
-        <showCmd>1</showCmd>
+        <flags>2</flags>
+        <showCmd>3</showCmd>
         <MinPosition>
           <xPos>-1</xPos>
           <yPos>-1</yPos>
         </MinPosition>
         <MaxPosition>
-          <xPos>-1</xPos>
-          <yPos>-1</yPos>
+          <xPos>-4</xPos>
+          <yPos>-23</yPos>
         </MaxPosition>
         <NormalPosition>
           <Top>0</Top>

@@ -1,4 +1,4 @@
-BL51 BANKED LINKER/LOCATER V6.22.2.0                                                    12/17/2021  20:13:22  PAGE 1
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                    12/24/2021  14:38:41  PAGE 1
 
 
 BL51 BANKED LINKER/LOCATER V6.22.2.0, INVOKED BY:
@@ -59,7 +59,7 @@ SYMBOL TABLE OF MODULE:  .\Objects\dot8x8_A (?C_STARTUP)
 
   VALUE           TYPE          NAME
   ----------------------------------
-BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  12/17/2021  20:13:22  PAGE 2
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  12/24/2021  14:38:41  PAGE 2
 
 
 
@@ -118,11 +118,10 @@ SYMBOL TABLE OF MODULE:  .\Objects\dot8x8_A (?C_STARTUP)
   C:081AH         LINE#         25
   C:081FH         LINE#         27
   C:0822H         LINE#         28
-  C:082EH         LINE#         29
-BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  12/17/2021  20:13:22  PAGE 3
+  C:0839H         LINE#         29
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  12/24/2021  14:38:41  PAGE 3
 
 
-  C:0843H         LINE#         30
   C:084EH         LINE#         32
   C:0853H         LINE#         33
   C:0856H         LINE#         34
@@ -136,21 +135,21 @@ SYMBOL TABLE OF MODULE:  .\Objects\dot8x8_A (?C_STARTUP)
   C:087EH         LINE#         40
   C:087EH         LINE#         42
   C:0884H         LINE#         45
-  C:0889H         LINE#         46
-  C:0891H         LINE#         47
-  C:0894H         LINE#         48
-  C:089BH         LINE#         49
-  C:08A6H         LINE#         50
-  C:08B9H         LINE#         51
+  C:0889H         LINE#         47
+  C:0891H         LINE#         48
+  C:0894H         LINE#         49
+  C:089BH         LINE#         50
+  C:08A6H         LINE#         51
+  C:08B9H         LINE#         52
   -------         ENDPROC       SHIFT_LEFT
   -------         PROC          _DELAY
   D:0006H         SYMBOL        x
   -------         DO            
   D:0004H         SYMBOL        m
   -------         ENDDO         
-  C:08DAH         LINE#         53
-  C:08DAH         LINE#         55
-  C:08F1H         LINE#         56
+  C:08DAH         LINE#         54
+  C:08DAH         LINE#         56
+  C:08F1H         LINE#         57
   -------         ENDPROC       _DELAY
   -------         ENDMOD        DOT8X8_A
 

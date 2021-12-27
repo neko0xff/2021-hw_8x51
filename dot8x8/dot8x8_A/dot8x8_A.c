@@ -24,10 +24,10 @@ void main(){
     while(1){
        for(i=0;i<8*4;i++){
         /*把左移資料分別存在buf[]中*/
-        for(j=0;j<7;j++){
+        for(j=0;j<7;j++)
             buf[j]= buf[j+1];
             buf[j]= dot8x8_A[i];
-        } 
+        
         /*重復掃描各字型50回(增加亮度)*/
         for(k=0;k<50;k++){
             shift_left(); //字型左移

@@ -1,4 +1,4 @@
-BL51 BANKED LINKER/LOCATER V6.22.2.0                                                    12/14/2021  11:32:30  PAGE 1
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                    12/21/2021  02:49:06  PAGE 1
 
 
 BL51 BANKED LINKER/LOCATER V6.22.2.0, INVOKED BY:
@@ -59,7 +59,7 @@ SYMBOL TABLE OF MODULE:  7seg_1234 (?C_STARTUP)
   ----------------------------------
 
   -------         MODULE        ?C_STARTUP
-BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  12/14/2021  11:32:30  PAGE 2
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  12/21/2021  02:49:06  PAGE 2
 
 
   C:0800H         SEGMENT       ?C_C51STARTUP
@@ -109,33 +109,33 @@ SYMBOL TABLE OF MODULE:  7seg_1234 (?C_STARTUP)
   -------         DO            
   D:0017H         SYMBOL        i
   -------         ENDDO         
-  C:088CH         LINE#         28
-  C:088CH         LINE#         30
-  C:08A1H         LINE#         31
-  C:08ABH         LINE#         32
-  C:08B2H         LINE#         33
-  C:08B5H         LINE#         34
-  C:08B9H         LINE#         35
+  C:088CH         LINE#         29
+  C:088CH         LINE#         31
+  C:08A1H         LINE#         32
+  C:08ABH         LINE#         33
+  C:08B2H         LINE#         34
+  C:08B5H         LINE#         35
+  C:08B9H         LINE#         36
   -------         ENDPROC       MAIN
   -------         PROC          _SEG7EN
   D:0006H         SYMBOL        COM
-BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  12/14/2021  11:32:30  PAGE 3
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  12/21/2021  02:49:06  PAGE 3
 
 
   D:0004H         SYMBOL        NUM
-  C:08E8H         LINE#         37
-  C:08E8H         LINE#         38
-  C:08EFH         LINE#         39
-  C:08F6H         LINE#         40
+  C:08E8H         LINE#         39
+  C:08E8H         LINE#         40
+  C:08EFH         LINE#         41
+  C:08F6H         LINE#         42
   -------         ENDPROC       _SEG7EN
   -------         PROC          _DELAY
   D:0006H         SYMBOL        x
   -------         DO            
   D:0004H         SYMBOL        m
   -------         ENDDO         
-  C:08BAH         LINE#         42
-  C:08BAH         LINE#         44
-  C:08D1H         LINE#         45
+  C:08BAH         LINE#         45
+  C:08BAH         LINE#         47
+  C:08D1H         LINE#         48
   -------         ENDPROC       _DELAY
   -------         ENDMOD        7SEG_1234
 

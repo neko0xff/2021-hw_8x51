@@ -29,30 +29,36 @@ char seg7_COM[]={
 
 void main(){
    while(1){
-       seg7_switch(1,1); //1(a,com1)
-       seg7_switch(1,2); //2(a,com2)
-       seg7_switch(1,3); //3(a,com3)
-       seg7_switch(1,4); //4(a,com4)
-       seg7_switch(2,4); //5(b,com4)
-       seg7_switch(3,4); //6(c,com4)
-       seg7_switch(4,4); //7(dot,com4)
-       seg7_switch(8,4); //8(d,com4)
-       seg7_switch(4,3); //9(dot,com3)
-       seg7_switch(8,3); //10(d,com3)
-       seg7_switch(4,2); //11(dot,com2)
-       seg7_switch(8,2); //12(d,com2)
-       seg7_switch(4,1); //13(dot,com1)
-       seg7_switch(8,1); //14(d,com1)
-       seg7_switch(5,1); //15(e,com1)
-       seg7_switch(6,1); //16(f,com1)
+       seg7_switch(1,4); //1(a,com4)
+       seg7_switch(1,3); //2(a,com3)
+       seg7_switch(1,2); //3(a,com2)
+       seg7_switch(1,1); //4(a,com1)
+		 
+       seg7_switch(2,1); //5(b,com1)
+       seg7_switch(3,1); //6(c,com1)
+		 
+       seg7_switch(4,1); //7(dot,com1)
+       seg7_switch(8,1); //8(d,com1)
+		 
+       seg7_switch(4,2); //9(dot,com2)
+       seg7_switch(8,2); //10(d,com2)
+		 
+       seg7_switch(4,3); //11(dot,com3)
+       seg7_switch(8,3); //12(d,com3)
+		 
+       seg7_switch(4,4); //13(dot,com4)
+       seg7_switch(8,4); //14(d,com4)
+		 
+       seg7_switch(5,4); //15(e,com4)
+       seg7_switch(6,4); //16(f,com4)
    }    
 
 }
 
 void seg7_switch(int LED,int COM){
     P2=seg7_COM[COM];
-	P1=seg7_LED[LED];
-    delay(1000);
+	  P1=seg7_LED[LED];
+    delay(5000);
 }
 void delay(int s){
     for(m=0;m<s;m++);
