@@ -31,9 +31,10 @@ void main(){
    while(1){
        for(i=0;i<8*10;i++){
            /*把左移資料分別存在buf[]中*/
-           for(j=0;j<7;j++)
-               buf[j]= buf[j+1];
-               buf[j]= dot8x8[i];
+           for(j=0;j<7;j++) buf[j]= buf[j+1];
+           
+				   /*把亮法加入至左移資料*/ 
+				   buf[j]= dot8x8[i];
            
            /*重復掃描各字型50回(增加亮度)*/
            for(k=0;k<50;k++){

@@ -1,0 +1,111 @@
+C51 COMPILER V9.60.0.0   8051_YUKI                                                         01/08/2022 18:40:06 PAGE 1   
+
+
+C51 COMPILER V9.60.0.0, COMPILATION OF MODULE 8051_YUKI
+OBJECT MODULE PLACED IN .\Objects\8051_yuki.obj
+COMPILER INVOKED BY: C:\Keil_v5\C51\BIN\C51.EXE 8051_yuki.c OPTIMIZE(8,SPEED) BROWSE DEBUG OBJECTEXTEND PRINT(.\Listings
+                    -\8051_yuki.lst) TABS(2) OBJECT(.\Objects\8051_yuki.obj)
+
+line level    source
+
+   1          /* 
+   2          *  File: LCD_num.c
+   3          *  功能: 在LCD顯示二個組員的學號
+   4          */
+   5          #include "io51.h"
+   6          
+   7          /*LCD的顯示&副程式*/
+   8          char yuki[]={'Y','U','K','I','.','N','>',' '};
+   9          char output[]={'R','e','a','d','y','?'};
+  10          void delay(int x);
+  11          void set_lcd();
+  12          void put_ir(int data_word);
+  13          void put_dr(int cntl_word);
+  14          void cursor_home();
+  15          void check_busy();
+  16          
+  17          /*主程式*/
+  18          void main(){
+  19   1          int i;
+  20   1        
+  21   1          set_lcd(); //設定LCD
+  22   1          
+  23   1          /*LCD顯示*/
+  24   1          cursor_home(); //游標歸位(左上角)
+  25   1          for(i=0;i<8;i++) put_dr(yuki[i]);
+  26   1          for(i=0;i<6;i++) put_dr(output[i]);
+  27   1      }
+  28          
+  29          /*設定LCD*/
+  30          void set_lcd(){
+  31   1          put_ir(0x30); //設定8bit伝送+單排顯示
+  32   1          put_ir(0x06); //在位元顯示後遊標往右移
+  33   1          put_ir(0x0E); //LCD顯示致能且遊標出現+字元不閃爍
+  34   1      }
+  35          
+  36          /*游標歸位(左上角)*/
+  37          void cursor_home(){
+  38   1          put_ir(0x02); //游標歸位
+  39   1      }
+  40          
+  41          /*寫入控制字元的副程式*/
+  42          void put_ir(int data_word){
+  43   1          check_busy(); //檢視LCD是否忙碌
+  44   1          P1= data_word; //P1=送出LCD的控制碼
+  45   1          P2= 0x00; //資料寫入到LCD的位址暫存器:RS=0,R/-W=0,E=0(LOW)
+  46   1          P2= 0x04; //資料寫入到LCD的位址暫存器:RS=0,R/-W=0,E=1(HIGH)
+  47   1          delay(100); //delay 100ms=0.1sec
+  48   1          P2= 0x00; //資料寫入到LCD的位址暫存器:RS=0,R/-W=0,E=0(LOW)
+  49   1      }
+  50          
+  51          /*寫入資料的副程式*/
+  52          void put_dr(int cntl_word){
+  53   1          check_busy(); //檢視LCD是否忙碌
+  54   1          P1= cntl_word; //P1=送出LCD的顯示碼
+C51 COMPILER V9.60.0.0   8051_YUKI                                                         01/08/2022 18:40:06 PAGE 2   
+
+  55   1          P2= 0x01; //寫入LCD的位置暫存器:RS=1,R/-W=0,E=0(LOW)
+  56   1          P2= 0x05; //讀LCD的位置暫存器:RS=1,R/-W=1,E=1(HIGH)
+  57   1          delay(100); //delay 100ms=0.1sec
+  58   1          P2= 0x01; //RS=1,R/-W=0,E=0(LOW)
+  59   1      }
+  60          
+  61          /*檢視LCD是否忙碌 */
+  62          void check_busy(){
+  63   1          int busy_flag;
+  64   1      
+  65   1          P2=0x02; //資料寫入LCD的指令暫存器:RS=0,R/-W=1,E=0(LOW)
+  66   1          P2=0x06; //資料寫入LCD的指令暫存器:RS=0,R/-W=1,E=1(HIGH)
+  67   1          delay(100); //delay 100ms=0.1sec
+  68   1        
+  69   1        READ_AGAIN:
+  70   1          busy_flag=P1; //經由P1讀取LCD的狀態字組
+  71   1          busy_flag&=0x80; //保留狀態字組的最高位元
+  72   1          
+  73   1          /*最高位元判斷*/
+  74   1          if(busy_flag == 0x80){ //if 最高位元=1
+  75   2              goto READ_AGAIN; //讀取狀態字組
+  76   2          }else{ //else 最高位元=0
+  77   2              P2=0x02; //資料寫入LCD的指令暫存器:RS=0,R/-W=1,E=0(LOW)
+  78   2          }
+  79   1      }
+  80          
+  81          /*delay time*/
+  82          void delay(int x){
+  83   1          int m;
+  84   1          for(m=0;m<x;m++);
+  85   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    208    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =     14       6
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

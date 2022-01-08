@@ -19,17 +19,18 @@ void main(){
     int i;
 
     set_lcd(); //設定LCD
+    
     /*LCD顯示*/
     while(1){
         /*輸出第一個人的學號*/
         cursor_home(); //Clear LCD Display + 游標歸位(左上角)
-        for(i=0;i<7;i++){
+        for(i=0;i<8;i++){
             put_dr(LCD_num02[i]); //把陣列的內容戴入LCD
             delay(10000); //delay 10 sec
         }
         /*輸出第二個人的學號*/
         cursor_home(); //Clear LCD Display + 游標歸位(左上角)
-        for(i=0;i<7;i++){
+        for(i=0;i<8;i++){
             put_dr(LED_num16[i]); //把陣列的內容戴入LCD
             delay(10000); //delay 10 sec
         }

@@ -1,4 +1,4 @@
-C51 COMPILER V9.60.0.0   DOT8X8_RIGHT                                                      12/24/2021 15:01:31 PAGE 1   
+C51 COMPILER V9.60.0.0   DOT8X8_RIGHT                                                      01/08/2022 18:16:17 PAGE 1   
 
 
 C51 COMPILER V9.60.0.0, COMPILATION OF MODULE DOT8X8_RIGHT
@@ -16,16 +16,16 @@ line level    source
    6          #include "io51.h"
    7          /*8*8點距陣(0~9)顯示碼*/
    8          code char dot8x8[80]={
-   9              0xFF,0x81,0x5E,0x6E,0x76,0x7A,0x81,0xFF, //0
-  10              0xFF,0x7F,0x7F,0x7D,0x00,0x7F,0x7F,0xFF, //1
-  11              0xFF,0x1D,0x6E,0x6E,0x6E,0x6E,0x71,0xFF, //2
-  12              0xFF,0xBD,0x7E,0x76,0x76,0x76,0x89,0xFF, //3
-  13              0xFF,0xE3,0xED,0xEE,0xEF,0x00,0xEF,0xFF, //4
-  14              0xFF,0xB0,0x76,0x76,0x76,0x76,0x8E,0xFF, //5
-  15              0xFF,0x81,0x76,0x76,0x76,0x76,0x8D,0xFF, //6
-  16              0xFF,0xFC,0xFE,0xFE,0x06,0xFA,0xFC,0xFF, //7
-  17              0xFF,0x89,0x76,0x76,0x76,0x76,0x89,0xFF, //8
-  18              0xFF,0xB1,0x6E,0x6E,0x6E,0x6E,0x81,0xFF  //9
+   9             0xff,0x81,0x7a,0x79,0x6e,0x5e,0x81,0xff, /*0*/
+  10             0xff,0x7f,0x7f,0x00,0x7d,0x7f,0x7f,0xff, /*1*/
+  11             0xff,0x71,0x6e,0x6e,0x6e,0x6e,0x1d,0xff, /*2*/
+  12             0xff,0x89,0x76,0x76,0x76,0x71,0xbd,0xff, /*3*/
+  13             0xff,0xef,0x00,0xef,0xee,0xed,0xe3,0xff, /*4*/
+  14             0xff,0x8e,0x76,0x76,0x76,0x76,0xb0,0xff, /*5*/
+  15             0xff,0x8d,0x76,0x76,0x76,0x76,0x81,0xff, /*6*/
+  16             0xff,0xfc,0xfa,0x06,0xfe,0xfe,0xfc,0xff, /*7*/
+  17             0xff,0x89,0x76,0x76,0x76,0x76,0x89,0xff, /*8*/
+  18             0xff,0x81,0x6e,0x6e,0x6e,0x6e,0xb1,0xff  /*9*/
   19          };
   20          char buf[8]; //緩衝器
   21          void delay(int x);
@@ -35,46 +35,45 @@ line level    source
   25          void main(){
   26   1         int i,j,k;
   27   1      
-  28   1         /*清除存放左移資料的buf[8]*/
+  28   1         /*清除存放右移資料的buf[8]*/
   29   1         for(i=0;i<8;i++) buf[i]=0xFF; 
   30   1      
   31   1         while(1){
   32   2             for(i=0;i<8*10;i++){
-  33   3                 /*把左移資料分別存在buf[]中*/
-  34   3                 for(j=0;j<7;j++)
-  35   3                     buf[j]= buf[j+1];
-  36   3                     buf[j]= dot8x8[i];
-  37   3                 
-  38   3                 /*重復掃描各字型50回(增加亮度)*/
-  39   3                 for(k=0;k<50;k++){
-  40   4                     shift_right(); //字型右移
-  41   4                 }
-  42   3             }
-  43   2         }
-  44   1      }
-  45          
-  46          /*call 右移的副程式*/
-  47          void shift_right(){
-  48   1          int i;
-  49   1          int enable_signal=0x01;//致能=0x01
-  50   1      
-  51   1          /*各字型由8筆資料組成=掃8回*/
-  52   1          for(i=0;i<8;i++){
-  53   2          /*把右移資料分別存在buf[]中*/
-  54   2              P1=buf[i];
-C51 COMPILER V9.60.0.0   DOT8X8_RIGHT                                                      12/24/2021 15:01:31 PAGE 2   
+  33   3                 /*把右移資料分別存在buf[]中*/
+  34   3                 for(j=0;j<7;j++) buf[j]= buf[j+1];
+  35   3                 
+  36   3                 /*把亮法加入至右移資料*/
+  37   3                 buf[j]= dot8x8[i];
+  38   3                 
+  39   3                 /*重復掃描各字型50回(增加亮度)*/
+  40   3                 for(k=0;k<50;k++) shift_right(); //字型右移
+  41   3             }
+  42   2         }
+  43   1      }
+  44          
+  45          /*call 右移的副程式*/
+  46          void shift_right(){
+  47   1          int i;
+  48   1          int enable_signal=0x80;//致能=0x01
+  49   1      
+  50   1          /*各字型由8筆資料組成=掃8回*/
+  51   1          for(i=0;i<8;i++){
+  52   2          /*把右移資料分別存在buf[]中*/
+  53   2              P1=buf[i];
+  54   2              P2=enable_signal;
+C51 COMPILER V9.60.0.0   DOT8X8_RIGHT                                                      01/08/2022 18:16:17 PAGE 2   
 
-  55   2              P2=enable_signal;
-  56   2              delay(50); //delay 50ms=0.05sec
-  57   2              enable_signal>>=1; //右移1個位元
-  58   2          }
-  59   1      }
-  60          
-  61          /*delay time*/
-  62          void delay(int x){
-  63   1          int m;
-  64   1          for(m=0;m<x;m++);
-  65   1      }
+  55   2              delay(50); //delay 50ms=0.05sec
+  56   2              enable_signal>>=1; //右移1個位元
+  57   2          }
+  58   1      }
+  59          
+  60          /*delay time*/
+  61          void delay(int x){
+  62   1          int m;
+  63   1          for(m=0;m<x;m++);
+  64   1      }
 
 
 MODULE INFORMATION:   STATIC OVERLAYABLE

@@ -1,0 +1,120 @@
+C51 COMPILER V9.60.0.0   LCD_PING                                                          01/08/2022 16:37:35 PAGE 1   
+
+
+C51 COMPILER V9.60.0.0, COMPILATION OF MODULE LCD_PING
+OBJECT MODULE PLACED IN .\Objects\LCD_ping.obj
+COMPILER INVOKED BY: C:\Keil_v5\C51\BIN\C51.EXE LCD_ping.c OPTIMIZE(8,SPEED) BROWSE DEBUG OBJECTEXTEND PRINT(.\Listings\
+                    -LCD_ping.lst) TABS(2) OBJECT(.\Objects\LCD_ping.obj)
+
+line level    source
+
+   1          /* 
+   2          *  File: LCD_ping.c
+   3          *  功能: 令字元’A’在 LCD 的下排週而復始的做乒乓燈的動作
+   4          */
+   5          #include "io51.h"
+   6          
+   7          /*LCD的顯示&副程式*/
+   8          char LCD_left[]={0xC0,0xC1,0xC2,0xC3,0xC4,0xC5,0xC6,0xC7};
+   9          char LED_right[]={0xCF,0xCE,0xCD,0xCC,0xCB,0xCA,0xC9,0xC8};
+  10          void delay(int x);
+  11          void set_lcd();
+  12          void put_ir(int cntl_word);
+  13          void put_dr(int data_word);
+  14          void check_busy();
+  15          
+  16          /*主程式*/
+  17          void main(){
+  18   1          int i;
+  19   1      
+  20   1          set_lcd(); //設定LCD
+  21   1          /*LCD顯示*/
+  22   1          while(1){
+  23   2            /*第一回: 外=>內*/ 
+  24   2            for(i=0;i<8;i++){
+  25   3                put_ir(0x01); //Clear Display
+  26   3                put_ir(LCD_left[i]);
+  27   3                put_dr('A'); //送出字元'A'
+  28   3                put_ir(LED_right[i]);
+  29   3                put_dr('A'); //送出字元'A'
+  30   3                delay(30000);
+  31   3             }
+  32   2            /*第二回: 內=>外*/
+  33   2            for(i=6;i>=0;i--){
+  34   3                put_ir(0x01); //Clear Display
+  35   3                put_ir(LCD_left[i]);
+  36   3                put_dr('A'); //送出字元'A'
+  37   3                put_ir(LED_right[i]);
+  38   3                put_dr('A'); //送出字元'A'
+  39   3                delay(30000);
+  40   3             }
+  41   2          }
+  42   1      }
+  43          
+  44          /*設定LCD*/
+  45          void set_lcd(){
+  46   1          put_ir(0x38); //設定8bit伝送+雙排顯示
+  47   1          put_ir(0x06); //在位元顯示後遊標往右移
+  48   1          put_ir(0x0E); //LCD顯示致能且遊標出現+字元不閃爍
+  49   1      }
+  50          
+  51          /*寫入控制字元的副程式*/
+  52          void put_ir(int cntl_word){
+  53   1          check_busy(); //檢視LCD是否忙碌
+  54   1          P1= cntl_word; //P1=送出LCD的控制碼
+C51 COMPILER V9.60.0.0   LCD_PING                                                          01/08/2022 16:37:35 PAGE 2   
+
+  55   1          P2= 0x00; //資料寫入到LCD的位址暫存器:RS=0,R/-W=0,E=0(LOW)
+  56   1          P2= 0x04; //資料寫入到LCD的位址暫存器:RS=0,R/-W=0,E=1(HIGH)
+  57   1          delay(100); //delay 100ms=0.1sec
+  58   1          P2= 0x00; //資料寫入到LCD的位址暫存器:RS=0,R/-W=0,E=0(LOW)
+  59   1      }
+  60          
+  61          /*寫入資料的副程式*/
+  62          void put_dr(int data_word){
+  63   1          check_busy(); //檢視LCD是否忙碌
+  64   1          P1= data_word; //P1=送出LCD的顯示碼
+  65   1          P2= 0x01; //寫入LCD的位置暫存器:RS=1,R/-W=0,E=0(LOW)
+  66   1          P2= 0x05; //讀LCD的位置暫存器:RS=1,R/-W=1,E=1(HIGH)
+  67   1          delay(100); //delay 100ms=0.1sec
+  68   1          P2= 0x01; //RS=1,R/-W=0,E=0(LOW)
+  69   1      }
+  70          
+  71          /*檢視LCD是否忙碌 */
+  72          void check_busy(){
+  73   1          int busy_flag;
+  74   1      
+  75   1          P2=0x02; //資料寫入LCD的指令暫存器:RS=0,R/-W=1,E=0(LOW)
+  76   1          P2=0x06; //資料寫入LCD的指令暫存器:RS=0,R/-W=1,E=1(HIGH)
+  77   1          delay(100); //delay 100ms=0.1sec
+  78   1        READ_AGAIN:
+  79   1           busy_flag=P1; //經由P1讀取LCD的狀態字組
+  80   1           busy_flag&=0x80; //保留狀態字組的最高位元
+  81   1          
+  82   1          /*最高位元判斷*/
+  83   1          if(busy_flag == 0x80){ //if 最高位元=1
+  84   2              goto READ_AGAIN; //讀取狀態字組
+  85   2          }else{ //else 最高位元=0
+  86   2              P2=0x02; //資料寫入LCD的指令暫存器:RS=0,R/-W=1,E=0(LOW)
+  87   2          }
+  88   1      }
+  89          
+  90          /*delay time*/
+  91          void delay(int x){
+  92   1          int m;
+  93   1          for(m=0;m<x;m++);
+  94   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    250    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =     16       6
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

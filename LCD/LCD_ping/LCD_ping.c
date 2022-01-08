@@ -5,13 +5,12 @@
 #include "io51.h"
 
 /*LCD的顯示&副程式*/
-char LCD_num02[]={'5','0','6','3','1','1','0','2'};
-char LED_num16[]={'5','0','6','3','1','1','1','6'};
+char LCD_left[]={0xC0,0xC1,0xC2,0xC3,0xC4,0xC5,0xC6,0xC7};
+char LED_right[]={0xCF,0xCE,0xCD,0xCC,0xCB,0xCA,0xC9,0xC8};
 void delay(int x);
 void set_lcd();
-void put_ir(int data_word);
+void put_ir(int cntl_word);
 void put_dr(int data_word);
-void cursor_home();
 void check_busy();
 
 /*主程式*/
@@ -21,36 +20,36 @@ void main(){
     set_lcd(); //設定LCD
     /*LCD顯示*/
     while(1){
-        /*輸出第一個人的學號*/
-        cursor_home(); //Clear LCD Display + 游標歸位(左上角)
-        for(i=0;i<7;i++){
-            put_dr(LCD_num02[i]); //把陣列的內容戴入LCD
-            delay(10000); //delay 10 sec
-        }
-        /*輸出第二個人的學號*/
-        cursor_home(); //Clear LCD Display + 游標歸位(左上角)
-        for(i=0;i<7;i++){
-            put_dr(LED_num16[i]); //把陣列的內容戴入LCD
-            delay(10000); //delay 10 sec
-        }
+      /*第一回: 外=>內*/ 
+			for(i=0;i<8;i++){
+          put_ir(0x01); //Clear Display
+          put_ir(LCD_left[i]);
+          put_dr('A'); //送出字元'A'
+          put_ir(LED_right[i]);
+          put_dr('A'); //送出字元'A'
+          delay(30000);
+       }
+			/*第二回: 內=>外*/
+      for(i=6;i>=0;i--){
+          put_ir(0x01); //Clear Display
+          put_ir(LCD_left[i]);
+          put_dr('A'); //送出字元'A'
+          put_ir(LED_right[i]);
+          put_dr('A'); //送出字元'A'
+          delay(30000);
+       }
     }
 }
 
 /*設定LCD*/
 void set_lcd(){
-    put_ir(0x30); //設定8bit伝送+單排顯示
+    put_ir(0x38); //設定8bit伝送+雙排顯示
     put_ir(0x06); //在位元顯示後遊標往右移
     put_ir(0x0E); //LCD顯示致能且遊標出現+字元不閃爍
 }
 
-/*Clear LCD Display + 游標歸位(左上角)*/
-void cursor_home(){
-    put_ir(0x01); //Clear LCD Display 
-    put_ir(0x02); //游標歸位
-}
-
 /*寫入控制字元的副程式*/
-void put_ir(int data_word){
+void put_ir(int cntl_word){
     check_busy(); //檢視LCD是否忙碌
     P1= cntl_word; //P1=送出LCD的控制碼
     P2= 0x00; //資料寫入到LCD的位址暫存器:RS=0,R/-W=0,E=0(LOW)
@@ -76,9 +75,9 @@ void check_busy(){
     P2=0x02; //資料寫入LCD的指令暫存器:RS=0,R/-W=1,E=0(LOW)
     P2=0x06; //資料寫入LCD的指令暫存器:RS=0,R/-W=1,E=1(HIGH)
     delay(100); //delay 100ms=0.1sec
-    READ_AGAIN;
-    Busy_Flag=P1; //經由P1讀取LCD的狀態字組
-    busy_flag&=0x80; //保留狀態字組的最高位元
+  READ_AGAIN:
+     busy_flag=P1; //經由P1讀取LCD的狀態字組
+     busy_flag&=0x80; //保留狀態字組的最高位元
     
     /*最高位元判斷*/
     if(busy_flag == 0x80){ //if 最高位元=1

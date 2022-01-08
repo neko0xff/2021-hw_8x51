@@ -1,0 +1,220 @@
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                    01/08/2022  18:40:07  PAGE 1
+
+
+BL51 BANKED LINKER/LOCATER V6.22.2.0, INVOKED BY:
+C:\KEIL_V5\C51\BIN\BL51.EXE .\Objects\STARTUP.obj, .\Objects\8051_yuki.obj TO .\Objects\8051_yuki PRINT (.\Listings\8051
+>> _yuki.m51) RAMSIZE (256)
+
+
+MEMORY MODEL: SMALL
+
+
+INPUT MODULES INCLUDED:
+  .\Objects\STARTUP.obj (?C_STARTUP)
+  .\Objects\8051_yuki.obj (8051_YUKI)
+  C:\KEIL_V5\C51\LIB\C51S.LIB (?C_INIT)
+
+
+LINK MAP OF MODULE:  .\Objects\8051_yuki (?C_STARTUP)
+
+
+            TYPE    BASE      LENGTH    RELOCATION   SEGMENT NAME
+            -----------------------------------------------------
+
+            * * * * * * *   D A T A   M E M O R Y   * * * * * * *
+            REG     0000H     0008H     ABSOLUTE     "REG BANK 0"
+            DATA    0008H     000EH     UNIT         ?DT?8051_YUKI
+            DATA    0016H     0004H     UNIT         _DATA_GROUP_
+            IDATA   001AH     0001H     UNIT         ?STACK
+
+            * * * * * * *   C O D E   M E M O R Y   * * * * * * *
+            CODE    0000H     0003H     ABSOLUTE     
+                    0003H     07FDH                  *** GAP ***
+            CODE    0800H     008CH     UNIT         ?C_C51STARTUP
+            CODE    088CH     0041H     UNIT         ?PR?MAIN?8051_YUKI
+            CODE    08CDH     0024H     UNIT         ?PR?_PUT_DR?8051_YUKI
+            CODE    08F1H     001DH     UNIT         ?PR?CHECK_BUSY?8051_YUKI
+            CODE    090EH     001AH     UNIT         ?PR?_PUT_IR?8051_YUKI
+            CODE    0928H     0018H     UNIT         ?PR?_DELAY?8051_YUKI
+            CODE    0940H     0015H     UNIT         ?PR?SET_LCD?8051_YUKI
+            CODE    0955H     0013H     UNIT         ?C_INITSEG
+            CODE    0968H     0007H     UNIT         ?PR?CURSOR_HOME?8051_YUKI
+
+
+
+OVERLAY MAP OF MODULE:   .\Objects\8051_yuki (?C_STARTUP)
+
+
+SEGMENT                             DATA_GROUP 
+  +--> CALLED SEGMENT             START    LENGTH
+-------------------------------------------------
+?C_C51STARTUP                     -----    -----
+  +--> ?PR?MAIN?8051_YUKI
+  +--> ?C_INITSEG
+
+?PR?MAIN?8051_YUKI                0016H    0002H
+  +--> ?PR?SET_LCD?8051_YUKI
+  +--> ?PR?CURSOR_HOME?8051_YUKI
+  +--> ?PR?_PUT_DR?8051_YUKI
+
+?PR?SET_LCD?8051_YUKI             -----    -----
+  +--> ?PR?_PUT_IR?8051_YUKI
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  01/08/2022  18:40:07  PAGE 2
+
+
+
+?PR?_PUT_IR?8051_YUKI             0018H    0002H
+  +--> ?PR?CHECK_BUSY?8051_YUKI
+  +--> ?PR?_DELAY?8051_YUKI
+
+?PR?CHECK_BUSY?8051_YUKI          -----    -----
+  +--> ?PR?_DELAY?8051_YUKI
+
+?PR?CURSOR_HOME?8051_YUKI         -----    -----
+  +--> ?PR?_PUT_IR?8051_YUKI
+
+?PR?_PUT_DR?8051_YUKI             0018H    0002H
+  +--> ?PR?CHECK_BUSY?8051_YUKI
+  +--> ?PR?_DELAY?8051_YUKI
+
+
+
+SYMBOL TABLE OF MODULE:  .\Objects\8051_yuki (?C_STARTUP)
+
+  VALUE           TYPE          NAME
+  ----------------------------------
+
+  -------         MODULE        ?C_STARTUP
+  C:0800H         SEGMENT       ?C_C51STARTUP
+  I:001AH         SEGMENT       ?STACK
+  C:0000H         PUBLIC        ?C_STARTUP
+  D:00E0H         SYMBOL        ACC
+  D:00F0H         SYMBOL        B
+  D:0083H         SYMBOL        DPH
+  D:0082H         SYMBOL        DPL
+  N:0000H         SYMBOL        IBPSTACK
+  N:0100H         SYMBOL        IBPSTACKTOP
+  N:0080H         SYMBOL        IDATALEN
+  C:0803H         SYMBOL        IDATALOOP
+  N:0000H         SYMBOL        PBPSTACK
+  N:0100H         SYMBOL        PBPSTACKTOP
+  N:0000H         SYMBOL        PDATALEN
+  N:0000H         SYMBOL        PDATASTART
+  N:0000H         SYMBOL        PPAGE
+  N:0000H         SYMBOL        PPAGEENABLE
+  D:00A0H         SYMBOL        PPAGE_SFR
+  D:0081H         SYMBOL        SP
+  C:0800H         SYMBOL        STARTUP1
+  N:0000H         SYMBOL        XBPSTACK
+  N:0000H         SYMBOL        XBPSTACKTOP
+  N:0000H         SYMBOL        XDATALEN
+  N:0000H         SYMBOL        XDATASTART
+  C:0000H         LINE#         126
+  C:0800H         LINE#         133
+  C:0802H         LINE#         134
+  C:0803H         LINE#         135
+  C:0804H         LINE#         136
+  C:0806H         LINE#         185
+  C:0809H         LINE#         196
+  -------         ENDMOD        ?C_STARTUP
+
+  -------         MODULE        8051_YUKI
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  01/08/2022  18:40:07  PAGE 3
+
+
+  C:0000H         SYMBOL        _ICE_DUMMY_
+  D:0090H         PUBLIC        P1
+  D:00A0H         PUBLIC        P2
+  C:08D6H         PUBLIC        _put_dr
+  C:0928H         PUBLIC        _delay
+  C:090EH         PUBLIC        _put_ir
+  C:088CH         PUBLIC        main
+  C:08F1H         PUBLIC        check_busy
+  C:0968H         PUBLIC        cursor_home
+  D:0008H         PUBLIC        output
+  D:000EH         PUBLIC        yuki
+  C:0940H         PUBLIC        set_lcd
+  -------         PROC          MAIN
+  -------         DO            
+  D:0016H         SYMBOL        i
+  -------         ENDDO         
+  C:088CH         LINE#         18
+  C:088CH         LINE#         21
+  C:088FH         LINE#         24
+  C:0892H         LINE#         25
+  C:08AFH         LINE#         26
+  C:08CCH         LINE#         27
+  -------         ENDPROC       MAIN
+  -------         PROC          SET_LCD
+  C:0940H         LINE#         30
+  C:0940H         LINE#         31
+  C:0947H         LINE#         32
+  C:094EH         LINE#         33
+  -------         ENDPROC       SET_LCD
+  -------         PROC          CURSOR_HOME
+  C:0968H         LINE#         37
+  C:0968H         LINE#         38
+  -------         ENDPROC       CURSOR_HOME
+  -------         PROC          _PUT_IR
+  D:0018H         SYMBOL        data_word
+  C:090EH         LINE#         42
+  C:0912H         LINE#         43
+  C:0915H         LINE#         44
+  C:0918H         LINE#         45
+  C:091BH         LINE#         46
+  C:091EH         LINE#         47
+  C:0924H         LINE#         48
+  C:0927H         LINE#         49
+  -------         ENDPROC       _PUT_IR
+  -------         PROC          L?0023
+  -------         ENDPROC       L?0023
+  -------         PROC          _PUT_DR
+  D:0018H         SYMBOL        cntl_word
+  C:08D6H         LINE#         52
+  C:08DAH         LINE#         53
+  C:08DDH         LINE#         54
+  C:08E0H         LINE#         55
+  C:08E3H         LINE#         56
+  C:08E6H         LINE#         57
+  C:08EDH         LINE#         58
+  C:08F0H         LINE#         59
+  -------         ENDPROC       _PUT_DR
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  01/08/2022  18:40:07  PAGE 4
+
+
+  -------         PROC          CHECK_BUSY
+  -------         DO            
+  D:0006H         SYMBOL        busy_flag
+  C:08FEH         SYMBOL        READ_AGAIN
+  -------         ENDDO         
+  C:08F1H         LINE#         62
+  C:08F1H         LINE#         65
+  C:08F4H         LINE#         66
+  C:08F7H         LINE#         67
+  C:08FEH         LINE#         69
+  C:08FEH         LINE#         70
+  C:0902H         LINE#         71
+  C:0905H         LINE#         74
+  C:090AH         LINE#         75
+  C:090AH         LINE#         76
+  C:090AH         LINE#         77
+  C:090DH         LINE#         78
+  C:090DH         LINE#         79
+  -------         ENDPROC       CHECK_BUSY
+  -------         PROC          _DELAY
+  D:0006H         SYMBOL        x
+  -------         DO            
+  D:0004H         SYMBOL        m
+  -------         ENDDO         
+  C:0928H         LINE#         82
+  C:0928H         LINE#         84
+  C:093FH         LINE#         85
+  -------         ENDPROC       _DELAY
+  -------         ENDMOD        8051_YUKI
+
+******************************************************************************
+* RESTRICTED VERSION WITH 0800H BYTE CODE SIZE LIMIT; USED: 00F1H BYTE (11%) *
+******************************************************************************
+
+Program Size: data=27.0 xdata=0 code=370
+LINK/LOCATE RUN COMPLETE.  0 WARNING(S),  0 ERROR(S)
