@@ -38,7 +38,7 @@ void main(){
 /*7段顯示器輸出*/
 void seg7En(int COM, int NUM){
     P2 = seg7_COM[COM];
-	P1 = seg7_num[NUM];
+	  P1 = seg7_num[NUM];
 }
 
 /*delay time*/

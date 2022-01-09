@@ -1,4 +1,4 @@
-C51 COMPILER V9.60.0.0   7SEG_RUN                                                          12/24/2021 16:10:16 PAGE 1   
+C51 COMPILER V9.60.0.0   7SEG_RUN                                                          01/09/2022 18:35:43 PAGE 1   
 
 
 C51 COMPILER V9.60.0.0, COMPILATION OF MODULE 7SEG_RUN
@@ -38,31 +38,31 @@ line level    source
   29          
   30          void main(){
   31   1         while(1){
-  32   2             seg7_switch(1,4); //1(a,com4)
-  33   2             seg7_switch(1,3); //2(a,com3)
-  34   2             seg7_switch(1,2); //3(a,com2)
-  35   2             seg7_switch(1,1); //4(a,com1)
+  32   2             seg7_switch(1,1); //1(a,com1)
+  33   2             seg7_switch(1,2); //2(a,com2)
+  34   2             seg7_switch(1,3); //3(a,com3)
+  35   2             seg7_switch(1,4); //4(a,com4)
   36   2           
-  37   2             seg7_switch(2,1); //5(b,com1)
-  38   2             seg7_switch(3,1); //6(c,com1)
-  39   2           
-  40   2             seg7_switch(4,1); //7(dot,com1)
-  41   2             seg7_switch(8,1); //8(d,com1)
+  37   2             seg7_switch(2,4); //5(b,com4)
+  38   2             seg7_switch(3,4); //6(c,com4)
+  39   2             
+  40   2             seg7_switch(4,4); //7(dot,com1)
+  41   2             seg7_switch(8,4); //8(d,com1)
   42   2           
-  43   2             seg7_switch(4,2); //9(dot,com2)
-  44   2             seg7_switch(8,2); //10(d,com2)
+  43   2             seg7_switch(4,3); //9(dot,com2)
+  44   2             seg7_switch(8,3); //10(d,com2)
   45   2           
-  46   2             seg7_switch(4,3); //11(dot,com3)
-  47   2             seg7_switch(8,3); //12(d,com3)
+  46   2             seg7_switch(4,2); //11(dot,com3)
+  47   2             seg7_switch(8,2); //12(d,com3)
   48   2           
-  49   2             seg7_switch(4,4); //13(dot,com4)
-  50   2             seg7_switch(8,4); //14(d,com4)
+  49   2             seg7_switch(4,1); //13(dot,com4)
+  50   2             seg7_switch(8,1); //14(d,com4)
   51   2           
-  52   2             seg7_switch(5,4); //15(e,com4)
-  53   2             seg7_switch(6,4); //16(f,com4)
+  52   2             seg7_switch(5,1); //15(e,com1)
+  53   2             seg7_switch(6,1); //16(f,com1)
   54   2         }    
   55   1      
-C51 COMPILER V9.60.0.0   7SEG_RUN                                                          12/24/2021 16:10:16 PAGE 2   
+C51 COMPILER V9.60.0.0   7SEG_RUN                                                          01/09/2022 18:35:43 PAGE 2   
 
   56   1      }
   57          

@@ -1,4 +1,4 @@
-C51 COMPILER V9.60.0.0   7SEG_NUM                                                          12/11/2021 14:00:47 PAGE 1   
+C51 COMPILER V9.60.0.0   7SEG_NUM                                                          01/09/2022 19:22:51 PAGE 1   
 
 
 C51 COMPILER V9.60.0.0, COMPILATION OF MODULE 7SEG_NUM
@@ -24,7 +24,7 @@ line level    source
   15             0x7F,0x6F,0x77,0x39,0x5E,0x79,0x71  //8~F
   16          };
   17          char seg7_COM[]={
-  18             0x08,0x04,0x02,0x01
+  18             0x08,0x04,0x02,0x01 //COM4,COM3,COM2,COM1
   19          };
   20          
   21          
@@ -39,49 +39,49 @@ line level    source
   30          /*組員1*/
   31          void user1(){
   32   1         seg7En(0,5);
-  33   1         delay(20000);
+  33   1         delay(10000);
   34   1         seg7En(1,0);
-  35   1         delay(20000);
+  35   1         delay(10000);
   36   1         seg7En(2,6);
-  37   1         delay(20000);
+  37   1         delay(10000);
   38   1         seg7En(3,3);
-  39   1         delay(20000);
+  39   1         delay(10000);
   40   1         seg7En(0,1);
-  41   1         delay(20000);
+  41   1         delay(10000);
   42   1         seg7En(1,1);
-  43   1         delay(20000);
+  43   1         delay(10000);
   44   1         seg7En(2,0);
-  45   1         delay(20000);
+  45   1         delay(10000);
   46   1         seg7En(3,2);
-  47   1         delay(20000);
+  47   1         delay(10000);
   48   1      }
   49          
   50          /*組員二*/
   51          void user2(){
   52   1         seg7En(0,5);
-  53   1         delay(20000);
+  53   1         delay(10000);
   54   1         seg7En(1,0);
-  55   1         delay(20000);
-C51 COMPILER V9.60.0.0   7SEG_NUM                                                          12/11/2021 14:00:47 PAGE 2   
+  55   1         delay(10000);
+C51 COMPILER V9.60.0.0   7SEG_NUM                                                          01/09/2022 19:22:51 PAGE 2   
 
   56   1         seg7En(2,6);
-  57   1         delay(20000);
+  57   1         delay(10000);
   58   1         seg7En(3,3);
-  59   1         delay(20000);
+  59   1         delay(10000);
   60   1         seg7En(0,1);
-  61   1         delay(20000);
+  61   1         delay(10000);
   62   1         seg7En(1,1);
-  63   1         delay(20000);
+  63   1         delay(10000);
   64   1         seg7En(2,1);
-  65   1         delay(20000);
+  65   1         delay(10000);
   66   1         seg7En(3,6);
-  67   1         delay(20000);
+  67   1         delay(10000);
   68   1      }
   69          
   70          /*7段顯示器輸出*/
   71          void seg7En(int a, int b){
-  72   1         P2 = seg7_COM[a];
-  73   1        P1 = seg7_number[b];
+  72   1         P2 = seg7_COM[a]; //輸出位數位置
+  73   1        P1 = seg7_number[b]; //輸出數值
   74   1      }
   75          
   76          /*功能:delay*/

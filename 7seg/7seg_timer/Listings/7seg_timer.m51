@@ -1,4 +1,4 @@
-BL51 BANKED LINKER/LOCATER V6.22.2.0                                                    12/20/2021  17:25:14  PAGE 1
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                    01/09/2022  15:15:51  PAGE 1
 
 
 BL51 BANKED LINKER/LOCATER V6.22.2.0, INVOKED BY:
@@ -23,8 +23,8 @@ LINK MAP OF MODULE:  .\Objects\7seg_timer (?C_STARTUP)
 
             * * * * * * *   D A T A   M E M O R Y   * * * * * * *
             REG     0000H     0008H     ABSOLUTE     "REG BANK 0"
-            DATA    0008H     001EH     UNIT         ?DT?7SEG_TIMER
-            IDATA   0026H     0001H     UNIT         ?STACK
+            DATA    0008H     0014H     UNIT         ?DT?7SEG_TIMER
+            IDATA   001CH     0001H     UNIT         ?STACK
 
             * * * * * * *   C O D E   M E M O R Y   * * * * * * *
             CODE    0000H     0003H     ABSOLUTE     
@@ -32,15 +32,15 @@ LINK MAP OF MODULE:  .\Objects\7seg_timer (?C_STARTUP)
             CODE    005BH     0003H     ABSOLUTE     
                     005EH     07A2H                  *** GAP ***
             CODE    0800H     008CH     UNIT         ?C_C51STARTUP
-            CODE    088CH     003AH     UNIT         ?PR?MAIN?7SEG_TIMER
-            CODE    08C6H     0027H     UNIT         ?PR?TIMER0?7SEG_TIMER
-            CODE    08EDH     0025H     UNIT         ?C_INITSEG
-            CODE    0912H     0018H     UNIT         ?PR?_DELAY?7SEG_TIMER
-            CODE    092AH     0014H     UNIT         ?PR?DISPLAY?7SEG_TIMER
-            CODE    093EH     000CH     UNIT         ?PR?ONE_MM?7SEG_TIMER
-            CODE    094AH     000CH     UNIT         ?PR?TEN_MM?7SEG_TIMER
-            CODE    0956H     000CH     UNIT         ?PR?ONE_SS?7SEG_TIMER
-            CODE    0962H     000CH     UNIT         ?PR?TEN_SS?7SEG_TIMER
+            CODE    088CH     0060H     UNIT         ?PR?MAIN?7SEG_TIMER
+            CODE    08ECH     0027H     UNIT         ?PR?TIMER0?7SEG_TIMER
+            CODE    0913H     0021H     UNIT         ?C_INITSEG
+            CODE    0934H     001CH     UNIT         ?PR?DISPLAY?7SEG_TIMER
+            CODE    0950H     001CH     UNIT         ?PR?_DELAY?7SEG_TIMER
+            CODE    096CH     000CH     UNIT         ?PR?ONE_MM?7SEG_TIMER
+            CODE    0978H     000CH     UNIT         ?PR?TEN_MM?7SEG_TIMER
+            CODE    0984H     000CH     UNIT         ?PR?ONE_SS?7SEG_TIMER
+            CODE    0990H     000CH     UNIT         ?PR?TEN_SS?7SEG_TIMER
 
 
 
@@ -59,11 +59,13 @@ SEGMENT
 
 ?PR?DISPLAY?7SEG_TIMER
   +--> ?PR?ONE_SS?7SEG_TIMER
-BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  12/20/2021  17:25:14  PAGE 2
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  01/09/2022  15:15:51  PAGE 2
 
 
   +--> ?PR?_DELAY?7SEG_TIMER
   +--> ?PR?TEN_SS?7SEG_TIMER
+  +--> ?PR?ONE_MM?7SEG_TIMER
+  +--> ?PR?TEN_MM?7SEG_TIMER
 
 
 
@@ -74,7 +76,7 @@ SYMBOL TABLE OF MODULE:  .\Objects\7seg_timer (?C_STARTUP)
 
   -------         MODULE        ?C_STARTUP
   C:0800H         SEGMENT       ?C_C51STARTUP
-  I:0026H         SEGMENT       ?STACK
+  I:001CH         SEGMENT       ?STACK
   C:0000H         PUBLIC        ?C_STARTUP
   D:00E0H         SYMBOL        ACC
   D:00F0H         SYMBOL        B
@@ -108,20 +110,20 @@ SYMBOL TABLE OF MODULE:  .\Objects\7seg_timer (?C_STARTUP)
 
   -------         MODULE        7SEG_TIMER
   C:0000H         SYMBOL        _ICE_DUMMY_
-  C:093EH         PUBLIC        one_mm
+  C:096CH         PUBLIC        one_mm
   D:0090H         PUBLIC        P1
   D:00A0H         PUBLIC        P2
-  C:094AH         PUBLIC        ten_mm
-  C:0956H         PUBLIC        one_ss
+  C:0978H         PUBLIC        ten_mm
+  C:0984H         PUBLIC        one_ss
   D:00A8H         PUBLIC        IE
-  C:0962H         PUBLIC        ten_ss
-  C:0912H         PUBLIC        _delay
+  C:0990H         PUBLIC        ten_ss
+  C:0954H         PUBLIC        _delay
   C:088CH         PUBLIC        main
-  C:08C6H         PUBLIC        Timer0
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  01/09/2022  15:15:51  PAGE 3
+
+
+  C:08ECH         PUBLIC        Timer0
   D:0089H         PUBLIC        TMOD
-BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  12/20/2021  17:25:14  PAGE 3
-
-
   D:0008H         PUBLIC        INT_NUM
   D:008CH         PUBLIC        TH0
   D:008AH         PUBLIC        TL0
@@ -129,101 +131,110 @@ SYMBOL TABLE OF MODULE:  .\Objects\7seg_timer (?C_STARTUP)
   D:000AH         PUBLIC        SEC_ONE_mm
   D:000CH         PUBLIC        SEC_TEN_mm
   D:000EH         PUBLIC        seg7_number
-  D:001CH         PUBLIC        SEC_ONE_ss
-  D:001EH         PUBLIC        i
-  D:0020H         PUBLIC        j
-  D:0022H         PUBLIC        SEC_TEN_ss
-  D:0024H         PUBLIC        m
-  C:092AH         PUBLIC        display
+  D:0018H         PUBLIC        SEC_ONE_ss
+  D:001AH         PUBLIC        SEC_TEN_ss
+  C:0934H         PUBLIC        display
   -------         PROC          MAIN
   -------         DO            
   C:089AH         SYMBOL        again
   -------         ENDDO         
+  C:088CH         LINE#         26
   C:088CH         LINE#         27
-  C:088CH         LINE#         28
   C:088CH         LINE#         29
   C:088FH         LINE#         30
   C:0892H         LINE#         31
   C:0895H         LINE#         32
   C:0898H         LINE#         33
-  C:089AH         LINE#         34
-  C:089AH         LINE#         35
-  C:08A2H         LINE#         36
-  C:08A5H         LINE#         37
-  C:08A7H         LINE#         38
-  C:08ACH         LINE#         39
-  C:08B4H         LINE#         40
-  C:08BAH         LINE#         41
-  C:08BDH         LINE#         42
-  C:08BFH         LINE#         43
-  C:08C4H         LINE#         54
-  C:08C4H         LINE#         55
+  C:089AH         LINE#         39
+  C:089AH         LINE#         40
+  C:08A2H         LINE#         41
+  C:08A5H         LINE#         42
+  C:08A7H         LINE#         43
+  C:08ACH         LINE#         44
+  C:08B4H         LINE#         45
+  C:08BAH         LINE#         46
+  C:08BAH         LINE#         47
+  C:08BCH         LINE#         48
+  C:08C1H         LINE#         49
+  C:08C9H         LINE#         50
+  C:08CFH         LINE#         51
+  C:08D2H         LINE#         52
+  C:08D4H         LINE#         53
+  C:08D9H         LINE#         54
+  C:08E1H         LINE#         55
+  C:08E7H         LINE#         56
+  C:08EAH         LINE#         57
+  C:08EAH         LINE#         58
+  C:08EAH         LINE#         59
+  C:08EAH         LINE#         60
   -------         ENDPROC       MAIN
   -------         PROC          DISPLAY
-  C:092AH         LINE#         60
-  C:092AH         LINE#         61
-  C:092DH         LINE#         62
-  C:0934H         LINE#         63
-  C:0937H         LINE#         64
+  C:0934H         LINE#         66
+  C:0934H         LINE#         67
+  C:0937H         LINE#         68
+  C:093AH         LINE#         69
+  C:093DH         LINE#         70
+  C:0940H         LINE#         71
+  C:0943H         LINE#         72
+  C:0946H         LINE#         73
+  C:0949H         LINE#         74
   -------         ENDPROC       DISPLAY
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  01/09/2022  15:15:51  PAGE 4
+
+
   -------         PROC          TIMER0
-  C:08C6H         LINE#         71
-  C:08C8H         LINE#         72
-  C:08CBH         LINE#         73
-  C:08CEH         LINE#         74
-  C:08D6H         LINE#         75
-  C:08DCH         LINE#         76
-  C:08E4H         LINE#         77
-  C:08EAH         LINE#         78
-  C:08EAH         LINE#         79
+  C:08ECH         LINE#         78
+  C:08EEH         LINE#         79
+  C:08F1H         LINE#         80
+  C:08F4H         LINE#         81
+  C:08FCH         LINE#         84
+  C:0902H         LINE#         85
+  C:090AH         LINE#         86
+  C:0910H         LINE#         87
+  C:0910H         LINE#         88
   -------         ENDPROC       TIMER0
   -------         PROC          ONE_MM
-  C:093EH         LINE#         82
-BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  12/20/2021  17:25:14  PAGE 4
-
-
-  C:093EH         LINE#         83
-  C:0946H         LINE#         84
-  C:0949H         LINE#         85
+  C:096CH         LINE#         91
+  C:096CH         LINE#         92
+  C:0974H         LINE#         93
+  C:0977H         LINE#         94
   -------         ENDPROC       ONE_MM
   -------         PROC          TEN_MM
-  C:094AH         LINE#         86
-  C:094AH         LINE#         87
-  C:0952H         LINE#         88
-  C:0955H         LINE#         89
+  C:0978H         LINE#         95
+  C:0978H         LINE#         96
+  C:0980H         LINE#         97
+  C:0983H         LINE#         98
   -------         ENDPROC       TEN_MM
   -------         PROC          ONE_SS
-  C:0956H         LINE#         90
-  C:0956H         LINE#         91
-  C:095EH         LINE#         92
-  C:0961H         LINE#         93
+  C:0984H         LINE#         99
+  C:0984H         LINE#         100
+  C:098CH         LINE#         101
+  C:098FH         LINE#         102
   -------         ENDPROC       ONE_SS
   -------         PROC          TEN_SS
-  C:0962H         LINE#         94
-  C:0962H         LINE#         95
-  C:096AH         LINE#         96
-  C:096DH         LINE#         97
+  C:0990H         LINE#         103
+  C:0990H         LINE#         104
+  C:0998H         LINE#         105
+  C:099BH         LINE#         106
   -------         ENDPROC       TEN_SS
+  C:0950H         SYMBOL        L?0031
+  -------         PROC          L?0030
+  -------         ENDPROC       L?0030
+  C:0950H         SYMBOL        L?0031
   -------         PROC          _DELAY
   D:0006H         SYMBOL        x
   -------         DO            
   D:0004H         SYMBOL        m
   -------         ENDDO         
-  C:0912H         LINE#         99
-  C:0912H         LINE#         101
-  C:0929H         LINE#         102
+  C:0954H         LINE#         109
+  C:0954H         LINE#         111
+  C:096BH         LINE#         112
   -------         ENDPROC       _DELAY
   -------         ENDMOD        7SEG_TIMER
 
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?ONE_MM?7SEG_TIMER
-
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?TEN_MM?7SEG_TIMER
-
 ******************************************************************************
-* RESTRICTED VERSION WITH 0800H BYTE CODE SIZE LIMIT; USED: 00F3H BYTE (11%) *
+* RESTRICTED VERSION WITH 0800H BYTE CODE SIZE LIMIT; USED: 0121H BYTE (14%) *
 ******************************************************************************
 
-Program Size: data=39.0 xdata=0 code=372
-LINK/LOCATE RUN COMPLETE.  2 WARNING(S),  0 ERROR(S)
+Program Size: data=29.0 xdata=0 code=418
+LINK/LOCATE RUN COMPLETE.  0 WARNING(S),  0 ERROR(S)

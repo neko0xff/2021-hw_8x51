@@ -1,4 +1,4 @@
-BL51 BANKED LINKER/LOCATER V6.22.2.0                                                    12/14/2021  11:34:34  PAGE 1
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                    01/01/2022  00:51:33  PAGE 1
 
 
 BL51 BANKED LINKER/LOCATER V6.22.2.0, INVOKED BY:
@@ -22,9 +22,9 @@ LINK MAP OF MODULE:  7seg (?C_STARTUP)
 
             * * * * * * *   D A T A   M E M O R Y   * * * * * * *
             REG     0000H     0008H     ABSOLUTE     "REG BANK 0"
-            DATA    0008H     000EH     UNIT         ?DT?7SEG
-            DATA    0016H     0001H     UNIT         _DATA_GROUP_
-            IDATA   0017H     0001H     UNIT         ?STACK
+            DATA    0008H     0010H     UNIT         ?DT?7SEG
+            DATA    0018H     0001H     UNIT         _DATA_GROUP_
+            IDATA   0019H     0001H     UNIT         ?STACK
 
             * * * * * * *   C O D E   M E M O R Y   * * * * * * *
             CODE    0000H     0003H     ABSOLUTE     
@@ -32,7 +32,7 @@ LINK MAP OF MODULE:  7seg (?C_STARTUP)
             CODE    0800H     008CH     UNIT         ?C_C51STARTUP
             CODE    088CH     002AH     UNIT         ?PR?MAIN?7SEG
             CODE    08B6H     0018H     UNIT         ?PR?_DELAY?7SEG
-            CODE    08CEH     0011H     UNIT         ?C_INITSEG
+            CODE    08CEH     0013H     UNIT         ?C_INITSEG
 
 
 
@@ -46,7 +46,7 @@ SEGMENT                          DATA_GROUP
   +--> ?PR?MAIN?7SEG
   +--> ?C_INITSEG
 
-?PR?MAIN?7SEG                  0016H    0001H
+?PR?MAIN?7SEG                  0018H    0001H
   +--> ?PR?_DELAY?7SEG
 
 
@@ -58,8 +58,8 @@ SYMBOL TABLE OF MODULE:  7seg (?C_STARTUP)
 
   -------         MODULE        ?C_STARTUP
   C:0800H         SEGMENT       ?C_C51STARTUP
-  I:0017H         SEGMENT       ?STACK
-BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  12/14/2021  11:34:34  PAGE 2
+  I:0019H         SEGMENT       ?STACK
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  01/01/2022  00:51:33  PAGE 2
 
 
   C:0000H         PUBLIC        ?C_STARTUP
@@ -102,7 +102,7 @@ SYMBOL TABLE OF MODULE:  7seg (?C_STARTUP)
   D:0008H         PUBLIC        seg7
   -------         PROC          MAIN
   -------         DO            
-  D:0016H         SYMBOL        i
+  D:0018H         SYMBOL        i
   -------         ENDDO         
   C:088CH         LINE#         16
   C:088CH         LINE#         18
@@ -119,7 +119,7 @@ SYMBOL TABLE OF MODULE:  7seg (?C_STARTUP)
   -------         ENDDO         
   C:08B6H         LINE#         30
   C:08B6H         LINE#         32
-BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  12/14/2021  11:34:34  PAGE 3
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  01/01/2022  00:51:33  PAGE 3
 
 
   C:08CDH         LINE#         33
@@ -127,8 +127,8 @@ SYMBOL TABLE OF MODULE:  7seg (?C_STARTUP)
   -------         ENDMOD        7SEG
 
 ******************************************************************************
-* RESTRICTED VERSION WITH 0800H BYTE CODE SIZE LIMIT; USED: 0061H BYTE ( 4%) *
+* RESTRICTED VERSION WITH 0800H BYTE CODE SIZE LIMIT; USED: 0063H BYTE ( 4%) *
 ******************************************************************************
 
-Program Size: data=24.0 xdata=0 code=226
+Program Size: data=26.0 xdata=0 code=228
 LINK/LOCATE RUN COMPLETE.  0 WARNING(S),  0 ERROR(S)
