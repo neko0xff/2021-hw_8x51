@@ -1,4 +1,4 @@
-BL51 BANKED LINKER/LOCATER V6.22.2.0                                                    01/09/2022  19:33:00  PAGE 1
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                    01/10/2022  11:39:59  PAGE 1
 
 
 BL51 BANKED LINKER/LOCATER V6.22.2.0, INVOKED BY:
@@ -23,16 +23,16 @@ LINK MAP OF MODULE:  .\Objects\keybord01 (?C_STARTUP)
 
             * * * * * * *   D A T A   M E M O R Y   * * * * * * *
             REG     0000H     0008H     ABSOLUTE     "REG BANK 0"
-            DATA    0008H     0028H     UNIT         ?DT?KEYBORD01
-            IDATA   0030H     0001H     UNIT         ?STACK
+            DATA    0008H     0027H     UNIT         ?DT?KEYBORD01
+            IDATA   002FH     0001H     UNIT         ?STACK
 
             * * * * * * *   C O D E   M E M O R Y   * * * * * * *
             CODE    0000H     0003H     ABSOLUTE     
                     0003H     07FDH                  *** GAP ***
             CODE    0800H     008CH     UNIT         ?C_C51STARTUP
-            CODE    088CH     0051H     UNIT         ?PR?MAIN?KEYBORD01
-            CODE    08DDH     003FH     UNIT         ?PR?_SHOW_KEY?KEYBORD01
-            CODE    091CH     0037H     UNIT         ?C_INITSEG
+            CODE    088CH     0047H     UNIT         ?PR?MAIN?KEYBORD01
+            CODE    08D3H     003FH     UNIT         ?PR?_SHOW_KEY?KEYBORD01
+            CODE    0912H     0034H     UNIT         ?C_INITSEG
 
 
 
@@ -58,8 +58,8 @@ SYMBOL TABLE OF MODULE:  .\Objects\keybord01 (?C_STARTUP)
 
   -------         MODULE        ?C_STARTUP
   C:0800H         SEGMENT       ?C_C51STARTUP
-  I:0030H         SEGMENT       ?STACK
-BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  01/09/2022  19:33:00  PAGE 2
+  I:002FH         SEGMENT       ?STACK
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  01/10/2022  11:39:59  PAGE 2
 
 
   C:0000H         PUBLIC        ?C_STARTUP
@@ -106,57 +106,49 @@ SYMBOL TABLE OF MODULE:  .\Objects\keybord01 (?C_STARTUP)
   D:000CH         PUBLIC        keys
   D:001CH         PUBLIC        test_code
   D:001DH         PUBLIC        key_code
-  D:001EH         PUBLIC        key
-  D:001FH         PUBLIC        i
-  C:08DDH         PUBLIC        _show_key
-  D:0020H         PUBLIC        seg7
+  D:001EH         PUBLIC        i
+  C:08D3H         PUBLIC        _show_key
+  D:001FH         PUBLIC        seg7
   -------         PROC          MAIN
-  C:088CH         LINE#         19
-  C:088CH         LINE#         20
-  C:088FH         LINE#         21
-  C:0892H         LINE#         22
-  C:089BH         LINE#         23
-  C:089BH         LINE#         24
-  C:089EH         LINE#         25
-  C:08A1H         LINE#         26
-BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  01/09/2022  19:33:00  PAGE 3
+  C:088CH         LINE#         23
+  C:088CH         LINE#         26
+  C:088FH         LINE#         27
+  C:0892H         LINE#         29
+  C:0892H         LINE#         30
+  C:0895H         LINE#         31
+  C:0898H         LINE#         33
+  C:08A5H         LINE#         34
+  C:08A8H         LINE#         36
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  01/10/2022  11:39:59  PAGE 3
 
 
-  C:08AEH         LINE#         27
-  C:08AEH         LINE#         28
-  C:08B1H         LINE#         29
-  C:08BEH         LINE#         30
-  C:08BEH         LINE#         31
-  C:08C5H         LINE#         32
-  C:08CCH         LINE#         33
-  C:08D3H         LINE#         34
-  C:08DAH         LINE#         35
-  C:08DAH         LINE#         36
-  C:08DAH         LINE#         37
-  C:08DCH         LINE#         38
+  C:08B5H         LINE#         38
+  C:08BCH         LINE#         39
+  C:08C3H         LINE#         40
+  C:08CAH         LINE#         41
+  C:08D1H         LINE#         42
+  C:08D1H         LINE#         43
+  C:08D1H         LINE#         44
   -------         ENDPROC       MAIN
   -------         PROC          _SHOW_KEY
   D:0007H         SYMBOL        scan_signal
   D:0005H         SYMBOL        n
-  C:08DDH         LINE#         39
-  C:08DDH         LINE#         40
-  C:08DDH         LINE#         41
-  C:08DFH         LINE#         42
-  C:08E2H         LINE#         43
-  C:0905H         LINE#         44
-  C:0905H         LINE#         45
-  C:090EH         LINE#         46
-  C:090EH         LINE#         47
-  C:0916H         LINE#         48
-  C:0917H         LINE#         49
-  C:0917H         LINE#         50
-  C:091BH         LINE#         51
+  C:08D3H         LINE#         48
+  C:08D3H         LINE#         49
+  C:08D5H         LINE#         50
+  C:08D8H         LINE#         51
+  C:08FBH         LINE#         53
+  C:0904H         LINE#         54
+  C:090CH         LINE#         55
+  C:090DH         LINE#         56
+  C:090DH         LINE#         57
+  C:0911H         LINE#         58
   -------         ENDPROC       _SHOW_KEY
   -------         ENDMOD        KEYBORD01
 
 ******************************************************************************
-* RESTRICTED VERSION WITH 0800H BYTE CODE SIZE LIMIT; USED: 00D5H BYTE (10%) *
+* RESTRICTED VERSION WITH 0800H BYTE CODE SIZE LIMIT; USED: 00C8H BYTE ( 9%) *
 ******************************************************************************
 
-Program Size: data=49.0 xdata=0 code=342
+Program Size: data=48.0 xdata=0 code=329
 LINK/LOCATE RUN COMPLETE.  0 WARNING(S),  0 ERROR(S)

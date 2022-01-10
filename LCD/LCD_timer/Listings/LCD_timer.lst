@@ -1,0 +1,192 @@
+C51 COMPILER V9.60.0.0   LCD_TIMER                                                         01/10/2022 17:53:24 PAGE 1   
+
+
+C51 COMPILER V9.60.0.0, COMPILATION OF MODULE LCD_TIMER
+OBJECT MODULE PLACED IN .\Objects\LCD_timer.obj
+COMPILER INVOKED BY: C:\Keil_v5\C51\BIN\C51.EXE LCD_timer.c OPTIMIZE(8,SPEED) BROWSE DEBUG OBJECTEXTEND PRINT(.\Listings
+                    -\LCD_timer.lst) TABS(2) OBJECT(.\Objects\LCD_timer.obj)
+
+line level    source
+
+   1          /*
+   2          *  File: LCD_timer.c
+   3          *  功能: 在LCD實現計時器功能(mm:ss)
+   4          */
+   5          
+   6          #include "io51.h"
+   7          void delay(int x);
+   8          void set_lcd();
+   9          void set_timer0();
+  10          void cursor_home();
+  11          void put_dr(int cntl_word);
+  12          void put_ir(int data_word);
+  13          char LCD_num[]={'0','1','2','3','4','5','6','7','8','9'};
+  14          void check_busy();
+  15          int SEC_ONE=0;
+  16          int SEC_TEN=0;
+  17          int MIN_ONE=0;
+  18          int MIN_TEN=0;
+  19          int INT_NUM=0;
+  20          void display();
+  21          void LCD_outputType();
+  22          void one_mm();
+  23          void ten_mm();
+  24          void one_ss();
+  25          void ten_ss();
+  26          
+  27          
+  28          void main(){
+  29   1        
+  30   1         set_lcd();
+  31   1         while(1){
+  32   2           cursor_home();
+  33   2           set_timer0();
+  34   2           /*進位處理:
+  35   2             (1) 個位=>十位:10進位
+  36   2             (2) 秒=>分:60進位
+  37   2           */
+  38   2             again:
+  39   2                if(SEC_ONE != 10){
+  40   3                    display();
+  41   3                }else{
+  42   3                    SEC_ONE=0;
+  43   3                    SEC_TEN++;
+  44   3                    if(SEC_TEN !=6){
+  45   4                      display();
+  46   4                   }else{
+  47   4                      SEC_TEN=0;
+  48   4                      MIN_ONE++;
+  49   4                      if(MIN_ONE !=10){
+  50   5                          display();
+  51   5                      }else{
+  52   5                          MIN_ONE=0;
+  53   5                          MIN_TEN++;
+  54   5                          if(MIN_TEN !=10){
+C51 COMPILER V9.60.0.0   LCD_TIMER                                                         01/10/2022 17:53:24 PAGE 2   
+
+  55   6                              display();
+  56   6                          }
+  57   5                      }
+  58   4                   }
+  59   3                  goto again;
+  60   3                }   
+  61   2          }
+  62   1      }
+  63          
+  64          void set_timer0(){
+  65   1          TMOD= 0x01; //Timer0:16bit Timer(0000 0001)
+  66   1          TH0=(65536-5000)/256;
+  67   1          TL0=(65536-5000)%256;
+  68   1          IE=0x82; //啟用溢位中斷
+  69   1          TR0=1; //啟動Timer0
+  70   1      }
+  71          
+  72          /*輸出時間格式*/
+  73          void display(){
+  74   1        ten_mm();
+  75   1        one_mm();
+  76   1        put_dr(':');
+  77   1        ten_ss();
+  78   1        one_ss();
+  79   1        put_dr(' ');
+  80   1      }
+  81          
+  82          /*時間格式變數*/
+  83          void one_mm(){
+  84   1        put_dr(LCD_num[MIN_ONE]);
+  85   1      }
+  86          void ten_mm(){
+  87   1        put_dr(LCD_num[MIN_TEN]);
+  88   1      }
+  89          void one_ss(){
+  90   1        put_dr(LCD_num[SEC_ONE]);
+  91   1      }
+  92          void ten_ss(){
+  93   1        put_dr(LCD_num[SEC_TEN]);
+  94   1      }
+  95          
+  96          /*設定LCD*/
+  97          void set_lcd(){
+  98   1          put_ir(0x30); //設定8bit伝送+單排顯示
+  99   1          put_ir(0x06); //在位元顯示後遊標往右移
+ 100   1          put_ir(0x0C); //LCD顯示致能且遊標不出現+字元不閃爍
+ 101   1      }
+ 102          
+ 103          /*Clear LCD Display */
+ 104          void cursor_home(){
+ 105   1          put_ir(0x01); //Clear LCD Display 
+ 106   1      }
+ 107          
+ 108          /*寫入控制字元的副程式*/
+ 109          void put_ir(int data_word){
+ 110   1          check_busy(); //檢視LCD是否忙碌
+ 111   1          P1= data_word; //P1=送出LCD的控制碼
+ 112   1          P2= 0x00; //資料寫入到LCD的位址暫存器:RS=0,R/-W=0,E=0(LOW)
+ 113   1          P2= 0x04; //資料寫入到LCD的位址暫存器:RS=0,R/-W=0,E=1(HIGH)
+ 114   1          delay(100); //delay 100ms=0.1sec
+ 115   1          P2= 0x00; //資料寫入到LCD的位址暫存器:RS=0,R/-W=0,E=0(LOW)
+ 116   1      }
+C51 COMPILER V9.60.0.0   LCD_TIMER                                                         01/10/2022 17:53:24 PAGE 3   
+
+ 117          
+ 118          /*寫入資料的副程式*/
+ 119          void put_dr(int cntl_word){
+ 120   1          check_busy(); //檢視LCD是否忙碌
+ 121   1          P1= cntl_word; //P1=送出LCD的顯示碼
+ 122   1          P2= 0x01; //寫入LCD的位置暫存器:RS=1,R/-W=0,E=0(LOW)
+ 123   1          P2= 0x05; //讀LCD的位置暫存器:RS=1,R/-W=1,E=1(HIGH)
+ 124   1          delay(100); //delay 100ms=0.1sec
+ 125   1          P2= 0x01; //RS=1,R/-W=0,E=0(LOW)
+ 126   1      }
+ 127          
+ 128          /*檢視LCD是否忙碌 */
+ 129          void check_busy(){
+ 130   1          int busy_flag;
+ 131   1      
+ 132   1          P2=0x02; //資料寫入LCD的指令暫存器:RS=0,R/-W=1,E=0(LOW)
+ 133   1          P2=0x06; //資料寫入LCD的指令暫存器:RS=0,R/-W=1,E=1(HIGH)
+ 134   1          delay(100); //delay 100ms=0.1sec
+ 135   1        
+ 136   1          READ_AGAIN:
+ 137   1          busy_flag=P1; //經由P1讀取LCD的狀態字組
+ 138   1          busy_flag&=0x80; //保留狀態字組的最高位元
+ 139   1          
+ 140   1          /*最高位元判斷*/
+ 141   1          if(busy_flag == 0x80){ //if 最高位元=1
+ 142   2              goto READ_AGAIN; //讀取狀態字組
+ 143   2          }else{ //else 最高位元=0
+ 144   2              P2=0x02; //資料寫入LCD的指令暫存器:RS=0,R/-W=1,E=0(LOW)
+ 145   2          }
+ 146   1      }
+ 147          
+ 148          /*設定Timer0 INT中斷*/
+ 149          void Timer0(void) interrupt 0x0B{
+ 150   1          TH0=(65536-5000)/256;
+ 151   1          TL0=(65536-5000)%256;
+ 152   1          INT_NUM++;
+ 153   1        
+ 154   1          /*是否中斷200回*/
+ 155   1          if(INT_NUM == 200){
+ 156   2              SEC_ONE++;
+ 157   2              INT_NUM=0;
+ 158   2          }
+ 159   1      }
+ 160          
+ 161          void delay(int x){
+ 162   1         int m;
+ 163   1         for(m=0;m<x;m++);
+ 164   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    361    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =     20       4
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

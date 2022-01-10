@@ -14,6 +14,7 @@ void put_dr(int cntl_word);
 void cursor_home();
 void check_busy();
 
+
 /*主程式*/
 void main(){
     int i;

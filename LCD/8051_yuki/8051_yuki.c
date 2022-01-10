@@ -16,14 +16,12 @@ void check_busy();
 
 /*主程式*/
 void main(){
-	  int i;
-	
+	int i;
     set_lcd(); //設定LCD
-    
     /*LCD顯示*/
     cursor_home(); //游標歸位(左上角)
-	  for(i=0;i<8;i++) put_dr(yuki[i]);
-		for(i=0;i<6;i++) put_dr(output[i]);
+	for(i=0;i<8;i++) put_dr(yuki[i]);
+	for(i=0;i<6;i++) put_dr(output[i]);
 }
 
 /*設定LCD*/

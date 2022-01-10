@@ -1,4 +1,4 @@
-C51 COMPILER V9.60.0.0   7SEG_TIMER                                                        01/09/2022 15:15:51 PAGE 1   
+C51 COMPILER V9.60.0.0   7SEG_TIMER                                                        01/10/2022 14:55:43 PAGE 1   
 
 
 C51 COMPILER V9.60.0.0, COMPILATION OF MODULE 7SEG_TIMER
@@ -21,10 +21,10 @@ line level    source
   11             0x07,0x7F,0x6F //7~9
   12          };
   13          
-  14          int SEC_ONE_ss=0;
-  15          int SEC_TEN_ss=0;
-  16          int SEC_ONE_mm=0;
-  17          int SEC_TEN_mm=0;
+  14          int SEC_ONE=0;
+  15          int SEC_TEN=0;
+  16          int MIN_ONE=0;
+  17          int MIN_TEN=0;
   18          int INT_NUM=0;
   19          void delay(int x);
   20          void one_mm();
@@ -36,7 +36,7 @@ line level    source
   26          void main(){
   27   1         while(1){
   28   2           /*Timer0 設定: 5000us中斷一回*/
-  29   2             TMOD= 0x01; //Timer0:16bit Timer(0000 0001)
+  29   2           TMOD= 0x01; //Timer0:16bit Timer(0000 0001)
   30   2             TH0=(65536-5000)/256;
   31   2             TL0=(65536-5000)%256;
   32   2             IE=0x82; //啟用溢位中斷
@@ -47,24 +47,24 @@ line level    source
   37   2             (2) 秒=>分:60進位
   38   2           */
   39   2             again:
-  40   2                if(SEC_ONE_ss != 10){
+  40   2                if(SEC_ONE != 10){
   41   3                    display();
   42   3                }else{
-  43   3                    SEC_ONE_ss=0;
-  44   3                    SEC_TEN_ss++;
-  45   3                    if(SEC_TEN_ss !=6){
+  43   3                    SEC_ONE=0;
+  44   3                    SEC_TEN++;
+  45   3                    if(SEC_TEN !=6){
   46   4                      display();
   47   4                   }else{
-  48   4                      SEC_TEN_ss=0;
-  49   4                      SEC_TEN_mm++;
-  50   4                      if(SEC_TEN_mm !=10){
+  48   4                      SEC_TEN=0;
+  49   4                      MIN_ONE++;
+  50   4                      if(MIN_ONE !=10){
   51   5                          display();
   52   5                      }else{
-  53   5                          SEC_TEN_mm=0;
-  54   5                          SEC_ONE_mm++;
-C51 COMPILER V9.60.0.0   7SEG_TIMER                                                        01/09/2022 15:15:51 PAGE 2   
+  53   5                          MIN_ONE=0;
+  54   5                          MIN_TEN++;
+C51 COMPILER V9.60.0.0   7SEG_TIMER                                                        01/10/2022 14:55:43 PAGE 2   
 
-  55   5                          if(SEC_ONE_mm !=10){
+  55   5                          if(MIN_TEN !=10){
   56   6                              display();
   57   6                          }
   58   5                      }
@@ -94,40 +94,42 @@ line level    source
   82   1        
   83   1          /*是否中斷200回*/
   84   1          if(INT_NUM == 200){
-  85   2              SEC_ONE_ss++;
+  85   2              SEC_ONE++;
   86   2              INT_NUM=0;
   87   2          }
   88   1      }
   89          
   90          /*位數輸出*/
-  91          void one_mm(){
-  92   1          P1= seg7_number[SEC_ONE_mm];
-  93   1          P2= 0x01;
+  91          void one_ss(){
+  92   1          P1= seg7_number[SEC_ONE];
+  93   1          P2= 0x08;
   94   1      }
-  95          void ten_mm(){
-  96   1          P1= seg7_number[SEC_TEN_mm];
-  97   1          P2= 0x02;
+  95          void ten_ss(){
+  96   1          P1= seg7_number[SEC_TEN];
+  97   1          P2= 0x04;
   98   1      }
-  99          void one_ss(){
- 100   1          P1= seg7_number[SEC_ONE_ss];
- 101   1          P2= 0x08;
+  99          void one_mm(){
+ 100   1          P1= seg7_number[MIN_ONE];
+ 101   1          P2= 0x02;
  102   1      }
- 103          void ten_ss(){
- 104   1          P1= seg7_number[SEC_TEN_ss];
- 105   1          P2= 0x04;
+ 103          void ten_mm(){
+ 104   1          P1= seg7_number[MIN_TEN];
+ 105   1          P2= 0x01;
  106   1      }
  107          
- 108          /*delay time*/
- 109          void delay(int x){
- 110   1          int m;
- 111   1          for(m=0;m<x;m++);
- 112   1      }
+ 108          
+ 109          
+ 110          /*delay time*/
+ 111          void delay(int x){
+ 112   1          int m;
+ 113   1          for(m=0;m<x;m++);
+ 114   1      }
 
+
+C51 COMPILER V9.60.0.0   7SEG_TIMER                                                        01/10/2022 14:55:43 PAGE 3   
 
 MODULE INFORMATION:   STATIC OVERLAYABLE
    CODE SIZE        =    239    ----
-C51 COMPILER V9.60.0.0   7SEG_TIMER                                                        01/09/2022 15:15:51 PAGE 3   
-
    CONSTANT SIZE    =   ----    ----
    XDATA SIZE       =   ----    ----
    PDATA SIZE       =   ----    ----
