@@ -145,7 +145,7 @@ void check_busy(){
     }
 }
 
-/*設定Timer0 INT中斷*/
+/*設定Timer0中斷*/
 void Timer0(void) interrupt 0x0B{
     TH0=(65536-5000)/256;
     TL0=(65536-5000)%256;

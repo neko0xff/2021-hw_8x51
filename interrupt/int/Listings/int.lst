@@ -1,0 +1,87 @@
+C51 COMPILER V9.60.0.0   INT                                                               01/15/2022 19:19:27 PAGE 1   
+
+
+C51 COMPILER V9.60.0.0, COMPILATION OF MODULE INT
+OBJECT MODULE PLACED IN .\Objects\int.obj
+COMPILER INVOKED BY: C:\Keil_v5\C51\BIN\C51.EXE int.c OMF2 OPTIMIZE(8,SPEED) BROWSE DEBUG PRINT(.\Listings\int.lst) TABS
+                    -(2) OBJECT(.\Objects\int.obj)
+
+line level    source
+
+   1          /*
+   2          *   File: `int.c`
+   3          *   功能: int0 & int1 中斷
+   4          */
+   5          
+   6          #include "io51.h"
+   7          void delay(int x);
+   8          void setINT();
+   9          void reset();
+  10          int i,j;
+  11          
+  12          void main(){
+  13   1          while(1){
+  14   2             setINT();
+  15   2             reset();
+  16   2          }
+  17   1      }
+  18          /*RESET*/
+  19          void reset(){
+  20   1        for(;;){
+  21   2           P1=0x00; //LED全亮
+  22   2           delay(20000);
+  23   2           P1=0xFF; //LED全暗
+  24   2           delay(20000);
+  25   2        }
+  26   1      }
+  27          /*INT0*/
+  28          void int0(void) interrupt 0x00{
+  29   1        while(1){
+  30   2           P1= 0xF0; //LED亮右側四顆
+  31   2           delay(20000); //delay 10sec
+  32   2           P1= 0xFF; //LED全暗
+  33   2           delay(20000);
+  34   2        }
+  35   1      }
+  36          
+  37          /*INT1*/
+  38          void int1(void) interrupt 0x02{
+  39   1        while(1){   
+  40   2           P1= 0x0F; //LED亮左側四顆
+  41   2           delay(20000);
+  42   2           P1= 0xFF; //LED全暗
+  43   2           delay(20000);
+  44   2        }
+  45   1      }
+  46          
+  47          /*INT0&1設定*/
+  48          void setINT(){
+  49   1         IT0=1; 
+  50   1         IT1=1;
+  51   1         IE=0x85; // IE=10000101B
+  52   1      }
+  53          
+  54          void delay(int x){
+C51 COMPILER V9.60.0.0   INT                                                               01/15/2022 19:19:27 PAGE 2   
+
+  55   1          int m;
+  56   1          for(m=0;m<x;m++);
+  57   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    144    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =      4    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+   EDATA SIZE       =   ----    ----
+   HDATA SIZE       =   ----    ----
+   XDATA CONST SIZE =   ----    ----
+   FAR CONST SIZE   =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

@@ -1,0 +1,5 @@
+".\Objects\STARTUP.obj",
+".\Objects\int.obj" 
+TO ".\Objects\int" 
+
+PRINT(".\Listings\int.map")
