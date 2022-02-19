@@ -1,0 +1,5 @@
+".\Objects\STARTUP.obj",
+".\Objects\beep02.obj" 
+TO ".\Objects\beep02" 
+
+PRINT(".\Listings\beep02.map")

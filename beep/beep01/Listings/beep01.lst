@@ -1,0 +1,79 @@
+C51 COMPILER V9.60.0.0   BEEP01                                                            02/19/2022 15:19:44 PAGE 1   
+
+
+C51 COMPILER V9.60.0.0, COMPILATION OF MODULE BEEP01
+OBJECT MODULE PLACED IN .\Objects\beep01.obj
+COMPILER INVOKED BY: C:\Keil_v5\C51\BIN\C51.EXE beep01.c OMF2 OPTIMIZE(8,SPEED) BROWSE DEBUG PRINT(.\Listings\beep01.lst
+                    -) TABS(2) OBJECT(.\Objects\beep01.obj)
+
+line level    source
+
+   1          #include "io51.h"
+   2          #include "s51pgm.h"
+   3          
+   4          unsigned char code song[]={
+   5            1,1,1,
+   6            3,2,1,
+   7            3,3,3,
+   8            5,4,3,
+   9            5,4,3,
+  10              2
+  11          };
+  12          
+  13          unsigned char code tone[11]={121,108,102,91,86,77,68,61,57,51,45}; //音譜定義 
+  14          
+  15          //delay 1ms
+  16          void delay_1ms(int x){
+  17   1         int i,j;
+  18   1         for(i=0;i<x;i++){
+  19   2           for(j=0;j<120;j++);
+  20   2         }
+  21   1      }
+  22          
+  23          //delay 8.15us
+  24          void delay_8us15(unsigned char count){
+  25   1        unsigned char j;
+  26   1        for(j=0;j<count;j++);
+  27   1      }
+  28          
+  29          //delay 16us
+  30          void delay_16us(int count){
+  31   1        int j;
+  32   1        for(j=0;j<count;j++);
+  33   1      }
+  34          
+  35          /*主程式*/
+  36          void main(){
+  37   1        unsigned char i,j,k;
+  38   1        
+  39   1        for(i=0;i<3;i++){
+  40   2          for(j=0;j<12;j++){
+  41   3            for(k=0;k<50;k++){
+  42   4              B1=0; //OFF
+  43   4              delay_8us15(tone[song[i]]);
+  44   4              B1=1; //ON
+  45   4              delay_8us15(tone[song[i]]);
+  46   4            }
+  47   3          }
+  48   2        }
+  49   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    139    ----
+   CONSTANT SIZE    =     27    ----
+C51 COMPILER V9.60.0.0   BEEP01                                                            02/19/2022 15:19:44 PAGE 2   
+
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+   EDATA SIZE       =   ----    ----
+   HDATA SIZE       =   ----    ----
+   XDATA CONST SIZE =   ----    ----
+   FAR CONST SIZE   =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)
